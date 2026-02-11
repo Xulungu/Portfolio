@@ -21,16 +21,26 @@ body {
   color: var(--color-gray-light); 
 }
 
-header, main, footer {
+main, footer {
   max-width: 1100px; 
   margin: auto; 
   padding: 20px; 
+}
+
+main {
+  margin-top: 100px;
 }
 
 header { 
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--color-black); 
+  padding: 20px 10px;
 }
 
 .logo { 
@@ -136,17 +146,17 @@ nav a:hover {
 .project-card .content { 
   padding: 15px; 
 }
+
 .project-card h3 { 
   margin: 0; 
   font-size: 18px; 
   color: var(--color-green); 
 }
 .project-card img {
-  max-width: 100%;
-  height: auto;
   display: block;
-  border-radius: 8px;
-  margin-top: 10px;
+  margin: 10px auto;
+  width: auto;
+  max-width: 90%; /* pour éviter qu’elle déborde */
 }
 .project-card p { 
   font-size: 14px; 
