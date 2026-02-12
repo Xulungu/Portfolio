@@ -19,6 +19,7 @@ body {
   background: var(--color-black);
   color: var(--color-gray-light);
   line-height: 1.6;
+  margin-top: 100px;
 }
 
 header {
@@ -26,6 +27,13 @@ header {
   padding: 20px;
   text-align: left;
   border-bottom: 2px solid var(--color-pink);
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 header a {

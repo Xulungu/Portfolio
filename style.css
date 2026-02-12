@@ -41,6 +41,7 @@ header {
   z-index: 1000;
   background: var(--color-black); 
   padding: 20px 10px;
+  border-bottom: 2px solid var(--color-pink);
 }
 
 .logo { 
