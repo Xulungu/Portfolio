@@ -2,78 +2,149 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Projet Deux - mini-jeux</title>
+  <title>Projet – Mini‑Jeux Python</title>
   <link rel="stylesheet" href="minijeu.css">
 </head>
+
 <body>
-  <header>
-    <a href="../index.html">← Retour au portfolio</a>
-  </header>
 
-  <main>
-    <h1>Projet Deux : Mini-Jeu</h1>
-    <img src="../Mini-jeu.png" alt="Aperçu du projet deux intitulé Mini-Jeu" style="max-width:600px; height:auto;">
+<header>
+  <a href="../index.html">← Retour au portfolio</a>
+</header>
+
+<main>
+
+  <h1>Projet : Mini‑Jeux Python</h1>
+  <img src="../Mini-Jeu.png" alt="Aperçu du projet Mini‑Jeux" class="preview">
+
+  <section>
+    <h2>Contexte du projet</h2>
     <p>
-        Dans le cadre d'une SAE en 1ère année de BUT Informatique, nous avons recréé Quelques mini-jeux en Python sur terminal.
-        <br>
-        Nous devions réaliser trois jeux et un menu en langage python :
-        <ul>
-            <li>
-                Avant de commencer, les joueurs doivent se créer un compte ou se connecter s'ils en ont déjà un. Les informations des joueurs sont stockées dans un fichier "joueurs.txt" pour permettre la persistance des données entre les sessions de jeu.
-                <br><img src="nomJoueur.png" alt="Aperçu de la connexion du projet Mini-Jeu" style="max-width:400px; height:auto;">
-            </li>
-
-            <li> Le menu devait permettre de choisir entre les trois jeux, afficher les scores totaux de chaque joueur et enregistrer les sessions précédentes dans un fichier à part.
-                <br><img src="menujeu.png" alt="Aperçu du menu du projet Mini-Jeu" style="max-width:400px; height:auto;">
-            </li>
-
-            <li>Sur le menu, nous devons pouvoir voir les scores Totaux de chaque joueur:
-                <img src="pointtotaux.png" alt="Aperçu de l'affichage des points totaux des jeux" style="max-width:500px; height:auto;">
-            </li>
-
-            <li> 
-              Et aussi de voir les scores de chaque joueur pour le jeu sélectionné:
-              <img src="pointdujeu.png" alt="Aperçu de l'affichage des points du jeu actuel" style="max-width:500px; height:auto;">
-            </li>
-
-            <li>
-                 Pour les jeux, nous devions faire :
-                 <ul>
-                    <li>Le jeu des devinettes où un joueur/ordinateur doit deviner un nombre choisi aléatoirement par l'ordinateur ou un autre Joueur avec un nombre limité d'essais.
-                    <br><img src="menudujeu.png" alt="Aperçu du menu des devinettes du projet Mini-Jeu" style="max-width:400px; height:auto;"> 
-                    image pendant le jeu des devinettes:
-                    <br><img src="devinettesJeu.png" alt="Aperçu du jeu des devinettes du projet Mini-Jeu" style="max-width:400px; height:auto;">
-                    </li>
-
-                    <li>Le jeu des allumettes où deux joueurs/ordis s'affrontent pour éviter de prendre la dernière allumette.
-                    <br><img src="allumettesJeu.png" alt="Aperçu du jeu des allumettes du projet Mini-Jeu" style="max-width:400px; height:auto;">
-                    </li>
-
-
-
-                    <li>Le jeu du morpion où deux joueurs/ordis s'affrontent pour aligner trois de leurs symboles sur une grille 3x3.
-                    <br><img src="morpionJeu.png" alt="Aperçu du jeu du morpion du projet Mini-Jeu" style="max-width:400px; height:auto;">
-                    </li>
-
-
-                 </ul>
-            </li>
-       
-            <li>
-              Pour chaque jeu, nous avons implémenté un fichier d'aide qui explique les règles et les commandes nécessaires pour jouer.
-              <br>Exemple d'aide pour le jeu des devinettes:
-              <br><img src="aide.png" alt="Aperçu de l'aide du jeu des devinettes" style="max-width:600px; height:auto;">
-            </li>
-            <li>
-              Nous devions également implémenter des bots pour jouer contre l'ordinateur dans chaque jeu.
-              <br>Exemple de menu pour choisir de jouer contre un bot ou un autre joueur:
-              <br><img src="menuVS.png" alt="Aperçu du choix de jouer contre un bot ou un joueur" style="max-width:400px; height:auto;">
-            </li>
-        
+      Projet réalisé dans le cadre d’une SAE de 1ère année du BUT Informatique.
+      Objectif : développer une application Python en terminal regroupant plusieurs mini‑jeux,
+      avec gestion des joueurs, des scores et de la persistance des données.
     </p>
+  </section>
+
+  <section>
+    <h2>Objectifs</h2>
+    <ul>
+      <li>Créer un système de connexion avec sauvegarde des joueurs.</li>
+      <li>Développer trois mini‑jeux jouables en terminal.</li>
+      <li>Mettre en place un menu principal clair et interactif.</li>
+      <li>Gérer les scores globaux et par jeu.</li>
+      <li>Implémenter des bots pour jouer contre l’ordinateur.</li>
+      <li>Créer des fichiers d’aide pour expliquer les règles.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Mon rôle dans le projet</h2>
+    <p>En binôme, j’ai principalement travaillé sur :</p>
+    <ul>
+      <li>la gestion des joueurs (création, connexion, stockage dans <code>joueurs.txt</code>) ;</li>
+      <li>le menu principal et la navigation entre les jeux ;</li>
+      <li>l’affichage des scores globaux et des scores par jeu ;</li>
+      <li>l’implémentation du jeu des devinettes ;</li>
+      <li>la création des fichiers d’aide ;</li>
+      <li>la gestion des bots (mode joueur vs bot).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Fonctionnalités principales</h2>
+
+    <h3>Gestion des joueurs</h3>
+    <p>Création de compte, connexion, persistance des données :</p>
+    <img src="nomJoueur.png" alt="Connexion joueur" class="preview">
+
+    <h3>Menu principal</h3>
+    <p>Choix du jeu, consultation des scores :</p>
+    <img src="menujeu.png" alt="Menu principal" class="preview">
+
+    <h3>Scores</h3>
+    <p>Scores totaux :</p>
+    <img src="pointtotaux.png" alt="Scores totaux" class="preview">
+
+    <p>Scores par jeu :</p>
+    <img src="pointdujeu.png" alt="Scores par jeu" class="preview">
+
+    <h3>Les trois mini‑jeux</h3>
+
+    <ul>
+      <li>
+        <strong>Jeu des devinettes</strong> — deviner un nombre aléatoire.
+        <br><img src="menudujeu.png" class="preview">
+        <br><img src="devinettesJeu.png" class="preview">
+      </li>
+
+      <li>
+        <strong>Jeu des allumettes</strong> — éviter de prendre la dernière allumette.
+        <br><img src="allumettesJeu.png" class="preview">
+      </li>
+
+      <li>
+        <strong>Jeu du morpion</strong> — aligner trois symboles.
+        <br><img src="morpionJeu.png" class="preview">
+      </li>
+    </ul>
+
+    <h3>Aide intégrée</h3>
+    <p>Chaque jeu possède un fichier d’aide :</p>
+    <img src="aide.png" class="preview">
+
+    <h3>Mode Joueur vs Bot</h3>
+    <p>Choix du mode :</p>
+    <img src="menuVS.png" class="preview">
+
+  </section>
+
+  <section>
+    <h2>Livrables</h2>
+    <ul>
+      <li>Application Python complète</li>
+      <li>Gestion des joueurs et des scores</li>
+      <li>Trois mini‑jeux fonctionnels</li>
+      <li>Fichiers d’aide</li>
+      <li>Code commenté</li>
+      <li><a href="https://github.com/ProgrameurGentil/SAE2_dev" target="_blank">Lien GitHub du projet</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Compétences du BUT démontrées</h2>
+    <ul>
+      <li><strong>C1 – Développement d’application :</strong> Python, modularité, gestion de fichiers.</li>
+      <li><strong>C2 – Optimisation :</strong> logique algorithmique, bots, gestion des essais.</li>
+      <li><strong>C5 – Conduite de projet :</strong> organisation en binôme.</li>
+      <li><strong>C6 – Collaboration :</strong> communication, versioning.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Apprentissages Critiques (AC) démontrés</h2>
+    <ul>
+      <li><strong>AC11</strong> — Implémenter des conceptions simples (mini‑jeux modulaires).</li>
+      <li><strong>AC13</strong> — Faire des essais et analyser les résultats (tests des jeux).</li>
+      <li><strong>AC21</strong> — Choisir des structures de données adaptées (scores, joueurs).</li>
+      <li><strong>AC22</strong> — Utiliser des algorithmes adaptés (bots, logique des jeux).</li>
+      <li><strong>AC51</strong> — Organiser un projet (répartition des tâches).</li>
+      <li><strong>AC61</strong> — Utiliser des outils collaboratifs.</li>
+      <li><strong>AC63</strong> — Participer à un travail collectif.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Analyse réflexive</h2>
     <p>
-      <a href="https://github.com/ProgrameurGentil/SAE2_dev" target="_blank">Voir le projet sur GitHub</a>
+      Ce projet m’a permis de renforcer ma maîtrise de Python, la gestion des fichiers,
+      la structuration en modules et la création d’interfaces textuelles claires.
+      La difficulté principale a été la persistance des données et la navigation fluide entre les jeux.
+      J’ai aussi appris à concevoir des bots simples et à rendre le code générique pour accueillir plusieurs jeux.
     </p>
-  </main>
+  </section>
+
+</main>
+
 </body>
 </html>

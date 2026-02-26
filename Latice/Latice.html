@@ -2,62 +2,134 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Projet One - Latice</title>
+  <title>Projet – Latice</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="Latice.css">
 </head>
+
 <body>
-  <header>
-    <a href="../index.html">← Retour au portfolio</a>
-  </header>
 
-  <main>
-    <h1>Projet One : Latice</h1>
-    <img src="../Latice.png" alt="Aperçu du projet One intitulé Latice" style="max-width:600px; height:auto;">
+<header>
+  <a href="../index.html">← Retour au portfolio</a>
+</header>
+
+<main>
+
+  <h1>Projet : Latice</h1>
+  <img src="../Latice.png" alt="Aperçu du projet Latice" class="preview">
+
+  <section>
+    <h2>Contexte du projet</h2>
     <p>
-        Dans le cadre d'une SAE en 1ère année de BUT Informatique, nous avons recréé le jeu de plateau Latice en Java et JavaFX.
-        L'objectif était de reproduire le fonctionnement du jeu original tout en proposant une interface jouable sur ordinateur.
+      Projet réalisé dans le cadre d’une SAE de 1ère année du BUT Informatique.
+      Objectif : recréer le jeu de plateau <strong>Latice</strong> en Java et JavaFX avec interface jouable.
     </p>
+  </section>
 
+  <section>
+    <h2>Objectifs</h2>
+    <ul>
+      <li>Reproduire fidèlement les mécaniques du jeu Latice.</li>
+      <li>Développer une interface graphique complète en JavaFX.</li>
+      <li>Gérer les interactions, animations et règles de scoring.</li>
+      <li>Proposer une expérience utilisateur fluide.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Mon rôle dans le projet</h2>
+    <p>Dans une équipe de 3 personnes, j’ai été responsable de :</p>
+    <ul>
+      <li>la création complète de l’interface JavaFX ;</li>
+      <li>la gestion des événements utilisateurs ;</li>
+      <li>l’intégration des sons (achats, victoire, musique) ;</li>
+      <li>la mise en place du fond animé ;</li>
+      <li>la synchronisation logique/affichage.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Fonctionnalités principales</h2>
+
+    <h3>Plateau de jeu</h3>
+    <p>Aperçu du plateau en fin de partie :</p>
+    <img src="finPartie.png" alt="Plateau de fin de partie" class="preview">
+
+    <h3>Système de points</h3>
+    <ul>
+      <li>Case soleil : <strong>+2 points</strong></li>
+      <li>Double : <strong>+1 point</strong></li>
+      <li>Triple : <strong>+2 points</strong></li>
+      <li>Latice : <strong>+3 points</strong></li>
+    </ul>
+
+    <h3>Actions possibles</h3>
+    <ul>
+      <li>Acheter une action</li>
+      <li>Échanger son rack</li>
+      <li>Passer son tour</li>
+      <li>Ouvrir/fermer le menu des actions</li>
+    </ul>
+
+    <img src="ecranActions.png" alt="Menu des actions" class="preview">
+
+    <h3>Fin de partie</h3>
+    <img src="ecranWin.png" alt="Fenêtre de victoire" class="preview">
+
+    <h3>Ambiance sonore et visuelle</h3>
+    <ul>
+      <li>Musique dynamique évolutive.</li>
+      <li>Vidéo de fond animée en boucle.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Livrables</h2>
+    <ul>
+      <li>Interface JavaFX complète</li>
+      <li>Gestion des règles et du scoring</li>
+      <li>Captures d’écran</li>
+      <li>Code source commenté</li>
+      <li>Intégration audio/vidéo</li>
+      <li><a href="https://github.com/ProgrameurGentil/latice" target="_blank">Lien GitHub du projet</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Compétences du BUT démontrées</h2>
+    <ul>
+      <li><strong>C1 – Développement d’application</strong> : Java, JavaFX, gestion d’événements.</li>
+      <li><strong>C2 – Optimisation</strong> : organisation du code, gestion des ressources.</li>
+      <li><strong>C5 – Conduite de projet</strong> : répartition des tâches, respect des délais.</li>
+      <li><strong>C6 – Collaboration</strong> : travail en équipe, Git.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Apprentissages Critiques (AC) démontrés</h2>
+    <ul>
+      <li><strong>AC11</strong> — Implémenter des conceptions simples (logique du jeu, règles).</li>
+      <li><strong>AC12</strong> — Élaborer des conceptions simples (structure MVC simplifiée).</li>
+      <li><strong>AC14</strong> — Développer des interfaces utilisateurs (JavaFX complet).</li>
+      <li><strong>AC22</strong> — Utiliser des algorithmes adaptés (scoring, placements).</li>
+      <li><strong>AC51</strong> — Organiser un projet (répartition des tâches).</li>
+      <li><strong>AC52</strong> — Travailler en équipe (3 développeurs).</li>
+      <li><strong>AC61</strong> — Utiliser des outils collaboratifs (Discord, Trello).</li>
+      <li><strong>AC62</strong> — Versionner du code (GitHub).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Analyse réflexive</h2>
     <p>
-      Voici à quoi ressemble le plateau en fin de partie:
+      Ce projet m’a permis de comprendre la structure d’une application JavaFX et l’importance
+      de séparer logique et affichage. La synchronisation entre actions, règles et interface a été
+      la principale difficulté. J’ai aussi appris à intégrer sons et vidéos de manière performante
+      et à maintenir un code propre en équipe.
     </p>
-    <img src="finPartie.png" alt="Aperçu du plateau de fin de partie" style="max-width:600px; height:auto;">
+  </section>
 
+</main>
 
-    <p>
-      Les joueurs peuvent obtenir des points de différentes manières :
-      <ul>
-        <li>En plaçant une tuile sur une case soleil (+2 points)</li>
-        <li>En plaçant des tuiles là où il y a plus d'une tuile adjacent à la tuile posée:</li>
-        <ul>
-          <li>2 tuiles adjacentes : +1 points (s'appelle un double)</li>
-          <li>3 tuiles adjacentes : +2 points (s'appelle un triple)</li>
-          <li>4 tuiles adjacentes : +3 points (s'appelle un latice)</li>
-        </ul>
-      </ul>
-    </p>
-    <p>
-      Pendant la partie, les joueurs peuvent éffectuer différentes actions telles que:
-      <ul>
-        <li>acheter une action (poser une nouvelle tuile)</li>
-        <li>Echanger son rack (et passer son tour en même temps)</li> 
-        <li>passer son tour</li>
-        <li>fermer le menu des actions</li>
-      </ul>
-      <br><img src="ecranActions.png" alt="Aperçu du menu des actions" style="max-width:400px; height:auto;">
-      <br>si un joueur choisit d'acheter dans le menu d'actions, alors un son d'achat se fait entendre
-    </p>
-
-    <p>A la fin d'une partie, une fenêtre s'affiche et montre qui a gagné la partie</p>
-    <img src="ecranWin.png" alt="Aperçu de la fenêtre de fin de partie" style="max-width:400px; height:auto;">
-    <p>Quand un joueur gagne, alors un son de victoire se fait entendre</p>
-    <p>Le jeu contient aussi une musique de fond qui se lance au début de la partie et qui à la moitié des tours éffectué, se change en une musique plus entrainante, montrant que la partie va bientôt se terminer</p>
-    <p>Le background est une vidéo qui se répète indéfiniment</p>
-
-    <p>
-      <a href="https://github.com/ProgrameurGentil/latice" target="_blank">Voir le projet sur GitHub</a>
-    </p>
-  </main>
 </body>
 </html>

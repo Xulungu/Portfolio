@@ -2,68 +2,147 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Projet Deux - mini-jeux</title>
+  <title>Projet – Motrilem</title>
   <link rel="stylesheet" href="motrilem.css">
 </head>
+
 <body>
-  <header>
-    <a href="../index.html">← Retour au portfolio</a>
-  </header>
 
-  <main>
-    <h1>Projet En cours : Motrilem</h1>
-    <img src="../Motrilem.png" alt="Aperçu du projet en cours intitulé Motrilem" style="max-width:600px; height:auto;">
-    <p>
-        voici un projet en cours que je réalise en ce moment même, il s'agit d'un jeu en 2D de type metroïdvania, dans lequel
-        le joueur incarne un personnage qui mourut 5000 ans avant l'histoire du jeu, sans aucun souvenir de son passé
+<header>
+  <a href="../index.html">← Retour au portfolio</a>
+</header>
 
-    </p>
+<main>
+
+  <h1>Projet en cours : Motrilem</h1>
+  <img src="../Motrilem.png" alt="Aperçu du projet Motrilem" class="preview">
+
+  <section>
+    <h2>Contexte du projet</h2>
     <p>
-        Le jeu se déroule 1 an après que le protagoniste se soit réveillé, après avoir trouvé un livre ancient, racontant l'histoire de 2 frère mages, l'un étant le villain l'autre le héros, le héros c'était sacrifié pour tuer le villain, les 2 mourut dans un combat épique.
+      Motrilem est un projet personnel en cours de développement. Il s’agit d’un jeu 2D de type 
+      <strong>metroidvania</strong>, réalisé sous Unity. Le joueur incarne un personnage mystérieux, mort 5000 ans avant 
+      les événements du jeu, et revenu à la vie sans aucun souvenir de son passé.
     </p>
+  </section>
+
+  <section>
+    <h2>Univers et histoire</h2>
     <p>
-        Après avoir lu le livre, Le protagoniste recouvre la mémoire mais la perd aussitôt, ses souvenirs absorbés par le livre, sauf un, celui d'un type de magie, le joueur choisira entre 3 magies, le feu, la foudre et la glace.
-    </p>
-    <p>
-        Pour recouvrir entièrement sa mémoire, Le protagoniste doit trouver toutes les pages du livre, disséminées à travers le monde.
-    </p>
-    <p>
-        Des boss gardent des sources de magie ancienne qui permettent au protagooniste de devenir plus fort, de débloquer de nouvelles compétences et type de magie.
-    </p>
-    <p>
-        voici une image du personnage principal du jeu.
-        <img src="MC.png" alt="Le personnage principal" style="max-width:600px; height:auto;">
+      L’histoire se déroule un an après le réveil du protagoniste. Celui‑ci découvre un livre ancien relatant 
+      la légende de deux frères mages : l’un héros, l’autre devenu un puissant antagoniste. Leur affrontement 
+      s’est terminé par la mort des deux.
     </p>
 
     <p>
-        Voici des images d'ennemies que le joueur affrontera dans le jeu.
-        <div class="ennemies">
-            <ul>
-                <li>
-                    <p>
-                        Le moustique: 
-                        <img src="ennemy.png" alt="Un moustique" style="width:100px; height:auto;">
-                    </p>
-                </li>
-
-                <li>
-                    <p>
-                        Le slime: 
-                        <img src="slime.png" alt="Un slime" style="width:100px; height:auto;">
-                    </p>
-                </li>
-                <li>
-                    <p>
-                         Le 1er boss que le joueur devra affronter:
-                         <img src="Boss1.png" alt="Le 1er boss" style="width:200px; height: auto;">
-                    </p>
-
-                </li>
-            </ul>
-        </div>
+      En lisant ce livre, le protagoniste retrouve brièvement la mémoire, avant que celle‑ci ne soit absorbée 
+      par l’ouvrage. Il ne lui reste qu’un souvenir : la maîtrise d’un type de magie. Le joueur pourra choisir 
+      entre trois affinités :
     </p>
-    
-    
-  </main>
+
+    <ul>
+      <li>Magie du feu</li>
+      <li>Magie de la foudre</li>
+      <li>Magie de la glace</li>
+    </ul>
+
+    <p>
+      Pour retrouver son identité, il devra récupérer les pages du livre dispersées dans le monde, chacune 
+      gardée par des ennemis ou des boss.
+    </p>
+  </section>
+
+  <section>
+    <h2>Mon rôle dans le projet</h2>
+    <p>En tant que développeur unique du projet, je m’occupe de :</p>
+    <ul>
+      <li>la programmation du gameplay (déplacements, collisions, attaques) ;</li>
+      <li>la création des assets 2D (sprites, animations) ;</li>
+      <li>la conception des ennemis et de leurs comportements ;</li>
+      <li>la création de l’univers, du scénario et des mécaniques de progression ;</li>
+      <li>l’intégration des systèmes de magie et d’améliorations ;</li>
+      <li>la gestion du projet sous Unity et Git.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Personnage principal</h2>
+    <p>Voici le sprite du protagoniste :</p>
+    <img src="MC.png" alt="Personnage principal" class="preview">
+  </section>
+
+  <section>
+    <h2>Ennemis et créatures</h2>
+    <p>Quelques ennemis déjà implémentés :</p>
+
+    <ul class="ennemies">
+      <li>
+        <strong>Moustique</strong><br>
+        <img src="ennemy.png" alt="Moustique" style="width:100px;">
+      </li>
+
+      <li>
+        <strong>Slime</strong><br>
+        <img src="slime.png" alt="Slime" style="width:100px;">
+      </li>
+
+      <li>
+        <strong>Premier boss</strong><br>
+        <img src="Boss1.png" alt="Boss 1" style="width:200px;">
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Fonctionnalités déjà développées</h2>
+    <ul>
+      <li>Système de déplacement avec gestion des collisions</li>
+      <li>Animations du personnage</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Livrables</h2>
+    <ul>
+      <li>Prototype jouable sous Unity</li>
+      <li>Sprites et animations originaux</li>
+      <li>Scripts C# (déplacement)</li>
+      <li>Documentation du lore et des mécaniques</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Compétences du BUT démontrées</h2>
+    <ul>
+      <li><strong>C1 – Développement d’application :</strong> C#, Unity, architecture gameplay.</li>
+      <li><strong>C2 – Optimisation :</strong> gestion des collisions, optimisation sprites.</li>
+      <li><strong>C5 – Conduite de projet :</strong> organisation, planification, pipeline de production.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Apprentissages Critiques (AC) démontrés</h2>
+    <ul>
+      <li><strong>AC11</strong> — Implémenter des conceptions simples (gameplay, IA (futur)).</li>
+      <li><strong>AC12</strong> — Élaborer des conceptions simples (architecture Unity).</li>
+      <li><strong>AC14</strong> — Développer des interfaces utilisateurs (HUD futur).</li>
+      <li><strong>AC22</strong> — Utiliser des algorithmes adaptés (IA ennemis(futur), collisions).</li>
+      <li><strong>AC23</strong> — Améliorer les performances (optimisation sprites et collisions).</li>
+      <li><strong>AC51</strong> — Organiser un projet (pipeline Unity, tâches).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Analyse réflexive</h2>
+    <p>
+      Ce projet m’aide à approfondir la programmation orientée objet en C#, la logique de moteur de jeu et 
+      la création d’assets 2D. La difficulté principale réside dans la gestion des collisions et des 
+      comportements ennemis, ainsi que dans la cohérence de l’univers. Ce projet me permet également 
+      d’améliorer ma capacité à structurer un projet complexe et à maintenir un code propre et évolutif.
+    </p>
+  </section>
+
+</main>
+
 </body>
 </html>
