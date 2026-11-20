@@ -268,3 +268,39 @@ a, a:visited, a:hover, a:active {
   text-decoration: none !important;
   color: var(--color-green) !important;
 }
+/* ===== Améliorations globales ===== */
+html { scroll-behavior: smooth; }
+body { font-family: "Segoe UI", system-ui, Arial, sans-serif; line-height: 1.6; }
+header { box-sizing: border-box; gap: 12px; flex-wrap: wrap; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; }
+[id] { scroll-margin-top: 110px; }
+img { max-width: 100%; height: auto; }
+main h1 { color: var(--color-green); }
+.preview { width: 100%; }
+
+/* ===== Page Motrilem ===== */
+.status-badge { font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--color-pink); color: var(--color-pink); }
+.pixel { image-rendering: pixelated; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 0 0 30px; }
+.stats div { background: var(--color-gray-dark); border: 1px solid var(--color-green); border-radius: 12px; padding: 14px; text-align: center; }
+.stats strong { display: block; font-size: 28px; color: var(--color-green); }
+.stats span { font-size: 13px; color: var(--color-gray-soft); }
+.lore { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.lore > div:last-child { flex: 1 1 320px; }
+.sprites { display: flex; gap: 14px; align-items: flex-end; margin: 0 auto; }
+.timeline { padding-left: 22px; }
+.timeline li { margin-bottom: 10px; padding-left: 6px; }
+.timeline li::marker { color: var(--color-pink); font-weight: bold; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin: 16px 0; }
+.card { background: var(--color-black); border: 1px solid #3a3a3a; border-radius: 12px; padding: 16px; }
+.card img { display: block; margin: 0 auto 8px; }
+.card h3 { margin: 0 0 6px; color: var(--color-green); font-size: 17px; }
+.card p { margin: 0; font-size: 14px; }
+.card.fire { border-color: #e67e22; } .card.fire h3 { color: #e67e22; }
+.card.thunder { border-color: #f1c40f; } .card.thunder h3 { color: #f1c40f; }
+.card.ice { border-color: #5dade2; } .card.ice h3 { color: #5dade2; }
+.boss { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: 20px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(46,204,64,0.08), rgba(232,67,147,0.12)); border: 1px solid var(--color-pink); }
+.boss img { margin: 0 auto; }
+.boss > div { flex: 1 1 320px; }
+.boss h3 { margin-top: 0; color: var(--color-pink); }
+main section.highlight { border-color: var(--color-green); box-shadow: 0 4px 14px rgba(46,204,64,0.25); }

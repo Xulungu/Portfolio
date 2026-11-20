@@ -59,7 +59,7 @@
       <a href="Mini-Jeu/minijeu.html">
         <div class="content">
           <h3>Mini‑Jeux Python</h3>
-          <img src="Mini-Jeu.png" alt="Aperçu du projet Mini‑Jeu">
+          <img src="Mini-jeu.png" alt="Aperçu du projet Mini‑Jeu">
           <p>Développement de plusieurs mini‑jeux jouables en terminal.</p>
           <div class="tech-list">
             <span>Python</span>
@@ -73,7 +73,7 @@
         <div class="content">
           <h3>Motrilem – Jeu 2D Unity</h3>
           <img src="Motrilem.png" alt="Aperçu du projet Motrilem">
-          <p>Création d’un jeu 2D personnel sous Unity, encore en développement.</p>
+          <p>Metroidvania 2D personnel : 3 magies, un marécage à explorer, un mini-boss et un boss en plusieurs phases. Démo jouable.</p>
           <div class="tech-list">
             <span>C#</span><span>Unity</span>
           </div>
@@ -104,7 +104,7 @@
 
     <div class="skill">
       <h3>C4 — Données</h3>
-      <p>SQL, modélisation, requêtes complexes.</p>
+      <p>SQL, modélisation, requêtes complexes, sérialisation JSON.</p>
     </div>
 
     <div class="skill">
@@ -201,27 +201,27 @@
 <h2 id="contact" class="section-title">Contact</h2>
   <section class="contact-box">
     <p>Envie de collaborer ? Envoie-moi un message :</p>
-    <form action="https://formspree.io/f/xpweokgk" method="POST">
+    <form id="contact-form" action="https://formspree.io/f/xpweokgk" method="POST">
       <label>
         Votre nom:
-        <input type="text" name="name">
+        <input type="text" id="name" name="name" required>
       </label>
       <label>
         Votre email:
-        <input type="email" name="email">
+        <input type="email" id="email" name="email" required>
       </label>
       <label>
         Votre message:
-        <textarea name="message"></textarea>
+        <textarea id="message" name="message" required></textarea>
       </label>
-      <button type="submit">Send</button>
+      <button type="submit">Envoyer</button>
     </form>
   </section>
 
 </main>
 
 <footer>
-  © 2025 Arranga Evan — Tous droits réservés
+  © 2026 Arranga Evan — Tous droits réservés
 </footer>
 
 <script src="contact.js"></script>

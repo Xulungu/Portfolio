@@ -269,3 +269,12 @@ a, a:visited, a:hover, a:active {
   text-decoration: none !important;
   color: var(--color-green) !important;
 }
+/* ===== Améliorations globales ===== */
+html { scroll-behavior: smooth; }
+body { font-family: "Segoe UI", system-ui, Arial, sans-serif; line-height: 1.6; }
+header { box-sizing: border-box; gap: 12px; flex-wrap: wrap; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; }
+[id] { scroll-margin-top: 110px; }
+img { max-width: 100%; height: auto; }
+main h1 { color: var(--color-green); }
+.preview { width: 100%; }
