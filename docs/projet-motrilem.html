@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motrilem — Metroidvania 2D sous Unity — Arranga Evan</title>
+  <meta name="description" content="Metroidvania 2D : 3 magies, un marécage à explorer, un mini-boss et un boss en plusieurs phases. Démo jouable.">
+  <meta name="theme-color" content="#05060f">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Fond : particules de mana (dessinées par assets/js/magie.js) -->
+<canvas id="mana" aria-hidden="true"></canvas>
+<div class="voile" aria-hidden="true"></div>
+
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <a class="logo" href="index.html" aria-label="Accueil">
+    <span class="logo-rune"><span>E</span></span>
+    <span class="logo-texte">
+      <strong>Arranga Evan</strong>
+      <small>Mage développeur · Niv. 2</small>
+    </span>
+  </a>
+
+  <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="menu" class="menu">
+    <a href="index.html#statut">Statut</a>
+    <a href="index.html#donjons">Donjons</a>
+    <a href="index.html#competences">Compétences</a>
+    <a href="index.html#inventaire">Inventaire</a>
+    <a href="index.html#journal">Journal</a>
+    <a href="index.html#contact" class="menu-cta">Invoquer</a>
+  </nav>
+
+  <!-- Barre de mana : se remplit en faisant défiler la page -->
+  <div class="barre-mp" aria-hidden="true"><span class="barre-mp-label">MP</span><div class="barre-mp-fond"><div class="barre-mp-remplie"></div></div></div>
+</header>
+
+<main id="contenu">
+
+<a class="retour apparition" href="index.html#donjons">← Quitter le donjon</a>
+
+<section class="donjon-entree rang-a">
+  <svg class="cercle-magique donjon-cercle" viewBox="0 0 400 400" aria-hidden="true">
+  <defs>
+    <path id="runes1" d="M200,200 m-168,0 a168,168 0 1,1 336,0 a168,168 0 1,1 -336,0"/>
+  </defs>
+  <g class="anneau anneau-1">
+    <circle cx="200" cy="200" r="190"/>
+    <circle cx="200" cy="200" r="182" class="fin"/>
+    <text><textPath href="#runes1">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛜ ᛞ ᛟ ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ</textPath></text>
+    <circle cx="200" cy="200" r="150" class="fin"/>
+  </g>
+  <g class="anneau anneau-2">
+    <polygon points="200,58 323,271 77,271"/>
+    <polygon points="200,342 77,129 323,129"/>
+    <circle cx="200" cy="200" r="142" class="tirets"/>
+  </g>
+  <g class="anneau anneau-3">
+    <circle cx="200" cy="200" r="88"/>
+    <rect x="138" y="138" width="124" height="124" transform="rotate(45 200 200)"/>
+    <rect x="138" y="138" width="124" height="124"/>
+    <circle cx="200" cy="200" r="30" class="coeur"/>
+  </g>
+</svg>  <div class="donjon-titre">
+    <p class="systeme-ligne" data-ecrire="[SYSTÈME] Vous êtes entré dans un donjon de rang A."></p>
+    <h1><span class="lueur" data-glitch="Motrilem">Motrilem</span></h1>
+    <p class="donjon-sous">Metroidvania 2D sous Unity</p>
+    <p>Metroidvania 2D : 3 magies, un marécage à explorer, un mini-boss et un boss en plusieurs phases. Démo jouable.</p>
+  </div>
+  <figure class="donjon-image apparition">
+    <img src="assets/img/motrilem/couverture.png" alt="Aperçu du projet Motrilem" class="pixel" data-agrandir>
+    <span class="badge-rang rang-a"><small>Rang</small>A</span>  </figure>
+</section>
+
+<aside class="fenetre infos-donjon apparition" aria-label="Informations du donjon">
+  <div class="fenetre-titre"><span>!</span> INFORMATIONS DU DONJON</div>
+  <dl>
+    <div><dt>Cadre</dt><dd>Projet personnel</dd></div>
+    <div><dt>Équipe</dt><dd>Solo</dd></div>
+    <div><dt>Statut</dt><dd class="statut-actif">En cours</dd></div>
+    <div><dt>Année</dt><dd>2026</dd></div>
+    <div><dt>Technos</dt><dd><ul class="puces-tech"><li>C#</li><li>Unity</li><li>Python</li></ul></dd></div>
+      </dl>
+</aside>
+
+<div class="donjon-contenu">
+  
+<ul class="chiffres apparition">
+  <li><strong data-compteur="100" data-prefixe="~">0</strong><span>scripts C#</span></li>
+  <li><strong data-compteur="7">0</strong><span>scènes jouables</span></li>
+  <li><strong data-compteur="3">0</strong><span>magies</span></li>
+  <li><strong data-compteur="2">0</strong><span>boss</span></li>
+</ul>
+
+<section class="fenetre apparition">
+  <h2>Contexte</h2>
+  <p>
+    Motrilem est un projet personnel que je développe seul. C'est un jeu 2D de type
+    <strong>metroidvania</strong> réalisé sous Unity, inspiré de jeux comme <em>Hollow Knight</em>.
+    Le joueur incarne un personnage mort 5000 ans avant les événements du jeu, revenu à la vie
+    sans aucun souvenir de son passé.
+  </p>
+  <p>
+    La démo actuelle se joue du menu principal jusqu'à la fin du premier donjon : un tutoriel,
+    un marécage à explorer, un mini-boss, un boss complet et un système de sauvegarde.
+  </p>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Univers et histoire</h2>
+  <div class="lore">
+    <div class="lore-sprites" aria-hidden="true">
+      <img src="assets/img/motrilem/mage_lumiere.png" alt="" class="pixel flotte" width="60">
+      <img src="assets/img/motrilem/livre_ouvert.png" alt="" class="pixel flotte lent" width="102">
+      <img src="assets/img/motrilem/mage_ombre.png" alt="" class="pixel flotte" width="60">
+    </div>
+    <div>
+      <p>
+        Un an après son réveil, le protagoniste découvre un livre ancien qui raconte la légende de deux
+        frères mages : l'un héros, l'autre devenu un puissant antagoniste. Leur affrontement s'est terminé
+        par la mort des deux.
+      </p>
+      <p>
+        En lisant ce livre, le héros retrouve brièvement la mémoire, avant que celle-ci ne soit absorbée par
+        l'ouvrage. Il ne lui reste qu'un souvenir : la maîtrise d'un type de magie. Pour retrouver son identité,
+        il doit récupérer les pages du livre dispersées dans le monde, chacune gardée par un boss.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Parcours de la démo</h2>
+  <ol class="chronologie">
+    <li><strong>Menu principal</strong> : Jouer, Paramètres (volumes musique / effets / dialogues), Quitter.</li>
+    <li><strong>Tutoriel dans la grotte</strong> : intro en fondu, panneaux, livre de la légende, puis choix définitif de l'affinité magique.</li>
+    <li><strong>Le marécage acide</strong> : un monde découpé en plusieurs cartes reliées (Berges contaminées, Racines noyées, Ruines englouties, Hauteurs infestées, Cœur du marécage).</li>
+    <li><strong>Le Terrier gluant</strong> : l'antre du mini-boss, le Gros Gluant.</li>
+    <li><strong>Le donjon de Séraphel</strong> : le Seuil, la Galerie des Remerciements, l'antichambre, puis l'arène du boss.</li>
+    <li><strong>Une page du livre</strong> : récompense du boss, qui débloque l'attaque chargée. Une porte « À suivre… » termine la démo.</li>
+  </ol>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Système de magie</h2>
+  <p>Au début du jeu, le joueur choisit une affinité sur un écran de cartes animé. Le choix est définitif et change toute la façon de combattre :</p>
+  <div class="cartes">
+    <div class="carte element-feu">
+      <img src="assets/img/motrilem/icone_feu.png" alt="" class="pixel" width="48">
+      <h3>Feu</h3>
+      <p>Boule de feu qui explose en petite zone et fait brûler l'ennemi (dégâts sur la durée).</p>
+    </div>
+    <div class="carte element-foudre">
+      <img src="assets/img/motrilem/icone_foudre.png" alt="" class="pixel" width="48">
+      <h3>Foudre</h3>
+      <p>Éclair très rapide qui rebondit sur deux ennemis proches.</p>
+    </div>
+    <div class="carte element-glace">
+      <img src="assets/img/motrilem/icone_glace.png" alt="" class="pixel" width="48">
+      <h3>Glace</h3>
+      <p>Éclat qui ralentit ; trois coups rapprochés gèlent complètement l'ennemi.</p>
+    </div>
+  </div>
+  <ul>
+    <li>Visée dans 8 directions (haut, bas et diagonales).</li>
+    <li>Attaque chargée débloquée après le premier boss : maintenir puis relâcher.</li>
+    <li>Effets visuels propres à chaque magie : aura autour du joueur, braises, brume froide, étincelles.</li>
+  </ul>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Déplacements</h2>
+  <p>J'ai beaucoup travaillé le « ressenti » des contrôles, qui fait la différence dans un jeu de plateforme :</p>
+  <ul>
+    <li>Marche et course avec un élan qui se construit progressivement et se conserve en l'air.</li>
+    <li>Saut variable (relâcher la touche raccourcit le saut), <em>coyote time</em> et <em>jump buffer</em>.</li>
+    <li>Plateformes traversables par le bas, plateformes mobiles, nénuphars et ascenseurs.</li>
+    <li>Regarder en haut ou en bas pour voir la suite du niveau.</li>
+    <li>Nage dans l'acide une fois l'immunité obtenue, avec un bond pour en sortir.</li>
+  </ul>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Monstres et boss</h2>
+  <div class="cartes">
+    <div class="carte">
+      <img src="assets/img/motrilem/MC.png" alt="Le protagoniste" class="pixel" width="70">
+      <h3>Le protagoniste</h3>
+      <p>Revenu d'entre les morts, il ne garde qu'un souvenir : sa magie.</p>
+    </div>
+    <div class="carte">
+      <img src="assets/img/motrilem/ennemy.png" alt="Moustique piqueur" width="80">
+      <h3>Moustique piqueur</h3>
+      <p>Il s'arrête, tremble en rougissant, puis lance une copie fantôme de sa trompe sur le joueur.</p>
+    </div>
+    <div class="carte">
+      <img src="assets/img/motrilem/slime.png" alt="Slime" class="pixel" width="64">
+      <h3>Slimes</h3>
+      <p>Ennemis de base du marécage, qu'on peut aussi vaincre en les écrasant.</p>
+    </div>
+    <div class="carte">
+      <h3>Le Gros Gluant</h3>
+      <p>Mini-boss en arène fermée : bonds, ondes de choc au sol, crachats de glu et appels de petits slimes. Il garde un éclat de vie.</p>
+    </div>
+  </div>
+
+  <div class="boss">
+    <img src="assets/img/motrilem/Boss1.png" alt="Séraphel, le premier boss" width="220" class="flotte" data-agrandir>
+    <div>
+      <p class="boss-alerte">⚠ BOSS</p>
+      <h3>Séraphel — « Ce qui bourdonne dans la lumière »</h3>
+      <p>Un moustique géant, presque une divinité, gonflé d'acide. C'est le combat le plus abouti du jeu :</p>
+      <ul>
+        <li>Une dizaine d'attaques : trompes, plongeon, charge annoncée, pluie d'acide, geysers, nova, spirale, vague d'acide, essaim…</li>
+        <li>Plusieurs phases : à mi-vie, il plonge dans un bassin pour se soigner, puis revient enragé et invoque des moustiques qu'il dévore s'ils survivent.</li>
+        <li>L'arène se dégrade : le sol s'effondre dans l'acide au fil du combat.</li>
+        <li>Réaction à chaque magie : le feu le brûle, la glace le ralentit, la foudre l'étourdit.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Systèmes du jeu</h2>
+  <div class="cartes">
+    <div class="carte"><h3>Sauvegarde</h3><p>Fichier JSON écrit en priant devant une statue d'ange : vie, magie, améliorations, objets ramassés et point de réapparition.</p></div>
+    <div class="carte"><h3>Monde en cartes</h3><p>Le marécage est découpé en plusieurs scènes. Les transitions conservent la position et l'élan du joueur, et le nom de chaque zone s'affiche à l'entrée.</p></div>
+    <div class="carte"><h3>Exploration</h3><p>Éclats de vie cachés (+20 PV max), urnes cassables, murs fissurés, leviers, salles de vagues d'ennemis.</p></div>
+    <div class="carte"><h3>Audio</h3><p>Musique par zone avec fondu enchaîné, musique de combat, bruitages, réglage séparé des volumes.</p></div>
+    <div class="carte"><h3>Interface</h3><p>Barre de vie, barre du boss, menu pause, écran de mort, dialogues, navigation clavier et souris.</p></div>
+    <div class="carte"><h3>Rendu</h3><p>Décors en parallaxe, particules, lumières qui vacillent, animations du joueur et des ennemis.</p></div>
+  </div>
+</section>
+
+<section class="fenetre fenetre-ombre apparition">
+  <h2>En préparation : un boss final qui apprend du joueur</h2>
+  <p>
+    Pendant toute la partie, le jeu mesure la façon de jouer : précision des sorts, distance gardée avec les ennemis,
+    taux d'esquive, agressivité, préférence entre la magie et l'écrasement. Ce profil est enregistré dans la sauvegarde.
+    Il servira de base à l'IA du boss final, qui devra imiter ou contrer le style du joueur.
+  </p>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Méthode de travail</h2>
+  <ul>
+    <li><strong>Outils d'éditeur Unity</strong> : des scripts génèrent automatiquement les scènes (tutoriel, marécage, donjon), ce qui me permet de modifier un niveau sans tout refaire à la main.</li>
+    <li><strong>Conception du niveau en Python</strong> : un petit outil décrit le marécage et génère le code C# du découpage en zones.</li>
+    <li><strong>Itérations</strong> : 13 étapes de développement sauvegardées (tutoriel, v2, v3, étang, monde ouvert, panneaux, marécage, boss…), avec Git en parallèle.</li>
+    <li><strong>Code commenté en français</strong> et organisé par dossier : joueur, magie, ennemis, sauvegarde, audio, menus, visuels.</li>
+  </ul>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Analyse réflexive</h2>
+  <p>
+    Au début, Motrilem se limitait à un personnage qui se déplace. Le faire grandir jusqu'à une vraie démo m'a appris
+    à penser en systèmes : chaque élément (sauvegarde, magie, zones, musique) doit fonctionner avec tous les autres.
+    La sauvegarde et le passage entre les cartes ont été les parties les plus difficiles, car il faut retrouver
+    exactement l'état du jeu d'une scène à l'autre.
+  </p>
+  <p>
+    Le combat contre Séraphel m'a montré l'importance de la lisibilité : chaque attaque doit être annoncée pour
+    que le joueur puisse réagir. J'ai aussi compris l'intérêt d'outils maison : générer les scènes par code m'a fait
+    gagner beaucoup de temps à chaque correction.
+  </p>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Prochaines étapes</h2>
+  <ul class="liste-quete">
+    <li>La suite de l'aventure après le donjon de Séraphel.</li>
+    <li>De nouvelles pages du livre et de nouveaux boss.</li>
+    <li>Le boss final avec une IA adaptée au profil du joueur.</li>
+  </ul>
+</section>
+
+  <section class="fenetre apparition">
+    <h2>Compétences du BUT démontrées</h2>
+    <ul class="liste-competences">
+              <li class="element-feu">
+          <span class="competence-rune" aria-hidden="true">✦</span>
+          <div><strong>C1 — Réaliser un développement d&#039;application</strong><p>C#, Unity, architecture du gameplay, interfaces de jeu.</p></div>
+        </li>
+              <li class="element-foudre">
+          <span class="competence-rune" aria-hidden="true">⚡</span>
+          <div><strong>C2 — Optimiser des applications</strong><p>Physique et collisions, IA des ennemis et du boss, structures de sauvegarde.</p></div>
+        </li>
+              <li class="element-glace">
+          <span class="competence-rune" aria-hidden="true">◈</span>
+          <div><strong>C4 — Gérer des données</strong><p>Sérialisation JSON, collecte et analyse des données de comportement du joueur.</p></div>
+        </li>
+              <li class="element-ombre">
+          <span class="competence-rune" aria-hidden="true">♛</span>
+          <div><strong>C5 — Conduire un projet</strong><p>Découpage en étapes, outils de production, gestion d&#039;un projet sur la durée.</p></div>
+        </li>
+          </ul>
+  </section>
+
+  <section class="fenetre apparition">
+    <h2>Apprentissages Critiques (AC) démontrés</h2>
+    <ul class="liste-ac ouverte">
+              <li class="ac-valide"><strong>AC11.01</strong> Implémenter des conceptions simples <span class="ac-preuve">— Déplacements, ennemis, magies.</span></li>
+              <li class="ac-valide"><strong>AC11.02</strong> Élaborer des conceptions simples <span class="ac-preuve">— Architecture par systèmes : magie, sauvegarde, audio.</span></li>
+              <li class="ac-valide"><strong>AC11.03</strong> Tester et évaluer les résultats <span class="ac-preuve">— Réglage du ressenti, équilibrage des combats.</span></li>
+              <li class="ac-valide"><strong>AC11.04</strong> Développer des interfaces utilisateurs <span class="ac-preuve">— HUD, menus, écran de choix de la magie.</span></li>
+              <li class="ac-valide"><strong>AC12.01</strong> Analyser un problème <span class="ac-preuve">— Comportements du boss, transitions entre cartes.</span></li>
+              <li class="ac-valide"><strong>AC22.01</strong> Choisir des structures de données <span class="ac-preuve">— Données de sauvegarde, profil du joueur.</span></li>
+              <li class="ac-valide"><strong>AC31.02</strong> Faire évoluer une application <span class="ac-preuve">— Projet développé et enrichi sur plusieurs mois.</span></li>
+              <li class="ac-valide"><strong>AC15.02</strong> Utiliser des outils de gestion <span class="ac-preuve">— 13 étapes de développement sauvegardées et suivies.</span></li>
+          </ul>
+  </section>
+</div>
+
+<nav class="donjons-voisins apparition" aria-label="Autres projets">
+  <a href="projet-minijeux.html" data-portail>
+    <small>← Donjon précédent</small><strong>Mini-Jeux</strong>
+  </a>
+  <a href="projet-latice.html" data-portail>
+    <small>Donjon suivant →</small><strong>Latice</strong>
+  </a>
+</nav>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-cercle" aria-hidden="true"></div>
+  <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin</p>
+  <p class="pied-astuce">Astuce du Système : tape <kbd>arise</kbd> au clavier…</p>
+</footer>
+
+<!-- Notifications du « Système » -->
+<div class="notifications" aria-live="polite"></div>
+
+<!-- Transition d'ouverture de portail (en entrant dans un donjon) -->
+<div class="portail-transition" aria-hidden="true"><div class="portail-cercle"></div></div>
+
+<!-- Agrandissement des images -->
+<div class="visionneuse" hidden>
+  <button class="visionneuse-fermer" aria-label="Fermer">✕</button>
+  <img src="" alt="">
+</div>
+
+<script src="assets/js/magie.js" defer></script>
+<script src="assets/js/interface.js" defer></script>
+<script src="assets/js/contact.js" defer></script>
+</body>
+</html>

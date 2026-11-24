@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-Jeux — Application Python en terminal — Arranga Evan</title>
+  <meta name="description" content="Trois mini-jeux jouables en terminal, avec comptes joueurs, scores sauvegardés et bots.">
+  <meta name="theme-color" content="#05060f">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Fond : particules de mana (dessinées par assets/js/magie.js) -->
+<canvas id="mana" aria-hidden="true"></canvas>
+<div class="voile" aria-hidden="true"></div>
+
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <a class="logo" href="index.html" aria-label="Accueil">
+    <span class="logo-rune"><span>E</span></span>
+    <span class="logo-texte">
+      <strong>Arranga Evan</strong>
+      <small>Mage développeur · Niv. 2</small>
+    </span>
+  </a>
+
+  <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="menu" class="menu">
+    <a href="index.html#statut">Statut</a>
+    <a href="index.html#donjons">Donjons</a>
+    <a href="index.html#competences">Compétences</a>
+    <a href="index.html#inventaire">Inventaire</a>
+    <a href="index.html#journal">Journal</a>
+    <a href="index.html#contact" class="menu-cta">Invoquer</a>
+  </nav>
+
+  <!-- Barre de mana : se remplit en faisant défiler la page -->
+  <div class="barre-mp" aria-hidden="true"><span class="barre-mp-label">MP</span><div class="barre-mp-fond"><div class="barre-mp-remplie"></div></div></div>
+</header>
+
+<main id="contenu">
+
+<a class="retour apparition" href="index.html#donjons">← Quitter le donjon</a>
+
+<section class="donjon-entree rang-d">
+  <svg class="cercle-magique donjon-cercle" viewBox="0 0 400 400" aria-hidden="true">
+  <defs>
+    <path id="runes1" d="M200,200 m-168,0 a168,168 0 1,1 336,0 a168,168 0 1,1 -336,0"/>
+  </defs>
+  <g class="anneau anneau-1">
+    <circle cx="200" cy="200" r="190"/>
+    <circle cx="200" cy="200" r="182" class="fin"/>
+    <text><textPath href="#runes1">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛜ ᛞ ᛟ ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ</textPath></text>
+    <circle cx="200" cy="200" r="150" class="fin"/>
+  </g>
+  <g class="anneau anneau-2">
+    <polygon points="200,58 323,271 77,271"/>
+    <polygon points="200,342 77,129 323,129"/>
+    <circle cx="200" cy="200" r="142" class="tirets"/>
+  </g>
+  <g class="anneau anneau-3">
+    <circle cx="200" cy="200" r="88"/>
+    <rect x="138" y="138" width="124" height="124" transform="rotate(45 200 200)"/>
+    <rect x="138" y="138" width="124" height="124"/>
+    <circle cx="200" cy="200" r="30" class="coeur"/>
+  </g>
+</svg>  <div class="donjon-titre">
+    <p class="systeme-ligne" data-ecrire="[SYSTÈME] Vous êtes entré dans un donjon de rang D."></p>
+    <h1><span class="lueur" data-glitch="Mini-Jeux">Mini-Jeux</span></h1>
+    <p class="donjon-sous">Application Python en terminal</p>
+    <p>Trois mini-jeux jouables en terminal, avec comptes joueurs, scores sauvegardés et bots.</p>
+  </div>
+  <figure class="donjon-image apparition">
+    <img src="assets/img/minijeux/couverture.png" alt="Aperçu du projet Mini-Jeux" class="" data-agrandir>
+    <span class="badge-rang rang-d"><small>Rang</small>D</span>  </figure>
+</section>
+
+<aside class="fenetre infos-donjon apparition" aria-label="Informations du donjon">
+  <div class="fenetre-titre"><span>!</span> INFORMATIONS DU DONJON</div>
+  <dl>
+    <div><dt>Cadre</dt><dd>SAE — BUT 1</dd></div>
+    <div><dt>Équipe</dt><dd>Binôme</dd></div>
+    <div><dt>Statut</dt><dd class="statut-fini">Terminé</dd></div>
+    <div><dt>Année</dt><dd>2025</dd></div>
+    <div><dt>Technos</dt><dd><ul class="puces-tech"><li>Python</li><li>Git</li></ul></dd></div>
+          <div><dt>Code</dt><dd><a href="https://github.com/ProgrameurGentil/SAE2_dev" target="_blank" rel="noopener">Voir sur GitHub ↗</a></dd></div>
+      </dl>
+</aside>
+
+<div class="donjon-contenu">
+  
+<section class="fenetre apparition">
+  <h2>Contexte</h2>
+  <p>
+    Projet réalisé dans le cadre d'une SAE de 1ʳᵉ année du BUT Informatique.
+    Objectif : développer une application Python en terminal regroupant plusieurs mini-jeux,
+    avec gestion des joueurs, des scores et de la sauvegarde des données.
+  </p>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Objectifs de la quête</h2>
+  <ul class="liste-quete">
+    <li>Créer un système de connexion avec sauvegarde des joueurs.</li>
+    <li>Développer trois mini-jeux jouables en terminal.</li>
+    <li>Mettre en place un menu principal clair et interactif.</li>
+    <li>Gérer les scores globaux et par jeu.</li>
+    <li>Implémenter des bots pour jouer contre l'ordinateur.</li>
+    <li>Créer des fichiers d'aide pour expliquer les règles.</li>
+  </ul>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Mon rôle dans le raid</h2>
+  <p>En binôme, j'ai principalement travaillé sur :</p>
+  <ul>
+    <li>la gestion des joueurs (création, connexion, stockage dans <code>joueurs.txt</code>) ;</li>
+    <li>le menu principal et la navigation entre les jeux ;</li>
+    <li>l'affichage des scores globaux et des scores par jeu ;</li>
+    <li>le jeu des devinettes ;</li>
+    <li>les fichiers d'aide ;</li>
+    <li>les bots (mode joueur contre bot).</li>
+  </ul>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Les trois mini-jeux</h2>
+  <div class="cartes">
+    <div class="carte">
+      <h3>Devinettes</h3>
+      <p>Deviner un nombre choisi au hasard.</p>
+      <img src="assets/img/minijeux/devinettesJeu.png" alt="Jeu des devinettes" data-agrandir loading="lazy">
+    </div>
+    <div class="carte">
+      <h3>Allumettes</h3>
+      <p>Éviter de prendre la dernière allumette.</p>
+      <img src="assets/img/minijeux/allumettesJeu.png" alt="Jeu des allumettes" data-agrandir loading="lazy">
+    </div>
+    <div class="carte">
+      <h3>Morpion</h3>
+      <p>Aligner trois symboles.</p>
+      <img src="assets/img/minijeux/morpionJeu.png" alt="Jeu du morpion" data-agrandir loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Fonctionnalités</h2>
+  <div class="galerie">
+    <figure><img src="assets/img/minijeux/nomJoueur.png" alt="Connexion d'un joueur" data-agrandir loading="lazy"><figcaption>Création de compte et connexion</figcaption></figure>
+    <figure><img src="assets/img/minijeux/menuJeu.png" alt="Menu principal" data-agrandir loading="lazy"><figcaption>Menu principal</figcaption></figure>
+    <figure><img src="assets/img/minijeux/menudujeu.png" alt="Menu d'un jeu" data-agrandir loading="lazy"><figcaption>Menu d'un jeu</figcaption></figure>
+    <figure><img src="assets/img/minijeux/menuVS.png" alt="Choix du mode joueur contre bot" data-agrandir loading="lazy"><figcaption>Mode joueur contre bot</figcaption></figure>
+    <figure><img src="assets/img/minijeux/pointtotaux.png" alt="Scores totaux" data-agrandir loading="lazy"><figcaption>Scores totaux</figcaption></figure>
+    <figure><img src="assets/img/minijeux/pointdujeu.png" alt="Scores par jeu" data-agrandir loading="lazy"><figcaption>Scores par jeu</figcaption></figure>
+    <figure><img src="assets/img/minijeux/aide.png" alt="Fichier d'aide d'un jeu" data-agrandir loading="lazy"><figcaption>Aide intégrée à chaque jeu</figcaption></figure>
+  </div>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Butin (livrables)</h2>
+  <ul>
+    <li>Application Python complète</li>
+    <li>Gestion des joueurs et des scores</li>
+    <li>Trois mini-jeux fonctionnels avec bots</li>
+    <li>Fichiers d'aide</li>
+    <li>Code commenté</li>
+  </ul>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Analyse réflexive</h2>
+  <p>
+    Ce projet m'a permis de renforcer ma maîtrise de Python, la gestion des fichiers,
+    la structuration en modules et la création d'interfaces textuelles claires.
+    La difficulté principale a été la sauvegarde des données et la navigation fluide entre les jeux.
+    J'ai aussi appris à concevoir des bots simples et à rendre le code générique pour accueillir plusieurs jeux.
+  </p>
+</section>
+
+  <section class="fenetre apparition">
+    <h2>Compétences du BUT démontrées</h2>
+    <ul class="liste-competences">
+              <li class="element-feu">
+          <span class="competence-rune" aria-hidden="true">✦</span>
+          <div><strong>C1 — Réaliser un développement d&#039;application</strong><p>Python, modularité, gestion de fichiers.</p></div>
+        </li>
+              <li class="element-foudre">
+          <span class="competence-rune" aria-hidden="true">⚡</span>
+          <div><strong>C2 — Optimiser des applications</strong><p>Logique algorithmique, bots, gestion des essais.</p></div>
+        </li>
+              <li class="element-ombre">
+          <span class="competence-rune" aria-hidden="true">♛</span>
+          <div><strong>C5 — Conduire un projet</strong><p>Organisation en binôme.</p></div>
+        </li>
+              <li class="element-ombre">
+          <span class="competence-rune" aria-hidden="true">⚔</span>
+          <div><strong>C6 — Collaborer au sein d&#039;une équipe</strong><p>Communication, versioning.</p></div>
+        </li>
+          </ul>
+  </section>
+
+  <section class="fenetre apparition">
+    <h2>Apprentissages Critiques (AC) démontrés</h2>
+    <ul class="liste-ac ouverte">
+              <li class="ac-valide"><strong>AC11.01</strong> Implémenter des conceptions simples <span class="ac-preuve">— Les trois mini-jeux.</span></li>
+              <li class="ac-valide"><strong>AC11.03</strong> Tester et évaluer les résultats <span class="ac-preuve">— Tests des jeux.</span></li>
+              <li class="ac-valide"><strong>AC21.01</strong> Élaborer des spécifications <span class="ac-preuve">— Spécifications : gestion des joueurs et des scores.</span></li>
+              <li class="ac-valide"><strong>AC21.03</strong> Adopter de bonnes pratiques <span class="ac-preuve">— Modularité du code Python.</span></li>
+              <li class="ac-valide"><strong>AC21.04</strong> Valider par les tests <span class="ac-preuve">— Tests et correction des bugs.</span></li>
+              <li class="ac-valide"><strong>AC16.04</strong> Travailler en équipe <span class="ac-preuve">— Travail en binôme.</span></li>
+          </ul>
+  </section>
+</div>
+
+<nav class="donjons-voisins apparition" aria-label="Autres projets">
+  <a href="projet-latice.html" data-portail>
+    <small>← Donjon précédent</small><strong>Latice</strong>
+  </a>
+  <a href="projet-motrilem.html" data-portail>
+    <small>Donjon suivant →</small><strong>Motrilem</strong>
+  </a>
+</nav>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-cercle" aria-hidden="true"></div>
+  <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin</p>
+  <p class="pied-astuce">Astuce du Système : tape <kbd>arise</kbd> au clavier…</p>
+</footer>
+
+<!-- Notifications du « Système » -->
+<div class="notifications" aria-live="polite"></div>
+
+<!-- Transition d'ouverture de portail (en entrant dans un donjon) -->
+<div class="portail-transition" aria-hidden="true"><div class="portail-cercle"></div></div>
+
+<!-- Agrandissement des images -->
+<div class="visionneuse" hidden>
+  <button class="visionneuse-fermer" aria-label="Fermer">✕</button>
+  <img src="" alt="">
+</div>
+
+<script src="assets/js/magie.js" defer></script>
+<script src="assets/js/interface.js" defer></script>
+<script src="assets/js/contact.js" defer></script>
+</body>
+</html>

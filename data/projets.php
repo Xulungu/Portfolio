@@ -1,0 +1,97 @@
+<?php
+/**
+ * Les projets du portfolio, présentés comme des « donjons ».
+ * Pour ajouter un projet : ajouter une entrée ici, ses images dans assets/img/<id>/
+ * et son contenu détaillé dans contenus/<id>.php.
+ */
+
+const PROJETS = [
+    'motrilem' => [
+        'titre'      => 'Motrilem',
+        'sous_titre' => 'Metroidvania 2D sous Unity',
+        'rang'       => 'A',
+        'statut'     => 'En cours',
+        'cadre'      => 'Projet personnel',
+        'equipe'     => 'Solo',
+        'annee'      => '2026',
+        'couverture' => 'couverture.png',
+        'pixel'      => true,
+        'techs'      => ['C#', 'Unity', 'Python'],
+        'resume'     => 'Metroidvania 2D : 3 magies, un marécage à explorer, un mini-boss et un boss en plusieurs phases. Démo jouable.',
+        'github'     => null,
+        'competences' => [
+            'C1' => 'C#, Unity, architecture du gameplay, interfaces de jeu.',
+            'C2' => 'Physique et collisions, IA des ennemis et du boss, structures de sauvegarde.',
+            'C4' => 'Sérialisation JSON, collecte et analyse des données de comportement du joueur.',
+            'C5' => 'Découpage en étapes, outils de production, gestion d\'un projet sur la durée.',
+        ],
+        'ac' => [
+            'AC11.01' => 'Déplacements, ennemis, magies.',
+            'AC11.02' => 'Architecture par systèmes : magie, sauvegarde, audio.',
+            'AC11.03' => 'Réglage du ressenti, équilibrage des combats.',
+            'AC11.04' => 'HUD, menus, écran de choix de la magie.',
+            'AC12.01' => 'Comportements du boss, transitions entre cartes.',
+            'AC22.01' => 'Données de sauvegarde, profil du joueur.',
+            'AC31.02' => 'Projet développé et enrichi sur plusieurs mois.',
+            'AC15.02' => '13 étapes de développement sauvegardées et suivies.',
+        ],
+    ],
+    'latice' => [
+        'titre'      => 'Latice',
+        'sous_titre' => 'Jeu de plateau en JavaFX',
+        'rang'       => 'C',
+        'statut'     => 'Terminé',
+        'cadre'      => 'SAE — BUT 1',
+        'equipe'     => '3 personnes',
+        'annee'      => '2025',
+        'couverture' => 'couverture.png',
+        'pixel'      => false,
+        'techs'      => ['Java', 'JavaFX', 'Git'],
+        'resume'     => 'Reproduction du jeu de plateau Latice avec une interface JavaFX complète, des sons et un fond animé.',
+        'github'     => 'https://github.com/ProgrameurGentil/latice',
+        'competences' => [
+            'C1' => 'Java, JavaFX, gestion des événements.',
+            'C2' => 'Organisation du code, gestion des ressources.',
+            'C5' => 'Répartition des tâches, respect des délais.',
+            'C6' => 'Travail en équipe, Git.',
+        ],
+        'ac' => [
+            'AC11.01' => 'Logique du jeu.',
+            'AC11.02' => 'Organisation du projet.',
+            'AC11.03' => 'Tests des règles et des interactions.',
+            'AC11.04' => 'Interface JavaFX.',
+            'AC21.03' => 'Structure du code, gestion des événements.',
+            'AC15.02' => 'Répartition des tâches et suivi des délais.',
+            'AC16.04' => 'Travail à trois sur le même projet.',
+            'AC26.03' => 'Coordination avec Git.',
+        ],
+    ],
+    'minijeux' => [
+        'titre'      => 'Mini-Jeux',
+        'sous_titre' => 'Application Python en terminal',
+        'rang'       => 'D',
+        'statut'     => 'Terminé',
+        'cadre'      => 'SAE — BUT 1',
+        'equipe'     => 'Binôme',
+        'annee'      => '2025',
+        'couverture' => 'couverture.png',
+        'pixel'      => false,
+        'techs'      => ['Python', 'Git'],
+        'resume'     => 'Trois mini-jeux jouables en terminal, avec comptes joueurs, scores sauvegardés et bots.',
+        'github'     => 'https://github.com/ProgrameurGentil/SAE2_dev',
+        'competences' => [
+            'C1' => 'Python, modularité, gestion de fichiers.',
+            'C2' => 'Logique algorithmique, bots, gestion des essais.',
+            'C5' => 'Organisation en binôme.',
+            'C6' => 'Communication, versioning.',
+        ],
+        'ac' => [
+            'AC11.01' => 'Les trois mini-jeux.',
+            'AC11.03' => 'Tests des jeux.',
+            'AC21.01' => 'Spécifications : gestion des joueurs et des scores.',
+            'AC21.03' => 'Modularité du code Python.',
+            'AC21.04' => 'Tests et correction des bugs.',
+            'AC16.04' => 'Travail en binôme.',
+        ],
+    ],
+];

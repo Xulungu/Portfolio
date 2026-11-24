@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Arranga Evan</title>
+  <meta name="description" content="Portfolio d&#039;Arranga Evan, étudiant en 2ᵉ année de BUT Informatique.">
+  <meta name="theme-color" content="#05060f">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Fond : particules de mana (dessinées par assets/js/magie.js) -->
+<canvas id="mana" aria-hidden="true"></canvas>
+<div class="voile" aria-hidden="true"></div>
+
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<header class="entete">
+  <a class="logo" href="index.html" aria-label="Accueil">
+    <span class="logo-rune"><span>E</span></span>
+    <span class="logo-texte">
+      <strong>Arranga Evan</strong>
+      <small>Mage développeur · Niv. 2</small>
+    </span>
+  </a>
+
+  <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="menu" class="menu">
+    <a href="index.html#statut">Statut</a>
+    <a href="index.html#donjons">Donjons</a>
+    <a href="index.html#competences">Compétences</a>
+    <a href="index.html#inventaire">Inventaire</a>
+    <a href="index.html#journal">Journal</a>
+    <a href="index.html#contact" class="menu-cta">Invoquer</a>
+  </nav>
+
+  <!-- Barre de mana : se remplit en faisant défiler la page -->
+  <div class="barre-mp" aria-hidden="true"><span class="barre-mp-label">MP</span><div class="barre-mp-fond"><div class="barre-mp-remplie"></div></div></div>
+</header>
+
+<main id="contenu">
+
+<!-- ============================================================ STATUT (accueil) -->
+<section class="eveil" id="statut">
+  <svg class="cercle-magique eveil-cercle" viewBox="0 0 400 400" aria-hidden="true">
+  <defs>
+    <path id="runes1" d="M200,200 m-168,0 a168,168 0 1,1 336,0 a168,168 0 1,1 -336,0"/>
+  </defs>
+  <g class="anneau anneau-1">
+    <circle cx="200" cy="200" r="190"/>
+    <circle cx="200" cy="200" r="182" class="fin"/>
+    <text><textPath href="#runes1">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛜ ᛞ ᛟ ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ</textPath></text>
+    <circle cx="200" cy="200" r="150" class="fin"/>
+  </g>
+  <g class="anneau anneau-2">
+    <polygon points="200,58 323,271 77,271"/>
+    <polygon points="200,342 77,129 323,129"/>
+    <circle cx="200" cy="200" r="142" class="tirets"/>
+  </g>
+  <g class="anneau anneau-3">
+    <circle cx="200" cy="200" r="88"/>
+    <rect x="138" y="138" width="124" height="124" transform="rotate(45 200 200)"/>
+    <rect x="138" y="138" width="124" height="124"/>
+    <circle cx="200" cy="200" r="30" class="coeur"/>
+  </g>
+</svg>
+  <div class="eveil-texte">
+    <p class="systeme-ligne" data-ecrire="[SYSTÈME] Un nouveau Joueur s'est éveillé."></p>
+    <h1 class="eveil-nom">
+      <span class="eveil-salut">Bonjour, je suis</span>
+      <span class="lueur" data-glitch="Arranga Evan">Arranga Evan</span>
+    </h1>
+    <p class="eveil-intro">
+      Étudiant en 2ᵉ année de BUT Informatique à l'IUT du Limousin.
+      Je crée des applications, des interfaces et des jeux vidéo — et je monte de niveau à chaque projet.
+    </p>
+    <div class="boutons">
+      <a href="#donjons" class="bouton bouton-principal"><span>Entrer dans les donjons</span></a>
+      <a href="#contact" class="bouton"><span>M'envoyer un message</span></a>
+    </div>
+  </div>
+
+  <!-- Fenêtre de statut façon « Système » -->
+  <aside class="fenetre statut apparition" aria-label="Fenêtre de statut">
+    <div class="fenetre-titre"><span>!</span> STATUT</div>
+    <dl class="statut-infos">
+      <div><dt>Nom</dt><dd>Arranga Evan</dd></div>
+      <div><dt>Classe</dt><dd>Mage développeur</dd></div>
+      <div><dt>Niveau</dt><dd>BUT 2</dd></div>
+      <div><dt>Titre</dt><dd>L&#039;Éveillé de l&#039;IUT</dd></div>
+    </dl>
+
+    <div class="jauge jauge-hp"><span>HP</span><div><i style="--valeur:100%"></i></div><b>100/100</b></div>
+    <div class="jauge jauge-mp"><span>MP</span><div><i style="--valeur:86%"></i></div><b>∞</b></div>
+
+    <ul class="statut-chiffres">
+      <li><strong data-compteur="3">0</strong><span>Donjons</span></li>
+      <li><strong data-compteur="13">0</strong><span>AC validés</span></li>
+      <li><strong data-compteur="6">0</strong><span>Compétences</span></li>
+      <li><strong data-compteur="6">0</strong><span>Technos</span></li>
+    </ul>
+  </aside>
+</section>
+
+<!-- ============================================================ DONJONS (projets) -->
+<section class="bloc" id="donjons" data-notification="Des portails sont apparus : 3 donjons détectés.">
+  <header class="titre-section apparition">
+  <span class="titre-etiquette">[ Quêtes ]</span>
+  <h2 data-glitch="Donjons explorés">Donjons explorés</h2>
+  <span class="titre-trait" aria-hidden="true"></span>
+</header>  <p class="bloc-intro apparition">Chaque projet est un donjon : plus le rang est élevé, plus il a été long et exigeant.</p>
+  <div class="portails">
+          
+<article class="portail apparition rang-a">
+  <a href="projet-motrilem.html" class="portail-lien" data-portail>
+    <div class="portail-image">
+      <img src="assets/img/motrilem/couverture.png" alt="Aperçu du projet Motrilem" class=" pixel" loading="lazy">
+      <div class="portail-vortex" aria-hidden="true"></div>
+      <span class="badge-rang rang-a"><small>Rang</small>A</span>
+      <span class="portail-statut statut-actif">En cours</span>
+    </div>
+    <div class="portail-corps">
+      <p class="portail-cadre">Projet personnel · Solo</p>
+      <h3>Motrilem</h3>
+      <p class="portail-sous">Metroidvania 2D sous Unity</p>
+      <p>Metroidvania 2D : 3 magies, un marécage à explorer, un mini-boss et un boss en plusieurs phases. Démo jouable.</p>
+      <ul class="puces-tech"><li>C#</li><li>Unity</li><li>Python</li></ul>
+      <span class="portail-entrer">Entrer dans le donjon <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>          
+<article class="portail apparition rang-c">
+  <a href="projet-latice.html" class="portail-lien" data-portail>
+    <div class="portail-image">
+      <img src="assets/img/latice/couverture.png" alt="Aperçu du projet Latice" class="" loading="lazy">
+      <div class="portail-vortex" aria-hidden="true"></div>
+      <span class="badge-rang rang-c"><small>Rang</small>C</span>
+      <span class="portail-statut statut-fini">Terminé</span>
+    </div>
+    <div class="portail-corps">
+      <p class="portail-cadre">SAE — BUT 1 · 3 personnes</p>
+      <h3>Latice</h3>
+      <p class="portail-sous">Jeu de plateau en JavaFX</p>
+      <p>Reproduction du jeu de plateau Latice avec une interface JavaFX complète, des sons et un fond animé.</p>
+      <ul class="puces-tech"><li>Java</li><li>JavaFX</li><li>Git</li></ul>
+      <span class="portail-entrer">Entrer dans le donjon <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>          
+<article class="portail apparition rang-d">
+  <a href="projet-minijeux.html" class="portail-lien" data-portail>
+    <div class="portail-image">
+      <img src="assets/img/minijeux/couverture.png" alt="Aperçu du projet Mini-Jeux" class="" loading="lazy">
+      <div class="portail-vortex" aria-hidden="true"></div>
+      <span class="badge-rang rang-d"><small>Rang</small>D</span>
+      <span class="portail-statut statut-fini">Terminé</span>
+    </div>
+    <div class="portail-corps">
+      <p class="portail-cadre">SAE — BUT 1 · Binôme</p>
+      <h3>Mini-Jeux</h3>
+      <p class="portail-sous">Application Python en terminal</p>
+      <p>Trois mini-jeux jouables en terminal, avec comptes joueurs, scores sauvegardés et bots.</p>
+      <ul class="puces-tech"><li>Python</li><li>Git</li></ul>
+      <span class="portail-entrer">Entrer dans le donjon <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>      </div>
+</section>
+
+<!-- ============================================================ COMPÉTENCES -->
+<section class="bloc" id="competences" data-notification="Fenêtre des compétences ouverte.">
+  <header class="titre-section apparition">
+  <span class="titre-etiquette">[ Compétences du BUT ]</span>
+  <h2 data-glitch="Arbre des compétences">Arbre des compétences</h2>
+  <span class="titre-trait" aria-hidden="true"></span>
+</header>  <p class="bloc-intro apparition">
+    Les 6 compétences du BUT Informatique. Le rang est calculé automatiquement selon le nombre de projets qui les prouvent.
+    Clique sur une compétence pour voir ses Apprentissages Critiques (AC).
+  </p>
+
+  <div class="competences">
+          <article class="competence apparition element-feu" style="--progression:60%">
+        <button class="competence-entete" aria-expanded="false">
+          <span class="competence-rune" aria-hidden="true">✦</span>
+          <span class="competence-noms">
+            <small>C1 · Active</small>
+            <strong>Invocation d&#039;application</strong>
+            <span>Réaliser un développement d&#039;application</span>
+          </span>
+          <span class="badge-rang rang-b"><small>Rang</small>B</span>        </button>
+
+        <div class="competence-barre"><i></i></div>
+        <p class="competence-resume">Java, Python, C#, JavaFX, Unity, PHP, JavaScript.</p>
+
+        <div class="competence-detail"><div>
+          <ul class="liste-ac">
+                          <li class="ac-valide">
+                <strong>AC11.01</strong> Implémenter des conceptions simples                                  <span class="ac-preuves">
+                                          <a href="projet-motrilem.html" data-portail>Motrilem</a>
+                                          <a href="projet-latice.html" data-portail>Latice</a>
+                                          <a href="projet-minijeux.html" data-portail>Mini-Jeux</a>
+                                      </span>
+                              </li>
+                          <li class="ac-valide">
+                <strong>AC11.02</strong> Élaborer des conceptions simples                                  <span class="ac-preuves">
+                                          <a href="projet-motrilem.html" data-portail>Motrilem</a>
+                                          <a href="projet-latice.html" data-portail>Latice</a>
+                                      </span>
+                              </li>
+                          <li class="ac-valide">
+                <strong>AC11.03</strong> Tester et évaluer les résultats                                  <span class="ac-preuves">
+                                          <a href="projet-motrilem.html" data-portail>Motrilem</a>
+                                          <a href="projet-latice.html" data-portail>Latice</a>
+                                          <a href="projet-minijeux.html" data-portail>Mini-Jeux</a>
+                                      </span>
+                              </li>
+                          <li class="ac-valide">
+                <strong>AC11.04</strong> Développer des interfaces utilisateurs                                  <span class="ac-preuves">
+                                          <a href="projet-motrilem.html" data-portail>Motrilem</a>
+                                          <a href="projet-latice.html" data-portail>Latice</a>
+                                      </span>
+                              </li>
+                          <li class="ac-valide">
+                <strong>AC21.01</strong> Élaborer des spécifications                                  <span class="ac-preuves">
+                                          <a href="projet-minijeux.html" data-portail>Mini-Jeux</a>
+                                      </span>
+                              </li>
+                          <li class="ac-valide">
+                <strong>AC21.03</strong> Adopter de bonnes pratiques                                  <span class="ac-preuves">
+                                          <a href="projet-latice.html" data-portail>Latice</a>
+                                          <a href="projet-minijeux.html" data-portail>Mini-Jeux</a>
+                                      </span>
+                              </li>
+                          <li class="ac-valide">
+                <strong>AC21.04</strong> Valider par les tests                                  <span class="ac-preuves">
+                                          <a href="projet-minijeux.html" data-portail>Mini-Jeux</a>
+                                      </span>
+                              </li>
+                          <li class="ac-valide">
+                <strong>AC31.02</strong> Faire évoluer une application                                  <span class="ac-preuves">
+                                          <a href="projet-motrilem.html" data-portail>Motrilem</a>
+                                      </span>
+                              </li>
+                      </ul>
+          <p class="competence-preuves">
+            <em>Preuves :</em>
+            Motrilem, Latice, Mini-Jeux          </p>
+        </div></div>
+      </article>
+          <article class="competence apparition element-foudre" style="--progression:60%">
+        <button class="competence-entete" aria-expanded="false">
+          <span class="competence-rune" aria-hidden="true">⚡</span>
+          <span class="competence-noms">
+            <small>C2 · Passive</small>
+            <strong>Accélération arcanique</strong>
+            <span>Optimiser des applications</span>
+          </span>
+          <span class="badge-rang rang-b"><small>Rang</small>B</span>        </button>
+
+        <div class="competence-barre"><i></i></div>
+        <p class="competence-resume">Structures de données, logique algorithmique, IA d&#039;ennemis.</p>
+
+        <div class="competence-detail"><div>
+          <ul class="liste-ac">
+                          <li class="ac-valide">
+                <strong>AC12.01</strong> Analyser un problème                                  <span class="ac-preuves">
+                                          <a href="projet-motrilem.html" data-portail>Motrilem</a>
+                                      </span>
+                              </li>
+                          <li class="">
+                <strong>AC12.02</strong> Comparer des algorithmes                              </li>
+                          <li class="ac-valide">
+                <strong>AC22.01</strong> Choisir des structures de données                                  <span class="ac-preuves">
+                                          <a href="projet-motrilem.html" data-portail>Motrilem</a>
+                                      </span>
+                              </li>
+                      </ul>
+          <p class="competence-preuves">
+            <em>Preuves :</em>
+            Motrilem, Latice, Mini-Jeux          </p>
+        </div></div>
+      </article>
+          <article class="competence apparition element-glace" style="--progression:20%">
+        <button class="competence-entete" aria-expanded="false">
+          <span class="competence-rune" aria-hidden="true">⬡</span>
+          <span class="competence-noms">
+            <small>C3 · Passive</small>
+            <strong>Domaine du système</strong>
+            <span>Administrer des systèmes</span>
+          </span>
+          <span class="badge-rang rang-d"><small>Rang</small>D</span>        </button>
+
+        <div class="competence-barre"><i></i></div>
+        <p class="competence-resume">Linux, configuration système, scripts.</p>
+
+        <div class="competence-detail"><div>
+          <ul class="liste-ac">
+                          <li class="">
+                <strong>AC13.01</strong> Identifier les composants d&#039;un système                              </li>
+                          <li class="">
+                <strong>AC13.03</strong> Installer et configurer un système                              </li>
+                      </ul>
+          <p class="competence-preuves">
+            <em>Preuves :</em>
+            TP Linux          </p>
+        </div></div>
+      </article>
+          <article class="competence apparition element-glace" style="--progression:40%">
+        <button class="competence-entete" aria-expanded="false">
+          <span class="competence-rune" aria-hidden="true">◈</span>
+          <span class="competence-noms">
+            <small>C4 · Active</small>
+            <strong>Grimoire des données</strong>
+            <span>Gérer des données</span>
+          </span>
+          <span class="badge-rang rang-c"><small>Rang</small>C</span>        </button>
+
+        <div class="competence-barre"><i></i></div>
+        <p class="competence-resume">SQL, modélisation, requêtes, sérialisation JSON.</p>
+
+        <div class="competence-detail"><div>
+          <ul class="liste-ac">
+                          <li class="">
+                <strong>AC14.01</strong> Interroger une base de données                              </li>
+                          <li class="">
+                <strong>AC14.03</strong> Concevoir une base de données                              </li>
+                      </ul>
+          <p class="competence-preuves">
+            <em>Preuves :</em>
+            Motrilem, SAE SQL          </p>
+        </div></div>
+      </article>
+          <article class="competence apparition element-ombre" style="--progression:60%">
+        <button class="competence-entete" aria-expanded="false">
+          <span class="competence-rune" aria-hidden="true">♛</span>
+          <span class="competence-noms">
+            <small>C5 · Active</small>
+            <strong>Commandement du raid</strong>
+            <span>Conduire un projet</span>
+          </span>
+          <span class="badge-rang rang-b"><small>Rang</small>B</span>        </button>
+
+        <div class="competence-barre"><i></i></div>
+        <p class="competence-resume">Organisation, planification, suivi des étapes.</p>
+
+        <div class="competence-detail"><div>
+          <ul class="liste-ac">
+                          <li class="">
+                <strong>AC15.01</strong> Comprendre les besoins                              </li>
+                          <li class="ac-valide">
+                <strong>AC15.02</strong> Utiliser des outils de gestion                                  <span class="ac-preuves">
+                                          <a href="projet-motrilem.html" data-portail>Motrilem</a>
+                                          <a href="projet-latice.html" data-portail>Latice</a>
+                                      </span>
+                              </li>
+                      </ul>
+          <p class="competence-preuves">
+            <em>Preuves :</em>
+            Motrilem, Latice, Mini-Jeux          </p>
+        </div></div>
+      </article>
+          <article class="competence apparition element-ombre" style="--progression:40%">
+        <button class="competence-entete" aria-expanded="false">
+          <span class="competence-rune" aria-hidden="true">⚔</span>
+          <span class="competence-noms">
+            <small>C6 · Passive</small>
+            <strong>Lien des invocations</strong>
+            <span>Collaborer au sein d&#039;une équipe</span>
+          </span>
+          <span class="badge-rang rang-c"><small>Rang</small>C</span>        </button>
+
+        <div class="competence-barre"><i></i></div>
+        <p class="competence-resume">Git, communication, coordination en équipe.</p>
+
+        <div class="competence-detail"><div>
+          <ul class="liste-ac">
+                          <li class="">
+                <strong>AC16.03</strong> Comprendre les rôles en équipe                              </li>
+                          <li class="ac-valide">
+                <strong>AC16.04</strong> Travailler en équipe                                  <span class="ac-preuves">
+                                          <a href="projet-latice.html" data-portail>Latice</a>
+                                          <a href="projet-minijeux.html" data-portail>Mini-Jeux</a>
+                                      </span>
+                              </li>
+                          <li class="ac-valide">
+                <strong>AC26.03</strong> Collaborer efficacement                                  <span class="ac-preuves">
+                                          <a href="projet-latice.html" data-portail>Latice</a>
+                                      </span>
+                              </li>
+                      </ul>
+          <p class="competence-preuves">
+            <em>Preuves :</em>
+            Latice, Mini-Jeux          </p>
+        </div></div>
+      </article>
+      </div>
+</section>
+
+<!-- ============================================================ INVENTAIRE (technos) -->
+<section class="bloc" id="inventaire" data-notification="Inventaire chargé.">
+  <header class="titre-section apparition">
+  <span class="titre-etiquette">[ Équipement ]</span>
+  <h2 data-glitch="Inventaire">Inventaire</h2>
+  <span class="titre-trait" aria-hidden="true"></span>
+</header>  <ul class="inventaire">
+          <li class="objet apparition rarete-epique">
+        <span class="objet-icone" aria-hidden="true"><b>J</b></span>
+        <strong>Java</strong>
+        <small>Langage · épique</small>
+      </li>
+          <li class="objet apparition rarete-rare">
+        <span class="objet-icone" aria-hidden="true"><b>FX</b></span>
+        <strong>JavaFX</strong>
+        <small>Interface · Rare</small>
+      </li>
+          <li class="objet apparition rarete-epique">
+        <span class="objet-icone" aria-hidden="true"><b>Py</b></span>
+        <strong>Python</strong>
+        <small>Langage · épique</small>
+      </li>
+          <li class="objet apparition rarete-legendaire">
+        <span class="objet-icone" aria-hidden="true"><b>C#</b></span>
+        <strong>C#</strong>
+        <small>Langage · Légendaire</small>
+      </li>
+          <li class="objet apparition rarete-legendaire">
+        <span class="objet-icone" aria-hidden="true"><b>U</b></span>
+        <strong>Unity</strong>
+        <small>Moteur · Légendaire</small>
+      </li>
+          <li class="objet apparition rarete-rare">
+        <span class="objet-icone" aria-hidden="true"><b>DB</b></span>
+        <strong>SQL</strong>
+        <small>Données · Rare</small>
+      </li>
+          <li class="objet apparition rarete-rare">
+        <span class="objet-icone" aria-hidden="true"><b>php</b></span>
+        <strong>PHP</strong>
+        <small>Web · Rare</small>
+      </li>
+          <li class="objet apparition rarete-rare">
+        <span class="objet-icone" aria-hidden="true"><b>JS</b></span>
+        <strong>JavaScript</strong>
+        <small>Web · Rare</small>
+      </li>
+          <li class="objet apparition rarete-epique">
+        <span class="objet-icone" aria-hidden="true"><b>&lt;/&gt;</b></span>
+        <strong>HTML / CSS</strong>
+        <small>Web · épique</small>
+      </li>
+          <li class="objet apparition rarete-epique">
+        <span class="objet-icone" aria-hidden="true"><b>⎇</b></span>
+        <strong>Git</strong>
+        <small>Outil · épique</small>
+      </li>
+          <li class="objet apparition rarete-commun">
+        <span class="objet-icone" aria-hidden="true"><b>$_</b></span>
+        <strong>Linux</strong>
+        <small>Système · Commun</small>
+      </li>
+      </ul>
+</section>
+
+<!-- ============================================================ JOURNAL (à propos) -->
+<section class="bloc" id="journal">
+  <header class="titre-section apparition">
+  <span class="titre-etiquette">[ Lore ]</span>
+  <h2 data-glitch="Journal du joueur">Journal du joueur</h2>
+  <span class="titre-trait" aria-hidden="true"></span>
+</header>  <div class="journal">
+    <article class="fenetre apparition">
+      <h3>Origine</h3>
+      <p>
+        Étudiant passionné par le développement logiciel, j'aime créer des projets variés :
+        interfaces graphiques, jeux vidéo, scripts Python, applications Java et projets Unity.
+      </p>
+    </article>
+    <article class="fenetre apparition">
+      <h3>Ce qui me fait avancer</h3>
+      <p>
+        Je cherche à comprendre un projet dans sa globalité. J'accorde une grande importance à la cohérence visuelle,
+        à la fluidité d'un parcours et à la qualité technique. J'aime explorer de nouvelles technologies,
+        expérimenter, corriger, améliorer et repousser les limites de ce que je sais faire.
+      </p>
+    </article>
+    <article class="fenetre apparition">
+      <h3>Quête principale</h3>
+      <p>
+        Devenir un développeur polyvalent, capable de créer des projets complets, immersifs et bien construits,
+        tout en continuant à apprendre et à affiner mes compétences.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================ CONTACT -->
+<section class="bloc" id="contact" data-notification="Cercle d'invocation prêt.">
+  <header class="titre-section apparition">
+  <span class="titre-etiquette">[ Invocation ]</span>
+  <h2 data-glitch="Me contacter">Me contacter</h2>
+  <span class="titre-trait" aria-hidden="true"></span>
+</header>  <div class="contact">
+    <svg class="cercle-magique contact-cercle" viewBox="0 0 400 400" aria-hidden="true">
+  <defs>
+    <path id="runes2" d="M200,200 m-168,0 a168,168 0 1,1 336,0 a168,168 0 1,1 -336,0"/>
+  </defs>
+  <g class="anneau anneau-1">
+    <circle cx="200" cy="200" r="190"/>
+    <circle cx="200" cy="200" r="182" class="fin"/>
+    <text><textPath href="#runes2">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ ᛈ ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛜ ᛞ ᛟ ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ ᚷ ᚹ ᚺ ᚾ ᛁ ᛃ</textPath></text>
+    <circle cx="200" cy="200" r="150" class="fin"/>
+  </g>
+  <g class="anneau anneau-2">
+    <polygon points="200,58 323,271 77,271"/>
+    <polygon points="200,342 77,129 323,129"/>
+    <circle cx="200" cy="200" r="142" class="tirets"/>
+  </g>
+  <g class="anneau anneau-3">
+    <circle cx="200" cy="200" r="88"/>
+    <rect x="138" y="138" width="124" height="124" transform="rotate(45 200 200)"/>
+    <rect x="138" y="138" width="124" height="124"/>
+    <circle cx="200" cy="200" r="30" class="coeur"/>
+  </g>
+</svg>    <form id="formulaire-contact" class="fenetre apparition" action="https://formspree.io/f/xpweokgk" method="POST" novalidate>
+      <p>Envie de collaborer, une question sur un projet ? Trace le cercle et envoie ton message.</p>
+      <label>Ton nom
+        <input type="text" id="nom" name="name" autocomplete="name" required>
+      </label>
+      <label>Ton email
+        <input type="email" id="email" name="email" autocomplete="email" required>
+      </label>
+      <label>Ton message
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </label>
+      <!-- Piège anti-robots : ce champ doit rester vide -->
+      <input type="text" name="_gotcha" class="piege" tabindex="-1" autocomplete="off">
+      <button type="submit" class="bouton bouton-principal"><span>Lancer l'invocation</span></button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="pied">
+  <div class="pied-cercle" aria-hidden="true"></div>
+  <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin</p>
+  <p class="pied-astuce">Astuce du Système : tape <kbd>arise</kbd> au clavier…</p>
+</footer>
+
+<!-- Notifications du « Système » -->
+<div class="notifications" aria-live="polite"></div>
+
+<!-- Transition d'ouverture de portail (en entrant dans un donjon) -->
+<div class="portail-transition" aria-hidden="true"><div class="portail-cercle"></div></div>
+
+<!-- Agrandissement des images -->
+<div class="visionneuse" hidden>
+  <button class="visionneuse-fermer" aria-label="Fermer">✕</button>
+  <img src="" alt="">
+</div>
+
+<script src="assets/js/magie.js" defer></script>
+<script src="assets/js/interface.js" defer></script>
+<script src="assets/js/contact.js" defer></script>
+</body>
+</html>
