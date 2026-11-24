@@ -1,0 +1,5 @@
+# Netlify ne sait pas exécuter le PHP : on publie la version statique générée par
+# "php outils/build.php" (dossier docs/).
+[build]
+  publish = "docs"
+  command = ""
