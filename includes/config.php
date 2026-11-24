@@ -6,15 +6,14 @@
 
 declare(strict_types=1);
 
-// Informations du « joueur »
+// Informations personnelles
 const SITE = [
     'nom'        => 'Arranga Evan',
     'prenom'     => 'Evan',
     'formation'  => 'BUT Informatique',
     'annee'      => 2,
     'ecole'      => 'IUT du Limousin',
-    'classe'     => 'Mage développeur',
-    'titre'      => "L'Éveillé de l'IUT",
+    'classe'     => 'Développeur d\'applications',
     'github'     => 'https://github.com/Xulungu',
     'formspree'  => 'https://formspree.io/f/xpweokgk',
 ];
@@ -102,7 +101,7 @@ function rang_competence(string $code): array
     ];
 }
 
-/** Statistiques globales affichées dans la fenêtre de statut. */
+/** Statistiques globales affichées dans la carte de profil. */
 function statistiques(): array
 {
     $ac = [];

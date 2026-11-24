@@ -1,6 +1,6 @@
 /* ==========================================================================
    Portfolio — Arranga Evan
-   Thème : fenêtres du « Système », mana et magie (inspiré de Solo Leveling)
+   Thème : interface sombre, particules de mana et effets magiques
    ========================================================================== */
 
 :root {
@@ -148,7 +148,7 @@ main { max-width: var(--largeur); margin: 0 auto; padding: calc(var(--haut-entet
 .titre-trait { display: block; height: 2px; width: 220px; background: linear-gradient(90deg, var(--cyan), var(--violet), transparent); box-shadow: 0 0 10px var(--cyan); transform-origin: left; transform: scaleX(0); transition: transform 1s 0.3s ease; }
 .titre-section.visible .titre-trait { transform: scaleX(1); }
 
-/* ---------------------------------------------------------------- fenêtres du Système */
+/* ---------------------------------------------------------------- panneaux */
 .fenetre {
   position: relative;
   background: linear-gradient(180deg, rgba(14, 28, 64, 0.78), rgba(6, 12, 30, 0.82));
@@ -220,7 +220,7 @@ main { max-width: var(--largeur); margin: 0 auto; padding: calc(var(--haut-entet
 .cercle-magique .anneau-3 { animation: tourne 25s linear infinite; }
 .cercle-magique { filter: drop-shadow(0 0 6px rgba(79, 216, 255, 0.7)); }
 
-/* ---------------------------------------------------------------- éveil (accueil) */
+/* ---------------------------------------------------------------- accueil */
 .eveil {
   position: relative; min-height: min(calc(100vh - var(--haut-entete) - 40px), 820px);
   display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center;
@@ -253,7 +253,7 @@ main { max-width: var(--largeur); margin: 0 auto; padding: calc(var(--haut-entet
 
 .eveil-intro { font-size: 20px; max-width: 560px; color: var(--texte); margin: 22px 0 0; }
 
-/* fenêtre de statut */
+/* carte de profil */
 .statut { width: 100%; max-width: 440px; justify-self: end; }
 .statut-infos { margin: 0 0 18px; display: grid; gap: 8px; }
 .statut-infos div { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px dashed rgba(90, 180, 255, 0.18); padding-bottom: 6px; }
@@ -298,7 +298,7 @@ main { max-width: var(--largeur); margin: 0 auto; padding: calc(var(--haut-entet
 }
 .badge-rang small { font-family: var(--ui); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--texte-doux); margin-bottom: 2px; }
 
-/* ---------------------------------------------------------------- donjons (cartes projets) */
+/* ---------------------------------------------------------------- cartes projets */
 .portails { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px; }
 .portail { position: relative; }
 .portail-lien {
@@ -362,7 +362,8 @@ span.statut-actif::before { content: "● "; animation: clignote 1.4s steps(1) i
 .competence-noms small { color: var(--el); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 12px; }
 .competence-noms strong { font-size: 20px; color: #fff; }
 .competence-noms span { font-size: 15px; color: var(--texte-doux); }
-.competence .badge-rang { min-width: 46px; height: 46px; font-size: 22px; }
+.competence .badge-rang { min-width: 64px; height: 54px; font-size: 22px; }
+.competence .badge-rang small { font-size: 8px; letter-spacing: 1px; }
 .competence-barre { height: 6px; margin: 16px 0 10px; background: rgba(255, 255, 255, 0.06); overflow: hidden; }
 .competence-barre i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, color-mix(in srgb, var(--el) 50%, transparent), var(--el)); box-shadow: 0 0 10px var(--el); transition: width 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s; }
 .competence.visible .competence-barre i { width: var(--progression); }
@@ -444,7 +445,7 @@ textarea { resize: vertical; }
 .pied-astuce { opacity: 0.6; font-size: 14px; }
 .pied-cercle { position: absolute; left: 50%; top: 0; width: 600px; height: 2px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, var(--cyan), var(--violet), transparent); box-shadow: 0 0 16px var(--cyan); }
 
-/* ---------------------------------------------------------------- notifications du Système */
+/* ---------------------------------------------------------------- notifications */
 .notifications { position: fixed; top: calc(var(--haut-entete) + 16px); right: 16px; z-index: 1500; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
 .notif {
   display: flex; gap: 12px; align-items: center; max-width: 360px; padding: 12px 16px;
@@ -468,10 +469,6 @@ textarea { resize: vertical; }
 }
 .portail-transition.actif .portail-cercle { animation: portail 0.75s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
 .portail-transition.arrivee { background: #04050d; animation: arrivee 0.7s ease-out forwards; }
-
-/* ---------------------------------------------------------------- arise */
-.arise { position: fixed; inset: 0; z-index: 2500; display: grid; place-items: center; pointer-events: none; background: radial-gradient(circle, rgba(60, 20, 120, 0.55), rgba(0, 0, 0, 0.85)); animation: arise-fond 3.2s ease forwards; }
-.arise span { font-family: var(--titre); font-weight: 800; font-size: clamp(3rem, 14vw, 10rem); letter-spacing: 0.2em; color: #e9dcff; text-shadow: 0 0 20px var(--violet), 0 0 60px var(--violet), 0 0 120px #5b21b6; animation: arise-texte 3.2s ease forwards; }
 
 /* ---------------------------------------------------------------- visionneuse d'images */
 [data-agrandir] { cursor: zoom-in; }
@@ -591,8 +588,6 @@ textarea { resize: vertical; }
 @keyframes portail { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(70); opacity: 1; } }
 @keyframes arrivee { to { opacity: 0; visibility: hidden; } }
 @keyframes invocation { 0% { opacity: 1; filter: drop-shadow(0 0 30px var(--cyan)) brightness(2); } 100% { opacity: 0.22; } }
-@keyframes arise-fond { 0% { opacity: 0; } 15%, 75% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes arise-texte { 0% { transform: scale(0.6); opacity: 0; filter: blur(20px); } 20% { transform: scale(1); opacity: 1; filter: none; } 80% { transform: scale(1.06); opacity: 1; } 100% { transform: scale(1.3); opacity: 0; filter: blur(10px); } }
 
 /* ---------------------------------------------------------------- responsive */
 @media (max-width: 960px) {

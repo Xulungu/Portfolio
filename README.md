@@ -1,11 +1,11 @@
 # Portfolio — Arranga Evan
 
-Portfolio d'étudiant en 2ᵉ année de BUT Informatique (IUT du Limousin), sur le thème des fenêtres du « Système », du mana et de la magie.
+Portfolio d'étudiant en 2ᵉ année de BUT Informatique (IUT du Limousin), avec une interface sombre et des effets de particules de mana.
 
 ## Structure
 
 ```
-index.php              Page d'accueil (statut, donjons, compétences, inventaire, journal, contact)
+index.php              Page d'accueil (profil, projets, compétences, technologies, à propos, contact)
 projet.php             Page d'un projet : projet.php?id=motrilem
 includes/
   config.php           Infos du site + fonctions (liens, rangs calculés, statistiques)
@@ -18,7 +18,7 @@ contenus/              Contenu détaillé de chaque projet
 assets/
   css/style.css        Thème complet
   js/magie.js          Fond animé : particules de mana, traînée du curseur, explosions
-  js/interface.js      Apparitions, notifications, compteurs, menu, portails, easter egg
+  js/interface.js      Apparitions, notifications, compteurs, menu, transitions, visionneuse
   js/contact.js        Envoi du formulaire (Formspree)
   img/<projet>/        Images de chaque projet
 outils/build.php       Génère la version statique dans docs/
@@ -27,11 +27,11 @@ docs/                  Version statique (HTML) pour GitHub Pages
 
 ## Ajouter un projet
 
-1. Ajouter une entrée dans `data/projets.php` (titre, rang, technos, compétences, AC…).
+1. Ajouter une entrée dans `data/projets.php` (titre, technos, compétences, AC…).
 2. Mettre ses images dans `assets/img/<id>/`.
 3. Écrire son contenu dans `contenus/<id>.php`.
 
-Les rangs des compétences, les statistiques et les liens entre AC et projets se mettent à jour tout seuls.
+Le nombre de preuves par compétence, les statistiques et les liens entre AC et projets se mettent à jour tout seuls.
 
 ## Lancer en local
 
@@ -47,6 +47,3 @@ puis ouvrir http://localhost:8000.
 - **GitHub Pages** (pas de PHP) : lancer `php outils/build.php`, committer le dossier `docs/`,
   puis dans *Settings → Pages* choisir la branche `main` et le dossier `/docs`.
 
-## Easter egg
-
-Taper `arise` au clavier sur n'importe quelle page.

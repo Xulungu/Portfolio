@@ -6,52 +6,51 @@ $stats = statistiques();
 require __DIR__ . '/includes/haut.php';
 ?>
 
-<!-- ============================================================ STATUT (accueil) -->
+<!-- ============================================================ ACCUEIL -->
 <section class="eveil" id="statut">
   <?= cercle_magique('eveil-cercle') ?>
 
   <div class="eveil-texte">
-    <p class="systeme-ligne" data-ecrire="[SYSTÈME] Un nouveau Joueur s'est éveillé."></p>
+    <p class="systeme-ligne" data-ecrire="> Bienvenue sur mon portfolio."></p>
     <h1 class="eveil-nom">
       <span class="eveil-salut">Bonjour, je suis</span>
       <span class="lueur" data-glitch="<?= e(SITE['nom']) ?>"><?= e(SITE['nom']) ?></span>
     </h1>
     <p class="eveil-intro">
       Étudiant en <?= SITE['annee'] ?>ᵉ année de <?= e(SITE['formation']) ?> à l'<?= e(SITE['ecole']) ?>.
-      Je crée des applications, des interfaces et des jeux vidéo — et je monte de niveau à chaque projet.
+      Je conçois des applications, des interfaces et des jeux vidéo, et je cherche à progresser à chaque projet.
     </p>
     <div class="boutons">
-      <a href="#donjons" class="bouton bouton-principal"><span>Entrer dans les donjons</span></a>
-      <a href="#contact" class="bouton"><span>M'envoyer un message</span></a>
+      <a href="#donjons" class="bouton bouton-principal"><span>Voir mes projets</span></a>
+      <a href="#contact" class="bouton"><span>Me contacter</span></a>
     </div>
   </div>
 
-  <!-- Fenêtre de statut façon « Système » -->
-  <aside class="fenetre statut apparition" aria-label="Fenêtre de statut">
-    <div class="fenetre-titre"><span>!</span> STATUT</div>
+  <!-- Carte de profil -->
+  <aside class="fenetre statut apparition" aria-label="Profil">
+    <div class="fenetre-titre"><span>i</span> PROFIL</div>
     <dl class="statut-infos">
       <div><dt>Nom</dt><dd><?= e(SITE['nom']) ?></dd></div>
-      <div><dt>Classe</dt><dd><?= e(SITE['classe']) ?></dd></div>
-      <div><dt>Niveau</dt><dd>BUT <?= SITE['annee'] ?></dd></div>
-      <div><dt>Titre</dt><dd><?= e(SITE['titre']) ?></dd></div>
+      <div><dt>Spécialité</dt><dd><?= e(SITE['classe']) ?></dd></div>
+      <div><dt>Formation</dt><dd><?= e(SITE['formation']) ?></dd></div>
+      <div><dt>Établissement</dt><dd><?= e(SITE['ecole']) ?></dd></div>
     </dl>
 
-    <div class="jauge jauge-hp"><span>HP</span><div><i style="--valeur:100%"></i></div><b>100/100</b></div>
-    <div class="jauge jauge-mp"><span>MP</span><div><i style="--valeur:86%"></i></div><b>∞</b></div>
+    <div class="jauge jauge-mp"><span>BUT</span><div><i style="--valeur:<?= round(SITE['annee'] / 3 * 100) ?>%"></i></div><b><?= SITE['annee'] ?>ᵉ / 3 ans</b></div>
 
     <ul class="statut-chiffres">
-      <li><strong data-compteur="<?= $stats['projets'] ?>">0</strong><span>Donjons</span></li>
+      <li><strong data-compteur="<?= $stats['projets'] ?>">0</strong><span>Projets</span></li>
       <li><strong data-compteur="<?= $stats['ac'] ?>">0</strong><span>AC validés</span></li>
       <li><strong data-compteur="<?= $stats['competences'] ?>">0</strong><span>Compétences</span></li>
-      <li><strong data-compteur="<?= $stats['techs'] ?>">0</strong><span>Technos</span></li>
+      <li><strong data-compteur="<?= $stats['techs'] ?>">0</strong><span>Technologies</span></li>
     </ul>
   </aside>
 </section>
 
-<!-- ============================================================ DONJONS (projets) -->
-<section class="bloc" id="donjons" data-notification="Des portails sont apparus : <?= $stats['projets'] ?> donjons détectés.">
-  <?= titre_section('Quêtes', 'Donjons explorés') ?>
-  <p class="bloc-intro apparition">Chaque projet est un donjon : plus le rang est élevé, plus il a été long et exigeant.</p>
+<!-- ============================================================ PROJETS -->
+<section class="bloc" id="projets">
+  <?= titre_section('Réalisations', 'Projets') ?>
+  <p class="bloc-intro apparition">Une sélection de projets universitaires et personnels, en Java, Python et C#.</p>
   <div class="portails">
     <?php foreach (PROJETS as $id => $p): ?>
       <?= carte_projet($id, $p) ?>
@@ -60,11 +59,11 @@ require __DIR__ . '/includes/haut.php';
 </section>
 
 <!-- ============================================================ COMPÉTENCES -->
-<section class="bloc" id="competences" data-notification="Fenêtre des compétences ouverte.">
-  <?= titre_section('Compétences du BUT', 'Arbre des compétences') ?>
+<section class="bloc" id="competences">
+  <?= titre_section('Référentiel', 'Compétences du BUT') ?>
   <p class="bloc-intro apparition">
-    Les 6 compétences du BUT Informatique. Le rang est calculé automatiquement selon le nombre de projets qui les prouvent.
-    Clique sur une compétence pour voir ses Apprentissages Critiques (AC).
+    Les 6 compétences du BUT Informatique et les projets qui les illustrent.
+    Cliquez sur une compétence pour afficher ses Apprentissages Critiques (AC).
   </p>
 
   <div class="competences">
@@ -75,11 +74,10 @@ require __DIR__ . '/includes/haut.php';
         <button class="competence-entete" aria-expanded="false">
           <span class="competence-rune" aria-hidden="true"><?= e($c['rune']) ?></span>
           <span class="competence-noms">
-            <small><?= e($code) ?> · <?= e($c['type']) ?></small>
-            <strong><?= e($c['skill']) ?></strong>
-            <span><?= e($c['nom']) ?></span>
+            <small>Compétence <?= e($code) ?></small>
+            <strong><?= e($c['nom']) ?></strong>
           </span>
-          <?= badge_rang($r['rang']) ?>
+          <span class="badge-rang <?= classe_rang($r['rang']) ?>"><small><?= $r['preuves'] > 1 ? 'Preuves' : 'Preuve' ?></small><?= $r['preuves'] ?></span>
         </button>
 
         <div class="competence-barre"><i></i></div>
@@ -102,7 +100,7 @@ require __DIR__ . '/includes/haut.php';
             <?php endforeach; ?>
           </ul>
           <p class="competence-preuves">
-            <em>Preuves :</em>
+            <em>Projets associés :</em>
             <?php
             $noms = array_map(fn($p) => $p['titre'], $projets);
             echo e(implode(', ', array_merge($noms, $c['autres_preuves'])) ?: '—');
@@ -114,33 +112,33 @@ require __DIR__ . '/includes/haut.php';
   </div>
 </section>
 
-<!-- ============================================================ INVENTAIRE (technos) -->
-<section class="bloc" id="inventaire" data-notification="Inventaire chargé.">
-  <?= titre_section('Équipement', 'Inventaire') ?>
+<!-- ============================================================ TECHNOLOGIES -->
+<section class="bloc" id="technologies">
+  <?= titre_section('Outils', 'Technologies') ?>
   <ul class="inventaire">
     <?php foreach (INVENTAIRE as $objet): ?>
       <li class="objet apparition rarete-<?= e($objet['rarete']) ?>">
         <span class="objet-icone" aria-hidden="true"><b><?= $objet['icone'] ?></b></span>
         <strong><?= e($objet['nom']) ?></strong>
-        <small><?= e($objet['type']) ?> · <?= e(ucfirst(str_replace(['legendaire', 'epique'], ['légendaire', 'épique'], $objet['rarete']))) ?></small>
+        <small><?= e($objet['type']) ?></small>
       </li>
     <?php endforeach; ?>
   </ul>
 </section>
 
-<!-- ============================================================ JOURNAL (à propos) -->
-<section class="bloc" id="journal">
-  <?= titre_section('Lore', 'Journal du joueur') ?>
+<!-- ============================================================ À PROPOS -->
+<section class="bloc" id="a-propos">
+  <?= titre_section('Profil', 'À propos') ?>
   <div class="journal">
     <article class="fenetre apparition">
-      <h3>Origine</h3>
+      <h3>Parcours</h3>
       <p>
         Étudiant passionné par le développement logiciel, j'aime créer des projets variés :
         interfaces graphiques, jeux vidéo, scripts Python, applications Java et projets Unity.
       </p>
     </article>
     <article class="fenetre apparition">
-      <h3>Ce qui me fait avancer</h3>
+      <h3>Ce qui me motive</h3>
       <p>
         Je cherche à comprendre un projet dans sa globalité. J'accorde une grande importance à la cohérence visuelle,
         à la fluidité d'un parcours et à la qualité technique. J'aime explorer de nouvelles technologies,
@@ -148,7 +146,7 @@ require __DIR__ . '/includes/haut.php';
       </p>
     </article>
     <article class="fenetre apparition">
-      <h3>Quête principale</h3>
+      <h3>Objectif</h3>
       <p>
         Devenir un développeur polyvalent, capable de créer des projets complets, immersifs et bien construits,
         tout en continuant à apprendre et à affiner mes compétences.
@@ -158,24 +156,24 @@ require __DIR__ . '/includes/haut.php';
 </section>
 
 <!-- ============================================================ CONTACT -->
-<section class="bloc" id="contact" data-notification="Cercle d'invocation prêt.">
-  <?= titre_section('Invocation', 'Me contacter') ?>
+<section class="bloc" id="contact">
+  <?= titre_section('Contact', 'Me contacter') ?>
   <div class="contact">
     <?= cercle_magique('contact-cercle') ?>
     <form id="formulaire-contact" class="fenetre apparition" action="<?= e(SITE['formspree']) ?>" method="POST" novalidate>
-      <p>Envie de collaborer, une question sur un projet ? Trace le cercle et envoie ton message.</p>
-      <label>Ton nom
+      <p>Une question sur un projet, une proposition de stage ou de collaboration ? Écrivez-moi.</p>
+      <label>Nom
         <input type="text" id="nom" name="name" autocomplete="name" required>
       </label>
-      <label>Ton email
+      <label>Email
         <input type="email" id="email" name="email" autocomplete="email" required>
       </label>
-      <label>Ton message
+      <label>Message
         <textarea id="message" name="message" rows="5" required></textarea>
       </label>
       <!-- Piège anti-robots : ce champ doit rester vide -->
       <input type="text" name="_gotcha" class="piege" tabindex="-1" autocomplete="off">
-      <button type="submit" class="bouton bouton-principal"><span>Lancer l'invocation</span></button>
+      <button type="submit" class="bouton bouton-principal"><span>Envoyer le message</span></button>
     </form>
   </div>
 </section>

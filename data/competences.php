@@ -1,6 +1,6 @@
 <?php
 /**
- * Les 6 compétences du BUT Informatique, présentées comme des « skills ».
+ * Les 6 compétences du BUT Informatique.
  * Les AC sont rangés par compétence ; les projets qui les démontrent
  * sont retrouvés automatiquement à partir de data/projets.php.
  */
@@ -31,8 +31,6 @@ const AC_LIBELLES = [
 const COMPETENCES = [
     'C1' => [
         'nom'     => 'Réaliser un développement d\'application',
-        'skill'   => 'Invocation d\'application',
-        'type'    => 'Active',
         'rune'    => '✦',
         'element' => 'feu',
         'resume'  => 'Java, Python, C#, JavaFX, Unity, PHP, JavaScript.',
@@ -41,8 +39,6 @@ const COMPETENCES = [
     ],
     'C2' => [
         'nom'     => 'Optimiser des applications',
-        'skill'   => 'Accélération arcanique',
-        'type'    => 'Passive',
         'rune'    => '⚡',
         'element' => 'foudre',
         'resume'  => 'Structures de données, logique algorithmique, IA d\'ennemis.',
@@ -51,8 +47,6 @@ const COMPETENCES = [
     ],
     'C3' => [
         'nom'     => 'Administrer des systèmes',
-        'skill'   => 'Domaine du système',
-        'type'    => 'Passive',
         'rune'    => '⬡',
         'element' => 'glace',
         'resume'  => 'Linux, configuration système, scripts.',
@@ -61,8 +55,6 @@ const COMPETENCES = [
     ],
     'C4' => [
         'nom'     => 'Gérer des données',
-        'skill'   => 'Grimoire des données',
-        'type'    => 'Active',
         'rune'    => '◈',
         'element' => 'glace',
         'resume'  => 'SQL, modélisation, requêtes, sérialisation JSON.',
@@ -71,9 +63,7 @@ const COMPETENCES = [
     ],
     'C5' => [
         'nom'     => 'Conduire un projet',
-        'skill'   => 'Commandement du raid',
-        'type'    => 'Active',
-        'rune'    => '♛',
+        'rune'    => '◎',
         'element' => 'ombre',
         'resume'  => 'Organisation, planification, suivi des étapes.',
         'ac'      => ['AC15.01', 'AC15.02'],
@@ -81,9 +71,7 @@ const COMPETENCES = [
     ],
     'C6' => [
         'nom'     => 'Collaborer au sein d\'une équipe',
-        'skill'   => 'Lien des invocations',
-        'type'    => 'Passive',
-        'rune'    => '⚔',
+        'rune'    => '⇄',
         'element' => 'ombre',
         'resume'  => 'Git, communication, coordination en équipe.',
         'ac'      => ['AC16.03', 'AC16.04', 'AC26.03'],
@@ -91,7 +79,7 @@ const COMPETENCES = [
     ],
 ];
 
-// Inventaire : technologies utilisées, avec une « rareté » selon l'expérience
+// Technologies utilisées ; la « rareté » donne la couleur selon le niveau d'expérience
 const INVENTAIRE = [
     ['nom' => 'Java', 'icone' => 'J',       'rarete' => 'epique',     'type' => 'Langage'],
     ['nom' => 'JavaFX', 'icone' => 'FX',     'rarete' => 'rare',       'type' => 'Interface'],

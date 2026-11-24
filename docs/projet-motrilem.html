@@ -26,7 +26,7 @@
     <span class="logo-rune"><span>E</span></span>
     <span class="logo-texte">
       <strong>Arranga Evan</strong>
-      <small>Mage développeur · Niv. 2</small>
+      <small>BUT Informatique · 2ᵉ année</small>
     </span>
   </a>
 
@@ -35,21 +35,21 @@
   </button>
 
   <nav id="menu" class="menu">
-    <a href="index.html#statut">Statut</a>
-    <a href="index.html#donjons">Donjons</a>
+    <a href="index.html">Accueil</a>
+    <a href="index.html#projets">Projets</a>
     <a href="index.html#competences">Compétences</a>
-    <a href="index.html#inventaire">Inventaire</a>
-    <a href="index.html#journal">Journal</a>
-    <a href="index.html#contact" class="menu-cta">Invoquer</a>
+    <a href="index.html#technologies">Technologies</a>
+    <a href="index.html#a-propos">À propos</a>
+    <a href="index.html#contact" class="menu-cta">Contact</a>
   </nav>
 
-  <!-- Barre de mana : se remplit en faisant défiler la page -->
+  <!-- Barre de progression : se remplit en faisant défiler la page -->
   <div class="barre-mp" aria-hidden="true"><span class="barre-mp-label">MP</span><div class="barre-mp-fond"><div class="barre-mp-remplie"></div></div></div>
 </header>
 
 <main id="contenu">
 
-<a class="retour apparition" href="index.html#donjons">← Quitter le donjon</a>
+<a class="retour apparition" href="index.html#projets">← Retour aux projets</a>
 
 <section class="donjon-entree rang-a">
   <svg class="cercle-magique donjon-cercle" viewBox="0 0 400 400" aria-hidden="true">
@@ -74,24 +74,24 @@
     <circle cx="200" cy="200" r="30" class="coeur"/>
   </g>
 </svg>  <div class="donjon-titre">
-    <p class="systeme-ligne" data-ecrire="[SYSTÈME] Vous êtes entré dans un donjon de rang A."></p>
+    <p class="systeme-ligne" data-ecrire="> Projet personnel · 2026"></p>
     <h1><span class="lueur" data-glitch="Motrilem">Motrilem</span></h1>
     <p class="donjon-sous">Metroidvania 2D sous Unity</p>
     <p>Metroidvania 2D : 3 magies, un marécage à explorer, un mini-boss et un boss en plusieurs phases. Démo jouable.</p>
   </div>
   <figure class="donjon-image apparition">
     <img src="assets/img/motrilem/couverture.png" alt="Aperçu du projet Motrilem" class="pixel" data-agrandir>
-    <span class="badge-rang rang-a"><small>Rang</small>A</span>  </figure>
+  </figure>
 </section>
 
-<aside class="fenetre infos-donjon apparition" aria-label="Informations du donjon">
-  <div class="fenetre-titre"><span>!</span> INFORMATIONS DU DONJON</div>
+<aside class="fenetre infos-donjon apparition" aria-label="Fiche du projet">
+  <div class="fenetre-titre"><span>i</span> FICHE DU PROJET</div>
   <dl>
     <div><dt>Cadre</dt><dd>Projet personnel</dd></div>
     <div><dt>Équipe</dt><dd>Solo</dd></div>
     <div><dt>Statut</dt><dd class="statut-actif">En cours</dd></div>
     <div><dt>Année</dt><dd>2026</dd></div>
-    <div><dt>Technos</dt><dd><ul class="puces-tech"><li>C#</li><li>Unity</li><li>Python</li></ul></dd></div>
+    <div><dt>Technologies</dt><dd><ul class="puces-tech"><li>C#</li><li>Unity</li><li>Python</li></ul></dd></div>
           <div><dt>Code</dt><dd><a href="https://github.com/Xulungu/Motrilem" target="_blank" rel="noopener">Voir sur GitHub ↗</a></dd></div>
       </dl>
 </aside>
@@ -194,7 +194,7 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Monstres et boss</h2>
+  <h2>Ennemis et boss</h2>
   <div class="cartes">
     <div class="carte">
       <img src="assets/img/motrilem/MC.png" alt="Le protagoniste" class="pixel" width="70">
@@ -304,7 +304,7 @@
           <div><strong>C4 — Gérer des données</strong><p>Sérialisation JSON, collecte et analyse des données de comportement du joueur.</p></div>
         </li>
               <li class="element-ombre">
-          <span class="competence-rune" aria-hidden="true">♛</span>
+          <span class="competence-rune" aria-hidden="true">◎</span>
           <div><strong>C5 — Conduire un projet</strong><p>Découpage en étapes, outils de production, gestion d&#039;un projet sur la durée.</p></div>
         </li>
           </ul>
@@ -327,10 +327,10 @@
 
 <nav class="donjons-voisins apparition" aria-label="Autres projets">
   <a href="projet-minijeux.html" data-portail>
-    <small>← Donjon précédent</small><strong>Mini-Jeux</strong>
+    <small>← Projet précédent</small><strong>Mini-Jeux</strong>
   </a>
   <a href="projet-latice.html" data-portail>
-    <small>Donjon suivant →</small><strong>Latice</strong>
+    <small>Projet suivant →</small><strong>Latice</strong>
   </a>
 </nav>
 
@@ -339,13 +339,12 @@
 <footer class="pied">
   <div class="pied-cercle" aria-hidden="true"></div>
   <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin</p>
-  <p class="pied-astuce">Astuce du Système : tape <kbd>arise</kbd> au clavier…</p>
 </footer>
 
-<!-- Notifications du « Système » -->
+<!-- Notifications (formulaire de contact) -->
 <div class="notifications" aria-live="polite"></div>
 
-<!-- Transition d'ouverture de portail (en entrant dans un donjon) -->
+<!-- Transition animée vers une page projet -->
 <div class="portail-transition" aria-hidden="true"><div class="portail-cercle"></div></div>
 
 <!-- Agrandissement des images -->

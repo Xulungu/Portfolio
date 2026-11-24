@@ -1,8 +1,8 @@
 /* ==========================================================================
    interface.js — comportements de l'interface :
-   apparitions au défilement, notifications du Système, machine à écrire,
+   apparitions au défilement, notifications, machine à écrire,
    compteurs, barre de mana, menu mobile, compétences dépliables,
-   transition de portail, visionneuse d'images et easter egg « arise ».
+   transition entre les pages et visionneuse d'images.
    ========================================================================== */
 (function () {
   "use strict";
@@ -18,13 +18,13 @@
     effacer(cle) { try { sessionStorage.removeItem(cle); } catch (e) { /* rien */ } },
   };
 
-  // ------------------------------------------------------------------ notifications du Système
+  // ------------------------------------------------------------------ notifications
   const zoneNotifs = $(".notifications");
   function notifier(texte, type = "", duree = 4200) {
     if (!zoneNotifs) return;
     const n = document.createElement("div");
     n.className = "notif " + type;
-    n.innerHTML = '<span class="notif-icone">!</span><div><small>SYSTÈME</small></div>';
+    n.innerHTML = '<span class="notif-icone">i</span><div></div>';
     n.querySelector("div").append(document.createTextNode(texte));
     zoneNotifs.append(n);
     while (zoneNotifs.children.length > 3) zoneNotifs.firstElementChild.remove();
@@ -96,19 +96,6 @@
     if (rang > 0 && freres.length > 1) el.style.transitionDelay = Math.min(rang, 8) * 90 + "ms";
     observateur.observe(el);
   });
-
-  // ------------------------------------------------------------------ notifications par section
-  const sectionsVues = new Set();
-  const observateurSections = new IntersectionObserver((entrees) => {
-    for (const entree of entrees) {
-      const s = entree.target;
-      if (entree.isIntersecting && !sectionsVues.has(s.id)) {
-        sectionsVues.add(s.id);
-        notifier(s.dataset.notification);
-      }
-    }
-  }, { threshold: 0.25 });
-  $$("[data-notification]").forEach((s) => observateurSections.observe(s));
 
   // ------------------------------------------------------------------ barre de mana + lien actif
   const barre = $(".barre-mp-remplie");
@@ -218,23 +205,6 @@
     });
   }
 
-  // ------------------------------------------------------------------ easter egg : « arise »
-  let saisie = "";
-  document.addEventListener("keydown", (e) => {
-    if (e.target instanceof Element && e.target.closest("input, textarea")) return;
-    if (e.key.length !== 1) return;
-    saisie = (saisie + e.key.toLowerCase()).slice(-5);
-    if (saisie !== "arise") return;
-    saisie = "";
-    const ecran = document.createElement("div");
-    ecran.className = "arise";
-    ecran.innerHTML = "<span>ARISE</span>";
-    document.body.append(ecran);
-    if (window.Magie) window.Magie.arise();
-    notifier("Les ombres répondent à votre appel.", "ombre");
-    setTimeout(() => ecran.remove(), 3300);
-  });
-
   // ------------------------------------------------------------------ au chargement
   const lignes = $$("[data-ecrire]");
   (async () => {
@@ -247,8 +217,4 @@
     setInterval(() => glitch(titrePrincipal), 6500);
   }
 
-  if ($(".eveil") && !memoire.lire("bienvenue")) {
-    memoire.ecrire("bienvenue", "1");
-    setTimeout(() => notifier("Bienvenue, Joueur. Votre exploration commence."), 1800);
-  }
 })();

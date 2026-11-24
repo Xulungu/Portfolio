@@ -41,7 +41,7 @@ function badge_rang(string $rang, string $prefixe = 'Rang'): string
     return '<span class="badge-rang ' . classe_rang($rang) . '"><small>' . e($prefixe) . '</small>' . e($rang) . '</span>';
 }
 
-/** Carte d'un projet (« portail de donjon ») pour la page d'accueil. */
+/** Carte d'un projet pour la page d'accueil. */
 function carte_projet(string $id, array $p): string
 {
     $techs = implode('', array_map(fn($t) => '<li>' . e($t) . '</li>', $p['techs']));
@@ -53,7 +53,6 @@ function carte_projet(string $id, array $p): string
     <div class="portail-image">
       <img src="' . e(image($id, $p['couverture'])) . '" alt="Aperçu du projet ' . e($p['titre']) . '" class="' . $pixel . '" loading="lazy">
       <div class="portail-vortex" aria-hidden="true"></div>
-      ' . badge_rang($p['rang']) . '
       <span class="portail-statut ' . $statut . '">' . e($p['statut']) . '</span>
     </div>
     <div class="portail-corps">
@@ -62,13 +61,13 @@ function carte_projet(string $id, array $p): string
       <p class="portail-sous">' . e($p['sous_titre']) . '</p>
       <p>' . e($p['resume']) . '</p>
       <ul class="puces-tech">' . $techs . '</ul>
-      <span class="portail-entrer">Entrer dans le donjon <span aria-hidden="true">→</span></span>
+      <span class="portail-entrer">Voir le projet <span aria-hidden="true">→</span></span>
     </div>
   </a>
 </article>';
 }
 
-/** Titre de section façon fenêtre du Système. */
+/** Titre de section. */
 function titre_section(string $etiquette, string $titre, string $id = ''): string
 {
     return '<header class="titre-section apparition"' . ($id ? ' id="' . e($id) . '"' : '') . '>

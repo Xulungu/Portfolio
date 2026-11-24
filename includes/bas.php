@@ -3,13 +3,12 @@
 <footer class="pied">
   <div class="pied-cercle" aria-hidden="true"></div>
   <p>© <?= date('Y') ?> <?= e(SITE['nom']) ?> — <?= e(SITE['formation']) ?>, <?= e(SITE['ecole']) ?></p>
-  <p class="pied-astuce">Astuce du Système : tape <kbd>arise</kbd> au clavier…</p>
 </footer>
 
-<!-- Notifications du « Système » -->
+<!-- Notifications (formulaire de contact) -->
 <div class="notifications" aria-live="polite"></div>
 
-<!-- Transition d'ouverture de portail (en entrant dans un donjon) -->
+<!-- Transition animée vers une page projet -->
 <div class="portail-transition" aria-hidden="true"><div class="portail-cercle"></div></div>
 
 <!-- Agrandissement des images -->

@@ -9,7 +9,7 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Objectifs de la quête</h2>
+  <h2>Objectifs</h2>
   <ul class="liste-quete">
     <li>Reproduire fidèlement les mécaniques du jeu Latice.</li>
     <li>Développer une interface graphique complète en JavaFX.</li>
@@ -19,7 +19,7 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Mon rôle dans le raid</h2>
+  <h2>Mon rôle</h2>
   <p>Dans une équipe de 3 personnes, j'ai été responsable de :</p>
   <ul>
     <li>la création complète de l'interface JavaFX ;</li>
@@ -69,7 +69,7 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Butin (livrables)</h2>
+  <h2>Livrables</h2>
   <ul>
     <li>Interface JavaFX complète</li>
     <li>Gestion des règles et du score</li>

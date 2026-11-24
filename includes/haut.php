@@ -34,7 +34,7 @@ $description = $description ?? 'Portfolio d\'' . SITE['nom'] . ', étudiant en '
     <span class="logo-rune"><span>E</span></span>
     <span class="logo-texte">
       <strong><?= e(SITE['nom']) ?></strong>
-      <small><?= e(SITE['classe']) ?> · Niv. <?= SITE['annee'] ?></small>
+      <small><?= e(SITE['formation']) ?> · <?= SITE['annee'] ?>ᵉ année</small>
     </span>
   </a>
 
@@ -43,15 +43,15 @@ $description = $description ?? 'Portfolio d\'' . SITE['nom'] . ', étudiant en '
   </button>
 
   <nav id="menu" class="menu">
-    <a href="<?= e(lien_accueil('statut')) ?>">Statut</a>
-    <a href="<?= e(lien_accueil('donjons')) ?>">Donjons</a>
+    <a href="<?= e(lien_accueil()) ?>">Accueil</a>
+    <a href="<?= e(lien_accueil('projets')) ?>">Projets</a>
     <a href="<?= e(lien_accueil('competences')) ?>">Compétences</a>
-    <a href="<?= e(lien_accueil('inventaire')) ?>">Inventaire</a>
-    <a href="<?= e(lien_accueil('journal')) ?>">Journal</a>
-    <a href="<?= e(lien_accueil('contact')) ?>" class="menu-cta">Invoquer</a>
+    <a href="<?= e(lien_accueil('technologies')) ?>">Technologies</a>
+    <a href="<?= e(lien_accueil('a-propos')) ?>">À propos</a>
+    <a href="<?= e(lien_accueil('contact')) ?>" class="menu-cta">Contact</a>
   </nav>
 
-  <!-- Barre de mana : se remplit en faisant défiler la page -->
+  <!-- Barre de progression : se remplit en faisant défiler la page -->
   <div class="barre-mp" aria-hidden="true"><span class="barre-mp-label">MP</span><div class="barre-mp-fond"><div class="barre-mp-remplie"></div></div></div>
 </header>
 

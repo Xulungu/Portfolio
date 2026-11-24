@@ -10,7 +10,7 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Objectifs de la quête</h2>
+  <h2>Objectifs</h2>
   <ul class="liste-quete">
     <li>Créer un système de connexion avec sauvegarde des joueurs.</li>
     <li>Développer trois mini-jeux jouables en terminal.</li>
@@ -22,7 +22,7 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Mon rôle dans le raid</h2>
+  <h2>Mon rôle</h2>
   <p>En binôme, j'ai principalement travaillé sur :</p>
   <ul>
     <li>la gestion des joueurs (création, connexion, stockage dans <code>joueurs.txt</code>) ;</li>
@@ -69,7 +69,7 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Butin (livrables)</h2>
+  <h2>Livrables</h2>
   <ul>
     <li>Application Python complète</li>
     <li>Gestion des joueurs et des scores</li>

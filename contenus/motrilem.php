@@ -96,7 +96,7 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Monstres et boss</h2>
+  <h2>Ennemis et boss</h2>
   <div class="cartes">
     <div class="carte">
       <img src="<?= e(image('motrilem', 'MC.png')) ?>" alt="Le protagoniste" class="pixel" width="70">

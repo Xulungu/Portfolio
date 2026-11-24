@@ -1,6 +1,6 @@
 /* ==========================================================================
    contact.js — envoi du formulaire de contact (via Formspree) sans recharger
-   la page, avec vérification des champs et effet d'invocation.
+   la page, avec vérification des champs et effet visuel.
    ========================================================================== */
 (function () {
   "use strict";
@@ -37,13 +37,13 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!verifier()) {
-      dire("Invocation échouée : vérifie les champs en rouge.");
+      dire("Merci de vérifier les champs en rouge.");
       return;
     }
 
     const original = texteBouton.textContent;
     bouton.disabled = true;
-    texteBouton.textContent = "Invocation en cours…";
+    texteBouton.textContent = "Envoi en cours…";
 
     try {
       const reponse = await fetch(form.action, {
@@ -54,7 +54,7 @@
 
       if (reponse.ok) {
         form.reset();
-        dire("Message envoyé ! Je te réponds dès que possible.");
+        dire("Message envoyé. Je vous réponds dès que possible.");
         if (zone) {
           zone.classList.remove("invoque");
           void zone.offsetWidth;
@@ -70,7 +70,7 @@
         dire((donnees.errors && donnees.errors[0] && donnees.errors[0].message) || "Une erreur est survenue lors de l'envoi.");
       }
     } catch (err) {
-      dire("Impossible d'envoyer le message. Vérifie ta connexion.");
+      dire("Impossible d'envoyer le message. Vérifiez votre connexion.");
     } finally {
       bouton.disabled = false;
       texteBouton.textContent = original;

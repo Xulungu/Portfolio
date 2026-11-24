@@ -26,7 +26,7 @@
     <span class="logo-rune"><span>E</span></span>
     <span class="logo-texte">
       <strong>Arranga Evan</strong>
-      <small>Mage développeur · Niv. 2</small>
+      <small>BUT Informatique · 2ᵉ année</small>
     </span>
   </a>
 
@@ -35,21 +35,21 @@
   </button>
 
   <nav id="menu" class="menu">
-    <a href="index.html#statut">Statut</a>
-    <a href="index.html#donjons">Donjons</a>
+    <a href="index.html">Accueil</a>
+    <a href="index.html#projets">Projets</a>
     <a href="index.html#competences">Compétences</a>
-    <a href="index.html#inventaire">Inventaire</a>
-    <a href="index.html#journal">Journal</a>
-    <a href="index.html#contact" class="menu-cta">Invoquer</a>
+    <a href="index.html#technologies">Technologies</a>
+    <a href="index.html#a-propos">À propos</a>
+    <a href="index.html#contact" class="menu-cta">Contact</a>
   </nav>
 
-  <!-- Barre de mana : se remplit en faisant défiler la page -->
+  <!-- Barre de progression : se remplit en faisant défiler la page -->
   <div class="barre-mp" aria-hidden="true"><span class="barre-mp-label">MP</span><div class="barre-mp-fond"><div class="barre-mp-remplie"></div></div></div>
 </header>
 
 <main id="contenu">
 
-<!-- ============================================================ STATUT (accueil) -->
+<!-- ============================================================ ACCUEIL -->
 <section class="eveil" id="statut">
   <svg class="cercle-magique eveil-cercle" viewBox="0 0 400 400" aria-hidden="true">
   <defs>
@@ -74,50 +74,49 @@
   </g>
 </svg>
   <div class="eveil-texte">
-    <p class="systeme-ligne" data-ecrire="[SYSTÈME] Un nouveau Joueur s'est éveillé."></p>
+    <p class="systeme-ligne" data-ecrire="> Bienvenue sur mon portfolio."></p>
     <h1 class="eveil-nom">
       <span class="eveil-salut">Bonjour, je suis</span>
       <span class="lueur" data-glitch="Arranga Evan">Arranga Evan</span>
     </h1>
     <p class="eveil-intro">
       Étudiant en 2ᵉ année de BUT Informatique à l'IUT du Limousin.
-      Je crée des applications, des interfaces et des jeux vidéo — et je monte de niveau à chaque projet.
+      Je conçois des applications, des interfaces et des jeux vidéo, et je cherche à progresser à chaque projet.
     </p>
     <div class="boutons">
-      <a href="#donjons" class="bouton bouton-principal"><span>Entrer dans les donjons</span></a>
-      <a href="#contact" class="bouton"><span>M'envoyer un message</span></a>
+      <a href="#donjons" class="bouton bouton-principal"><span>Voir mes projets</span></a>
+      <a href="#contact" class="bouton"><span>Me contacter</span></a>
     </div>
   </div>
 
-  <!-- Fenêtre de statut façon « Système » -->
-  <aside class="fenetre statut apparition" aria-label="Fenêtre de statut">
-    <div class="fenetre-titre"><span>!</span> STATUT</div>
+  <!-- Carte de profil -->
+  <aside class="fenetre statut apparition" aria-label="Profil">
+    <div class="fenetre-titre"><span>i</span> PROFIL</div>
     <dl class="statut-infos">
       <div><dt>Nom</dt><dd>Arranga Evan</dd></div>
-      <div><dt>Classe</dt><dd>Mage développeur</dd></div>
-      <div><dt>Niveau</dt><dd>BUT 2</dd></div>
-      <div><dt>Titre</dt><dd>L&#039;Éveillé de l&#039;IUT</dd></div>
+      <div><dt>Spécialité</dt><dd>Développeur d&#039;applications</dd></div>
+      <div><dt>Formation</dt><dd>BUT Informatique</dd></div>
+      <div><dt>Établissement</dt><dd>IUT du Limousin</dd></div>
     </dl>
 
-    <div class="jauge jauge-hp"><span>HP</span><div><i style="--valeur:100%"></i></div><b>100/100</b></div>
-    <div class="jauge jauge-mp"><span>MP</span><div><i style="--valeur:86%"></i></div><b>∞</b></div>
+    <div class="jauge jauge-mp"><span>BUT</span><div><i style="--valeur:67%"></i></div><b>2ᵉ / 3 ans</b></div>
 
     <ul class="statut-chiffres">
-      <li><strong data-compteur="3">0</strong><span>Donjons</span></li>
+      <li><strong data-compteur="3">0</strong><span>Projets</span></li>
       <li><strong data-compteur="13">0</strong><span>AC validés</span></li>
       <li><strong data-compteur="6">0</strong><span>Compétences</span></li>
-      <li><strong data-compteur="6">0</strong><span>Technos</span></li>
+      <li><strong data-compteur="6">0</strong><span>Technologies</span></li>
     </ul>
   </aside>
 </section>
 
-<!-- ============================================================ DONJONS (projets) -->
-<section class="bloc" id="donjons" data-notification="Des portails sont apparus : 3 donjons détectés.">
+<!-- ============================================================ PROJETS -->
+<section class="bloc" id="projets">
   <header class="titre-section apparition">
-  <span class="titre-etiquette">[ Quêtes ]</span>
-  <h2 data-glitch="Donjons explorés">Donjons explorés</h2>
+  <span class="titre-etiquette">[ Réalisations ]</span>
+  <h2 data-glitch="Projets">Projets</h2>
   <span class="titre-trait" aria-hidden="true"></span>
-</header>  <p class="bloc-intro apparition">Chaque projet est un donjon : plus le rang est élevé, plus il a été long et exigeant.</p>
+</header>  <p class="bloc-intro apparition">Une sélection de projets universitaires et personnels, en Java, Python et C#.</p>
   <div class="portails">
           
 <article class="portail apparition rang-a">
@@ -125,7 +124,6 @@
     <div class="portail-image">
       <img src="assets/img/motrilem/couverture.png" alt="Aperçu du projet Motrilem" class=" pixel" loading="lazy">
       <div class="portail-vortex" aria-hidden="true"></div>
-      <span class="badge-rang rang-a"><small>Rang</small>A</span>
       <span class="portail-statut statut-actif">En cours</span>
     </div>
     <div class="portail-corps">
@@ -134,7 +132,7 @@
       <p class="portail-sous">Metroidvania 2D sous Unity</p>
       <p>Metroidvania 2D : 3 magies, un marécage à explorer, un mini-boss et un boss en plusieurs phases. Démo jouable.</p>
       <ul class="puces-tech"><li>C#</li><li>Unity</li><li>Python</li></ul>
-      <span class="portail-entrer">Entrer dans le donjon <span aria-hidden="true">→</span></span>
+      <span class="portail-entrer">Voir le projet <span aria-hidden="true">→</span></span>
     </div>
   </a>
 </article>          
@@ -143,7 +141,6 @@
     <div class="portail-image">
       <img src="assets/img/latice/couverture.png" alt="Aperçu du projet Latice" class="" loading="lazy">
       <div class="portail-vortex" aria-hidden="true"></div>
-      <span class="badge-rang rang-c"><small>Rang</small>C</span>
       <span class="portail-statut statut-fini">Terminé</span>
     </div>
     <div class="portail-corps">
@@ -152,7 +149,7 @@
       <p class="portail-sous">Jeu de plateau en JavaFX</p>
       <p>Reproduction du jeu de plateau Latice avec une interface JavaFX complète, des sons et un fond animé.</p>
       <ul class="puces-tech"><li>Java</li><li>JavaFX</li><li>Git</li></ul>
-      <span class="portail-entrer">Entrer dans le donjon <span aria-hidden="true">→</span></span>
+      <span class="portail-entrer">Voir le projet <span aria-hidden="true">→</span></span>
     </div>
   </a>
 </article>          
@@ -161,7 +158,6 @@
     <div class="portail-image">
       <img src="assets/img/minijeux/couverture.png" alt="Aperçu du projet Mini-Jeux" class="" loading="lazy">
       <div class="portail-vortex" aria-hidden="true"></div>
-      <span class="badge-rang rang-d"><small>Rang</small>D</span>
       <span class="portail-statut statut-fini">Terminé</span>
     </div>
     <div class="portail-corps">
@@ -170,21 +166,21 @@
       <p class="portail-sous">Application Python en terminal</p>
       <p>Trois mini-jeux jouables en terminal, avec comptes joueurs, scores sauvegardés et bots.</p>
       <ul class="puces-tech"><li>Python</li><li>Git</li></ul>
-      <span class="portail-entrer">Entrer dans le donjon <span aria-hidden="true">→</span></span>
+      <span class="portail-entrer">Voir le projet <span aria-hidden="true">→</span></span>
     </div>
   </a>
 </article>      </div>
 </section>
 
 <!-- ============================================================ COMPÉTENCES -->
-<section class="bloc" id="competences" data-notification="Fenêtre des compétences ouverte.">
+<section class="bloc" id="competences">
   <header class="titre-section apparition">
-  <span class="titre-etiquette">[ Compétences du BUT ]</span>
-  <h2 data-glitch="Arbre des compétences">Arbre des compétences</h2>
+  <span class="titre-etiquette">[ Référentiel ]</span>
+  <h2 data-glitch="Compétences du BUT">Compétences du BUT</h2>
   <span class="titre-trait" aria-hidden="true"></span>
 </header>  <p class="bloc-intro apparition">
-    Les 6 compétences du BUT Informatique. Le rang est calculé automatiquement selon le nombre de projets qui les prouvent.
-    Clique sur une compétence pour voir ses Apprentissages Critiques (AC).
+    Les 6 compétences du BUT Informatique et les projets qui les illustrent.
+    Cliquez sur une compétence pour afficher ses Apprentissages Critiques (AC).
   </p>
 
   <div class="competences">
@@ -192,11 +188,11 @@
         <button class="competence-entete" aria-expanded="false">
           <span class="competence-rune" aria-hidden="true">✦</span>
           <span class="competence-noms">
-            <small>C1 · Active</small>
-            <strong>Invocation d&#039;application</strong>
-            <span>Réaliser un développement d&#039;application</span>
+            <small>Compétence C1</small>
+            <strong>Réaliser un développement d&#039;application</strong>
           </span>
-          <span class="badge-rang rang-b"><small>Rang</small>B</span>        </button>
+          <span class="badge-rang rang-b"><small>Preuves</small>3</span>
+        </button>
 
         <div class="competence-barre"><i></i></div>
         <p class="competence-resume">Java, Python, C#, JavaFX, Unity, PHP, JavaScript.</p>
@@ -252,7 +248,7 @@
                               </li>
                       </ul>
           <p class="competence-preuves">
-            <em>Preuves :</em>
+            <em>Projets associés :</em>
             Motrilem, Latice, Mini-Jeux          </p>
         </div></div>
       </article>
@@ -260,11 +256,11 @@
         <button class="competence-entete" aria-expanded="false">
           <span class="competence-rune" aria-hidden="true">⚡</span>
           <span class="competence-noms">
-            <small>C2 · Passive</small>
-            <strong>Accélération arcanique</strong>
-            <span>Optimiser des applications</span>
+            <small>Compétence C2</small>
+            <strong>Optimiser des applications</strong>
           </span>
-          <span class="badge-rang rang-b"><small>Rang</small>B</span>        </button>
+          <span class="badge-rang rang-b"><small>Preuves</small>3</span>
+        </button>
 
         <div class="competence-barre"><i></i></div>
         <p class="competence-resume">Structures de données, logique algorithmique, IA d&#039;ennemis.</p>
@@ -285,7 +281,7 @@
                               </li>
                       </ul>
           <p class="competence-preuves">
-            <em>Preuves :</em>
+            <em>Projets associés :</em>
             Motrilem, Latice, Mini-Jeux          </p>
         </div></div>
       </article>
@@ -293,11 +289,11 @@
         <button class="competence-entete" aria-expanded="false">
           <span class="competence-rune" aria-hidden="true">⬡</span>
           <span class="competence-noms">
-            <small>C3 · Passive</small>
-            <strong>Domaine du système</strong>
-            <span>Administrer des systèmes</span>
+            <small>Compétence C3</small>
+            <strong>Administrer des systèmes</strong>
           </span>
-          <span class="badge-rang rang-d"><small>Rang</small>D</span>        </button>
+          <span class="badge-rang rang-d"><small>Preuve</small>1</span>
+        </button>
 
         <div class="competence-barre"><i></i></div>
         <p class="competence-resume">Linux, configuration système, scripts.</p>
@@ -310,7 +306,7 @@
                 <strong>AC13.03</strong> Installer et configurer un système                              </li>
                       </ul>
           <p class="competence-preuves">
-            <em>Preuves :</em>
+            <em>Projets associés :</em>
             TP Linux          </p>
         </div></div>
       </article>
@@ -318,11 +314,11 @@
         <button class="competence-entete" aria-expanded="false">
           <span class="competence-rune" aria-hidden="true">◈</span>
           <span class="competence-noms">
-            <small>C4 · Active</small>
-            <strong>Grimoire des données</strong>
-            <span>Gérer des données</span>
+            <small>Compétence C4</small>
+            <strong>Gérer des données</strong>
           </span>
-          <span class="badge-rang rang-c"><small>Rang</small>C</span>        </button>
+          <span class="badge-rang rang-c"><small>Preuves</small>2</span>
+        </button>
 
         <div class="competence-barre"><i></i></div>
         <p class="competence-resume">SQL, modélisation, requêtes, sérialisation JSON.</p>
@@ -335,19 +331,19 @@
                 <strong>AC14.03</strong> Concevoir une base de données                              </li>
                       </ul>
           <p class="competence-preuves">
-            <em>Preuves :</em>
+            <em>Projets associés :</em>
             Motrilem, SAE SQL          </p>
         </div></div>
       </article>
           <article class="competence apparition element-ombre" style="--progression:60%">
         <button class="competence-entete" aria-expanded="false">
-          <span class="competence-rune" aria-hidden="true">♛</span>
+          <span class="competence-rune" aria-hidden="true">◎</span>
           <span class="competence-noms">
-            <small>C5 · Active</small>
-            <strong>Commandement du raid</strong>
-            <span>Conduire un projet</span>
+            <small>Compétence C5</small>
+            <strong>Conduire un projet</strong>
           </span>
-          <span class="badge-rang rang-b"><small>Rang</small>B</span>        </button>
+          <span class="badge-rang rang-b"><small>Preuves</small>3</span>
+        </button>
 
         <div class="competence-barre"><i></i></div>
         <p class="competence-resume">Organisation, planification, suivi des étapes.</p>
@@ -364,19 +360,19 @@
                               </li>
                       </ul>
           <p class="competence-preuves">
-            <em>Preuves :</em>
+            <em>Projets associés :</em>
             Motrilem, Latice, Mini-Jeux          </p>
         </div></div>
       </article>
           <article class="competence apparition element-ombre" style="--progression:40%">
         <button class="competence-entete" aria-expanded="false">
-          <span class="competence-rune" aria-hidden="true">⚔</span>
+          <span class="competence-rune" aria-hidden="true">⇄</span>
           <span class="competence-noms">
-            <small>C6 · Passive</small>
-            <strong>Lien des invocations</strong>
-            <span>Collaborer au sein d&#039;une équipe</span>
+            <small>Compétence C6</small>
+            <strong>Collaborer au sein d&#039;une équipe</strong>
           </span>
-          <span class="badge-rang rang-c"><small>Rang</small>C</span>        </button>
+          <span class="badge-rang rang-c"><small>Preuves</small>2</span>
+        </button>
 
         <div class="competence-barre"><i></i></div>
         <p class="competence-resume">Git, communication, coordination en équipe.</p>
@@ -398,94 +394,94 @@
                               </li>
                       </ul>
           <p class="competence-preuves">
-            <em>Preuves :</em>
+            <em>Projets associés :</em>
             Latice, Mini-Jeux          </p>
         </div></div>
       </article>
       </div>
 </section>
 
-<!-- ============================================================ INVENTAIRE (technos) -->
-<section class="bloc" id="inventaire" data-notification="Inventaire chargé.">
+<!-- ============================================================ TECHNOLOGIES -->
+<section class="bloc" id="technologies">
   <header class="titre-section apparition">
-  <span class="titre-etiquette">[ Équipement ]</span>
-  <h2 data-glitch="Inventaire">Inventaire</h2>
+  <span class="titre-etiquette">[ Outils ]</span>
+  <h2 data-glitch="Technologies">Technologies</h2>
   <span class="titre-trait" aria-hidden="true"></span>
 </header>  <ul class="inventaire">
           <li class="objet apparition rarete-epique">
         <span class="objet-icone" aria-hidden="true"><b>J</b></span>
         <strong>Java</strong>
-        <small>Langage · épique</small>
+        <small>Langage</small>
       </li>
           <li class="objet apparition rarete-rare">
         <span class="objet-icone" aria-hidden="true"><b>FX</b></span>
         <strong>JavaFX</strong>
-        <small>Interface · Rare</small>
+        <small>Interface</small>
       </li>
           <li class="objet apparition rarete-epique">
         <span class="objet-icone" aria-hidden="true"><b>Py</b></span>
         <strong>Python</strong>
-        <small>Langage · épique</small>
+        <small>Langage</small>
       </li>
           <li class="objet apparition rarete-legendaire">
         <span class="objet-icone" aria-hidden="true"><b>C#</b></span>
         <strong>C#</strong>
-        <small>Langage · Légendaire</small>
+        <small>Langage</small>
       </li>
           <li class="objet apparition rarete-legendaire">
         <span class="objet-icone" aria-hidden="true"><b>U</b></span>
         <strong>Unity</strong>
-        <small>Moteur · Légendaire</small>
+        <small>Moteur</small>
       </li>
           <li class="objet apparition rarete-rare">
         <span class="objet-icone" aria-hidden="true"><b>DB</b></span>
         <strong>SQL</strong>
-        <small>Données · Rare</small>
+        <small>Données</small>
       </li>
           <li class="objet apparition rarete-rare">
         <span class="objet-icone" aria-hidden="true"><b>php</b></span>
         <strong>PHP</strong>
-        <small>Web · Rare</small>
+        <small>Web</small>
       </li>
           <li class="objet apparition rarete-rare">
         <span class="objet-icone" aria-hidden="true"><b>JS</b></span>
         <strong>JavaScript</strong>
-        <small>Web · Rare</small>
+        <small>Web</small>
       </li>
           <li class="objet apparition rarete-epique">
         <span class="objet-icone" aria-hidden="true"><b>&lt;/&gt;</b></span>
         <strong>HTML / CSS</strong>
-        <small>Web · épique</small>
+        <small>Web</small>
       </li>
           <li class="objet apparition rarete-epique">
         <span class="objet-icone" aria-hidden="true"><b>⎇</b></span>
         <strong>Git</strong>
-        <small>Outil · épique</small>
+        <small>Outil</small>
       </li>
           <li class="objet apparition rarete-commun">
         <span class="objet-icone" aria-hidden="true"><b>$_</b></span>
         <strong>Linux</strong>
-        <small>Système · Commun</small>
+        <small>Système</small>
       </li>
       </ul>
 </section>
 
-<!-- ============================================================ JOURNAL (à propos) -->
-<section class="bloc" id="journal">
+<!-- ============================================================ À PROPOS -->
+<section class="bloc" id="a-propos">
   <header class="titre-section apparition">
-  <span class="titre-etiquette">[ Lore ]</span>
-  <h2 data-glitch="Journal du joueur">Journal du joueur</h2>
+  <span class="titre-etiquette">[ Profil ]</span>
+  <h2 data-glitch="À propos">À propos</h2>
   <span class="titre-trait" aria-hidden="true"></span>
 </header>  <div class="journal">
     <article class="fenetre apparition">
-      <h3>Origine</h3>
+      <h3>Parcours</h3>
       <p>
         Étudiant passionné par le développement logiciel, j'aime créer des projets variés :
         interfaces graphiques, jeux vidéo, scripts Python, applications Java et projets Unity.
       </p>
     </article>
     <article class="fenetre apparition">
-      <h3>Ce qui me fait avancer</h3>
+      <h3>Ce qui me motive</h3>
       <p>
         Je cherche à comprendre un projet dans sa globalité. J'accorde une grande importance à la cohérence visuelle,
         à la fluidité d'un parcours et à la qualité technique. J'aime explorer de nouvelles technologies,
@@ -493,7 +489,7 @@
       </p>
     </article>
     <article class="fenetre apparition">
-      <h3>Quête principale</h3>
+      <h3>Objectif</h3>
       <p>
         Devenir un développeur polyvalent, capable de créer des projets complets, immersifs et bien construits,
         tout en continuant à apprendre et à affiner mes compétences.
@@ -503,9 +499,9 @@
 </section>
 
 <!-- ============================================================ CONTACT -->
-<section class="bloc" id="contact" data-notification="Cercle d'invocation prêt.">
+<section class="bloc" id="contact">
   <header class="titre-section apparition">
-  <span class="titre-etiquette">[ Invocation ]</span>
+  <span class="titre-etiquette">[ Contact ]</span>
   <h2 data-glitch="Me contacter">Me contacter</h2>
   <span class="titre-trait" aria-hidden="true"></span>
 </header>  <div class="contact">
@@ -531,19 +527,19 @@
     <circle cx="200" cy="200" r="30" class="coeur"/>
   </g>
 </svg>    <form id="formulaire-contact" class="fenetre apparition" action="https://formspree.io/f/xpweokgk" method="POST" novalidate>
-      <p>Envie de collaborer, une question sur un projet ? Trace le cercle et envoie ton message.</p>
-      <label>Ton nom
+      <p>Une question sur un projet, une proposition de stage ou de collaboration ? Écrivez-moi.</p>
+      <label>Nom
         <input type="text" id="nom" name="name" autocomplete="name" required>
       </label>
-      <label>Ton email
+      <label>Email
         <input type="email" id="email" name="email" autocomplete="email" required>
       </label>
-      <label>Ton message
+      <label>Message
         <textarea id="message" name="message" rows="5" required></textarea>
       </label>
       <!-- Piège anti-robots : ce champ doit rester vide -->
       <input type="text" name="_gotcha" class="piege" tabindex="-1" autocomplete="off">
-      <button type="submit" class="bouton bouton-principal"><span>Lancer l'invocation</span></button>
+      <button type="submit" class="bouton bouton-principal"><span>Envoyer le message</span></button>
     </form>
   </div>
 </section>
@@ -553,13 +549,12 @@
 <footer class="pied">
   <div class="pied-cercle" aria-hidden="true"></div>
   <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin</p>
-  <p class="pied-astuce">Astuce du Système : tape <kbd>arise</kbd> au clavier…</p>
 </footer>
 
-<!-- Notifications du « Système » -->
+<!-- Notifications (formulaire de contact) -->
 <div class="notifications" aria-live="polite"></div>
 
-<!-- Transition d'ouverture de portail (en entrant dans un donjon) -->
+<!-- Transition animée vers une page projet -->
 <div class="portail-transition" aria-hidden="true"><div class="portail-cercle"></div></div>
 
 <!-- Agrandissement des images -->

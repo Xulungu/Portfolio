@@ -1,6 +1,6 @@
 /* ==========================================================================
    magie.js — fond animé : particules de mana, traînée du curseur,
-   explosions de mana au clic et effet « Arise ».
+   et explosions de mana au clic.
    Tout est dessiné dans un seul <canvas id="mana">.
    ========================================================================== */
 (function () {
@@ -48,7 +48,7 @@
   let largeur = 0, hauteur = 0, ratio = 1;
   const souris = { x: -9999, y: -9999, active: false };
   let motes = [];      // particules de mana du fond
-  let etincelles = []; // traînée du curseur, explosions, arise
+  let etincelles = []; // traînée du curseur, explosions, courants
   let anneaux = [];    // ondes de choc au clic
 
   function aleatoire(min, max) { return min + Math.random() * (max - min); }
@@ -136,22 +136,8 @@
     anneaux.push({ x, y, r: 4, vie: 1, couleur: COULEURS[couleur] });
   }
 
-  function arise() {
-    let vagues = 0;
-    const id = setInterval(() => {
-      for (let i = 0; i < 30; i++) {
-        etincelles.push({
-          x: Math.random() * largeur, y: hauteur + 10,
-          vx: aleatoire(-0.4, 0.4), vy: aleatoire(-3, -7),
-          vie: 1, usure: aleatoire(0.006, 0.012),
-          taille: aleatoire(14, 40), couleur: choisir(["violet", "violet", "bleu"]), gravite: 0,
-        });
-      }
-      if (++vagues > 25) clearInterval(id);
-    }, 90);
-  }
 
-  window.Magie = { explosion, onde, arise };
+  window.Magie = { explosion, onde };
 
   // ------------------------------------------------------------------ entrées
   if (pointeurFin && !reduit) {

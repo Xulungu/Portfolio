@@ -1,6 +1,6 @@
 <?php
 /**
- * Les projets du portfolio, présentés comme des « donjons ».
+ * Les projets du portfolio.
  * Pour ajouter un projet : ajouter une entrée ici, ses images dans assets/img/<id>/
  * et son contenu détaillé dans contenus/<id>.php.
  */
