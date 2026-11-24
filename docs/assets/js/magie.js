@@ -10,6 +10,13 @@
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
 
+  // Deuxième couche, au-dessus du contenu : quelques particules flottent devant les panneaux
+  const avant = document.createElement("canvas");
+  avant.id = "mana-avant";
+  avant.setAttribute("aria-hidden", "true");
+  document.body.append(avant);
+  const ctxAvant = avant.getContext("2d");
+
   const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const pointeurFin = window.matchMedia("(pointer: fine)").matches;
 
@@ -29,8 +36,9 @@
     const x = c.getContext("2d");
     const grad = x.createRadialGradient(32, 32, 0, 32, 32, 32);
     grad.addColorStop(0, "rgba(255,255,255,1)");
-    grad.addColorStop(0.15, `rgba(${r},${g},${b},0.9)`);
-    grad.addColorStop(0.45, `rgba(${r},${g},${b},0.25)`);
+    grad.addColorStop(0.12, `rgba(${r},${g},${b},1)`);
+    grad.addColorStop(0.3, `rgba(${r},${g},${b},0.55)`);
+    grad.addColorStop(0.6, `rgba(${r},${g},${b},0.15)`);
     grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
     x.fillStyle = grad;
     x.fillRect(0, 0, 64, 64);
@@ -50,30 +58,61 @@
     return {
       x: Math.random() * largeur,
       y: partout ? Math.random() * hauteur : hauteur + 20,
-      taille: aleatoire(6, 22),
-      vy: aleatoire(-0.15, -0.6),
+      taille: aleatoire(10, 40),
+      vy: aleatoire(-0.2, -0.75),
       phase: Math.random() * Math.PI * 2,
-      amplitude: aleatoire(0.2, 0.8),
-      couleur: choisir(["cyan", "cyan", "bleu", "violet"]),
+      amplitude: aleatoire(0.3, 1),
+      couleur: choisir(["cyan", "cyan", "cyan", "bleu", "bleu", "blanc", "violet"]),
       scintille: aleatoire(0.002, 0.006),
+      devant: Math.random() < 0.18,
     };
+  }
+
+  // Grandes nappes de mana, très douces, qui dérivent lentement
+  let nappes = [];
+  function creerNappe() {
+    return {
+      x: Math.random() * largeur, y: Math.random() * hauteur,
+      taille: aleatoire(180, 420),
+      vx: aleatoire(-0.15, 0.15), vy: aleatoire(-0.12, -0.03),
+      phase: Math.random() * Math.PI * 2,
+      couleur: choisir(["bleu", "cyan", "bleu"]),
+    };
+  }
+
+  // Courant de mana : quelques particules qui montent ensemble depuis le bas de l'écran
+  function courant() {
+    const x = Math.random() * largeur;
+    for (let i = 0; i < 10; i++) {
+      etincelles.push({
+        x: x + aleatoire(-25, 25), y: hauteur + aleatoire(0, 60),
+        vx: aleatoire(-0.15, 0.15), vy: aleatoire(-1.2, -2.4),
+        vie: 1, usure: aleatoire(0.004, 0.008),
+        taille: aleatoire(10, 26), couleur: choisir(["cyan", "bleu", "blanc"]), gravite: 0,
+      });
+    }
   }
 
   function redimensionner() {
     ratio = Math.min(window.devicePixelRatio || 1, 2);
     largeur = window.innerWidth;
     hauteur = window.innerHeight;
-    canvas.width = largeur * ratio;
-    canvas.height = hauteur * ratio;
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    const nombre = Math.min(130, Math.round((largeur * hauteur) / 13000));
+    for (const [c, x] of [[canvas, ctx], [avant, ctxAvant]]) {
+      c.width = largeur * ratio;
+      c.height = hauteur * ratio;
+      x.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+    const nombre = Math.min(190, Math.round((largeur * hauteur) / 8500));
+    const nombreNappes = largeur < 700 ? 5 : 9;
+    while (nappes.length < nombreNappes) nappes.push(creerNappe());
+    nappes.length = nombreNappes;
     while (motes.length < nombre) motes.push(creerMote(true));
     motes.length = nombre;
   }
 
-  function dessinerLumiere(nom, x, y, taille, alpha) {
-    ctx.globalAlpha = alpha;
-    ctx.drawImage(sprites[nom], x - taille / 2, y - taille / 2, taille, taille);
+  function dessinerLumiere(nom, x, y, taille, alpha, cible = ctx) {
+    cible.globalAlpha = alpha;
+    cible.drawImage(sprites[nom], x - taille / 2, y - taille / 2, taille, taille);
   }
 
   // ------------------------------------------------------------------ effets publics
@@ -151,6 +190,22 @@
     ctx.globalAlpha = 1;
     ctx.clearRect(0, 0, largeur, hauteur);
     ctx.globalCompositeOperation = "lighter";
+    ctxAvant.globalCompositeOperation = "source-over";
+    ctxAvant.globalAlpha = 1;
+    ctxAvant.clearRect(0, 0, largeur, hauteur);
+    ctxAvant.globalCompositeOperation = "lighter";
+
+    // nappes de mana (lueurs diffuses)
+    for (const n of nappes) {
+      n.phase += 0.004 * dt;
+      n.x += n.vx * dt; n.y += n.vy * dt;
+      if (n.y < -n.taille) { n.y = hauteur + n.taille / 2; n.x = Math.random() * largeur; }
+      if (n.x < -n.taille) n.x = largeur + n.taille / 2; else if (n.x > largeur + n.taille) n.x = -n.taille / 2;
+      dessinerLumiere(n.couleur, n.x, n.y, n.taille, 0.12 + 0.05 * Math.sin(n.phase));
+    }
+
+    // un courant de mana de temps en temps
+    if (Math.random() < 0.012 * dt) courant();
 
     // particules de mana : montent doucement, ondulent, fuient un peu le curseur
     for (const m of motes) {
@@ -169,7 +224,11 @@
       if (m.y < -30) Object.assign(m, creerMote(false));
       if (m.x < -30) m.x = largeur + 20; else if (m.x > largeur + 30) m.x = -20;
       const alpha = 0.35 + 0.35 * Math.sin(t * m.scintille + m.phase);
-      dessinerLumiere(m.couleur, m.x, m.y, m.taille, Math.max(0.08, alpha));
+      const a = Math.max(0.15, alpha + 0.15) * (m.devant ? 0.75 : 1);
+      const cible = m.devant ? ctxAvant : ctx;
+      dessinerLumiere(m.couleur, m.x, m.y, m.taille, a, cible);
+      // petite traînée sous la particule : elle a l'air de s'élever
+      dessinerLumiere(m.couleur, m.x - Math.sin(m.phase) * 2, m.y + m.taille * 0.45, m.taille * 0.6, a * 0.45, cible);
     }
 
     // étincelles
