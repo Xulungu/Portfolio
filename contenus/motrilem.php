@@ -99,25 +99,41 @@
   <h2>Personnages et ennemis en jeu</h2>
   <p>Les sprites tels qu'ils apparaissent dans la démo, avec leurs animations.</p>
   <div class="cartes">
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <?= sprite_anime(image('motrilem', 'heros_marche.png'), 12, 47, 86, 1.6, 0.96, 'Le protagoniste en train de marcher') ?>
       <h3>Le protagoniste</h3>
       <p>Revenu d'entre les morts, il ne garde qu'un souvenir : sa magie. Animations de repos, de marche, de course et de saut.</p>
+      <div class="carte-detail" hidden data-etiquette="En jeu">
+        <p>Mort 5000 ans avant les événements du jeu, il revient à la vie sans aucun souvenir. Il découvre le livre qui raconte la légende des deux frères mages et doit en retrouver les pages pour reconstituer son identité.</p>
+        <ul class="fiche-stats"><li><span>Taille d'une image</span><strong>48 × 90 px</strong></li><li><span>Animations</span><strong>repos 6 · marche 12 · course 12 · saut 6 images</strong></li><li><span>Apparences</span><strong>7 couleurs de cape</strong></li></ul>
+      </div>
     </div>
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <?= sprite_anime(image('motrilem', 'moustique.png'), 7, 67, 70, 1.6, 0.63, 'Moustique piqueur en vol') ?>
       <h3>Moustique piqueur</h3>
       <p>Il s'arrête, tremble en rougissant, puis lance une copie fantôme de sa trompe sur le joueur.</p>
+      <div class="carte-detail" hidden data-etiquette="En jeu">
+        <p>Ennemi volant du marécage. Quand le joueur s'approche, il s'immobilise, tremble et rougit : c'est l'alerte. Une copie fantôme de sa trompe se forme puis file vers le joueur. Elle fait plus de dégâts que le simple contact.</p>
+        <ul class="fiche-stats"><li><span>Animation de vol</span><strong>7 images</strong></li><li><span>Dégâts de la trompe</span><strong>30</strong></li></ul>
+      </div>
     </div>
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <img src="<?= e(image('motrilem', 'slime_jeu.png')) ?>" alt="Slime" class="pixel" width="99">
       <h3>Slimes</h3>
       <p>Ennemis de base du marécage, qu'on peut aussi vaincre en les écrasant.</p>
+      <div class="carte-detail" hidden data-etiquette="En jeu">
+        <p>Ils avancent par petits bonds et sautent vers le joueur quand il approche. Ils font demi-tour devant les trous et les bassins d'acide. On peut les écraser en sautant dessus ou les détruire à la magie ; les gros slimes se divisent en deux petits.</p>
+        <ul class="fiche-stats"><li><span>Points de vie</span><strong>3 (gros : 7)</strong></li><li><span>Dégâts</span><strong>10 (gros : 15)</strong></li><li><span>Animations</span><strong>repos 2 images · saut</strong></li></ul>
+      </div>
     </div>
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <img src="<?= e(image('motrilem', 'slime_jeu.png')) ?>" alt="Le Gros Gluant" class="pixel" width="150">
       <h3>Le Gros Gluant</h3>
       <p>Mini-boss : un slime 2,3 fois plus grand, en arène fermée. Bonds, ondes de choc au sol, crachats de glu et appels de petits slimes. Il garde un éclat de vie.</p>
+      <div class="carte-detail" hidden data-etiquette="En jeu">
+        <p>Le mini-boss du Terrier gluant. Quand le joueur entre dans son antre, les grilles se ferment et sa barre de vie apparaît. Il retombe lourdement en envoyant deux ondes gluantes au ras du sol, crache des boules de glu en cloche et fait tomber des petits slimes du plafond quand il est blessé. Plus il perd de vie, plus il enchaîne vite. À sa mort, il laisse son noyau et un éclat de vie.</p>
+        <ul class="fiche-stats"><li><span>Points de vie</span><strong>30</strong></li><li><span>Dégâts</span><strong>25, ralentit le joueur</strong></li><li><span>Taille</span><strong>2,3 × un slime</strong></li></ul>
+      </div>
     </div>
   </div>
 
@@ -142,7 +158,7 @@
 
   <h3 class="sous-titre-section">Objets du monde</h3>
   <div class="cartes">
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <div class="duo-sprites">
         <img src="<?= e(image('motrilem', 'statue_0.png')) ?>" alt="Statue d'ange non activée" class="pixel" width="96">
         <span aria-hidden="true">→</span>
@@ -150,16 +166,28 @@
       </div>
       <h3>Statue d'ange</h3>
       <p>Point de sauvegarde. Elle déploie ses ailes la première fois qu'on l'utilise et les garde ensuite.</p>
+      <div class="carte-detail" hidden data-etiquette="En jeu">
+        <p>Prier devant une statue sauvegarde la partie, rend toute la vie et place le point de réapparition. La première fois, elle déploie ses ailes et les garde : on voit d'un coup d'œil quelles statues ont déjà été activées.</p>
+        <ul class="fiche-stats"><li><span>Animation</span><strong>4 étapes, de repliée à déployée</strong></li></ul>
+      </div>
     </div>
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <img src="<?= e(image('motrilem', 'eclat_vie.png')) ?>" alt="Éclat de vie" class="pixel" width="52">
       <h3>Éclat de vie</h3>
       <p>Caché dans le monde : chaque éclat augmente la vie maximale de 20.</p>
+      <div class="carte-detail" hidden data-etiquette="En jeu">
+        <p>Objet caché à trouver en explorant. Chaque éclat ne peut être ramassé qu'une fois : il est mémorisé dans la sauvegarde. Le Gros Gluant en garde un.</p>
+        <ul class="fiche-stats"><li><span>Bonus</span><strong>+20 points de vie maximum</strong></li></ul>
+      </div>
     </div>
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <img src="<?= e(image('motrilem', 'urne.png')) ?>" alt="Urne" class="pixel" width="40">
       <h3>Urne</h3>
       <p>Objet cassable du décor ; elle ne réapparaît qu'après une sauvegarde.</p>
+      <div class="carte-detail" hidden data-etiquette="En jeu">
+        <p>Urne en terre cuite qu'un sort fait voler en éclats. Une fois sur sept, elle contient un peu de soin. Elle reste cassée tant que le joueur ne sauvegarde pas : mourir ou changer de carte ne la répare pas.</p>
+        <ul class="fiche-stats"><li><span>Chance de soin</span><strong>1 sur 7</strong></li></ul>
+      </div>
     </div>
   </div>
 </section>
@@ -168,25 +196,37 @@
   <h2>Sketch design : premières versions</h2>
   <p>Les premiers croquis des personnages, avant les sprites définitifs du jeu.</p>
   <div class="cartes">
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <img src="<?= e(image('motrilem', 'MC.png')) ?>" alt="Premier croquis du protagoniste" class="pixel" width="70">
       <h3>Le protagoniste</h3>
       <p>Première version du protagoniste.</p>
+      <div class="carte-detail" hidden data-etiquette="Sketch design">
+        <p>Premier design du protagoniste. La version du jeu reprend la cape à capuche et les yeux lumineux, dans un sprite plus grand et entièrement animé.</p>
+      </div>
     </div>
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <img src="<?= e(image('motrilem', 'ennemy.png')) ?>" alt="Premier croquis du moustique piqueur" width="80">
       <h3>Moustique piqueur</h3>
       <p>Premier design du moustique.</p>
+      <div class="carte-detail" hidden data-etiquette="Sketch design">
+        <p>Premier design du moustique piqueur. La version du jeu le reprend avec une animation de vol de 7 images.</p>
+      </div>
     </div>
-    <div class="carte">
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
       <img src="<?= e(image('motrilem', 'slime.png')) ?>" alt="Premier croquis du slime" class="pixel" width="64">
       <h3>Slime</h3>
       <p>Première version du slime.</p>
+      <div class="carte-detail" hidden data-etiquette="Sketch design">
+        <p>Premier slime, bleu et plus petit. La version du jeu est verte, plus détaillée, avec des images de repos et de saut.</p>
+      </div>
     </div>
-    <div class="carte">
-      <img src="<?= e(image('motrilem', 'Boss1.png')) ?>" alt="Premier croquis de Séraphel" width="150" data-agrandir>
+    <div class="carte carte-fiche" tabindex="0" role="button" aria-haspopup="dialog">
+      <img src="<?= e(image('motrilem', 'Boss1.png')) ?>" alt="Premier croquis de Séraphel" width="150">
       <h3>Séraphel</h3>
       <p>Premier design du boss, avant le découpage du corps et des ailes pour l'animation.</p>
+      <div class="carte-detail" hidden data-etiquette="Sketch design">
+        <p>Premier design de Séraphel, dessiné en une seule image. Pour le jeu, il a été découpé en un corps et trois ailes séparées : chaque aile pivote autour de son point d'attache, ce qui permet d'animer les battements.</p>
+      </div>
     </div>
   </div>
 </section>

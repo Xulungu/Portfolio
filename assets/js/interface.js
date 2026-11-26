@@ -234,6 +234,111 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !visionneuse.hidden) fermer(); });
   }
 
+  // ------------------------------------------------------------------ fiches des cartes (page Motrilem)
+  // Un clic sur une carte l'agrandit jusqu'au centre de l'écran : sprite en grand + description détaillée.
+  (function () {
+    const cartes = $$(".carte-fiche");
+    if (!cartes.length) return;
+    const DUREE = reduit ? 0 : 380;
+    let ouverte = null;
+
+    // Agrandit un sprite (image ou planche animée) pour qu'il tienne dans environ hMax × lMax pixels
+    function agrandir(el, hMax, lMax) {
+      const pixel = el.classList.contains("pixel") || el.classList.contains("sprite-anime");
+      let l, h;
+      if (el.classList.contains("sprite-anime")) { l = +el.dataset.l; h = +el.dataset.h; }
+      else { l = el.naturalWidth || el.width; h = el.naturalHeight || el.height; }
+      if (!l || !h) return;
+      let k = Math.min(hMax / h, lMax / l, 8);
+      if (pixel && k > 1) k = Math.floor(k); // facteur entier : pixels bien nets
+      el.style.width = Math.round(l * k) + "px";
+      el.style.height = Math.round(h * k) + "px";
+      el.removeAttribute("width");
+    }
+
+    function ouvrir(carte) {
+      if (ouverte) return;
+      const detail = $(".carte-detail", carte);
+      const depart = carte.getBoundingClientRect();
+      const petit = window.innerWidth < 700;
+
+      const fond = document.createElement("div");
+      fond.className = "fiche-fond";
+      const fiche = document.createElement("div");
+      fiche.className = "fiche";
+      fiche.setAttribute("role", "dialog");
+      fiche.setAttribute("aria-modal", "true");
+      fiche.setAttribute("aria-label", $("h3", carte).textContent);
+      fiche.innerHTML = '<button class="fiche-fermer" aria-label="Fermer">✕</button><div class="fiche-visuel"></div><div class="fiche-texte"></div>';
+
+      // visuel : copie des sprites de la carte, agrandis
+      const visuel = $(".fiche-visuel", fiche);
+      const sprites = $$(":scope > img, :scope > .sprite-anime, :scope > .duo-sprites", carte);
+      sprites.forEach((sp) => {
+        const copie = sp.cloneNode(true);
+        visuel.append(copie);
+        const cibles = copie.classList.contains("duo-sprites") ? $$("img", copie) : [copie];
+        cibles.forEach((c) => agrandir(c, petit ? 170 : (cibles.length > 1 ? 210 : 280), petit ? 260 : (cibles.length > 1 ? 170 : 340)));
+      });
+
+      // texte : étiquette, titre, résumé de la carte, puis le détail
+      const texte = $(".fiche-texte", fiche);
+      const etiquette = document.createElement("span");
+      etiquette.className = "fiche-etiquette" + (detail.dataset.etiquette === "Sketch design" ? " sketch" : "");
+      etiquette.textContent = detail.dataset.etiquette;
+      const titre = document.createElement("h3");
+      titre.textContent = $("h3", carte).textContent;
+      const resume = $(":scope > p", carte);
+      texte.append(etiquette, titre);
+      if (resume) { const r = resume.cloneNode(true); r.className = "fiche-resume"; texte.append(r); }
+      $$(":scope > *", detail).forEach((n) => texte.append(n.cloneNode(true)));
+
+      document.body.append(fond, fiche);
+      document.documentElement.classList.add("fiche-active");
+
+      // FLIP : on part de la place exacte de la carte et on grandit jusqu'à la position finale
+      const arrivee = fiche.getBoundingClientRect();
+      const depuis = `translate(${depart.left - arrivee.left}px, ${depart.top - arrivee.top}px) scale(${depart.width / arrivee.width}, ${depart.height / arrivee.height})`;
+      fiche.style.transformOrigin = "0 0";
+      fiche.style.transform = depuis;
+      carte.classList.add("carte-source");
+      void fiche.offsetWidth;
+      fiche.style.transition = `transform ${DUREE}ms cubic-bezier(0.2, 0.8, 0.2, 1)`;
+      fiche.style.transform = "none";
+      fond.classList.add("visible");
+      setTimeout(() => fiche.classList.add("contenu-visible"), DUREE * 0.55);
+
+      ouverte = { carte, fond, fiche, depuis };
+      fond.addEventListener("click", fermer);
+      $(".fiche-fermer", fiche).addEventListener("click", fermer);
+      $(".fiche-fermer", fiche).focus({ preventScroll: true });
+    }
+
+    function fermer() {
+      if (!ouverte) return;
+      const { carte, fond, fiche, depuis } = ouverte;
+      ouverte = null;
+      fiche.classList.remove("contenu-visible");
+      fiche.style.transition = `transform ${DUREE * 0.8}ms cubic-bezier(0.6, 0, 0.8, 0.4)`;
+      fiche.style.transform = depuis;
+      fond.classList.remove("visible");
+      setTimeout(() => {
+        fiche.remove(); fond.remove();
+        carte.classList.remove("carte-source");
+        document.documentElement.classList.remove("fiche-active");
+        carte.focus({ preventScroll: true });
+      }, DUREE * 0.8);
+    }
+
+    cartes.forEach((carte) => {
+      carte.addEventListener("click", () => ouvrir(carte));
+      carte.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ouvrir(carte); }
+      });
+    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") fermer(); });
+  })();
+
   // ------------------------------------------------------------------ inclinaison 3D des portails
   if (!reduit && window.matchMedia("(pointer: fine)").matches) {
     $$(".portail-lien").forEach((carte) => {
