@@ -151,29 +151,71 @@
     });
   });
 
-  // ------------------------------------------------------------------ transition de portail
-  const transition = $(".portail-transition");
-  if (transition && memoire.lire("portail")) {
-    memoire.effacer("portail");
-    transition.classList.add("arrivee");
-    setTimeout(() => transition.classList.remove("arrivee"), 800);
+  // ------------------------------------------------------------------ transition entre les pages (mosaïque)
+  // Des tuiles sombres recouvrent l'écran en cascade depuis le point du clic,
+  // puis se retirent depuis le centre à l'arrivée sur la nouvelle page.
+  const transition = $(".page-transition");
+  const DUREE_TUILE = 450, ETALEMENT = 380;
+
+  function preparerTuiles(x, y) {
+    const taille = window.innerWidth < 600 ? 60 : 90;
+    const colonnes = Math.ceil(window.innerWidth / taille);
+    const lignes = Math.ceil(window.innerHeight / taille);
+    transition.style.setProperty("--colonnes", colonnes);
+    transition.textContent = "";
+    const l = window.innerWidth / colonnes, h = window.innerHeight / lignes;
+    const max = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+    const fragment = document.createDocumentFragment();
+    for (let j = 0; j < lignes; j++) {
+      for (let i = 0; i < colonnes; i++) {
+        const t = document.createElement("div");
+        t.className = "tuile";
+        const d = Math.hypot((i + 0.5) * l - x, (j + 0.5) * h - y) / max;
+        t.style.setProperty("--delai", Math.round(d * ETALEMENT + Math.random() * 60) + "ms");
+        fragment.append(t);
+      }
+    }
+    transition.append(fragment);
   }
+
+  // Arrivée sur la page : l'écran est déjà couvert (classe posée dans le <head>), on découvre
+  if (transition && document.documentElement.classList.contains("arrivee")) {
+    memoire.effacer("transition");
+    preparerTuiles(window.innerWidth / 2, window.innerHeight / 2);
+    transition.classList.add("prete", "ouverture");
+    setTimeout(() => {
+      document.documentElement.classList.remove("arrivee");
+      transition.classList.remove("prete", "ouverture");
+      transition.textContent = "";
+    }, ETALEMENT + DUREE_TUILE + 120);
+  }
+
   $$("[data-portail]").forEach((lien) => {
     lien.addEventListener("click", (e) => {
       if (reduit || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0 || !transition) return;
       e.preventDefault();
-      const cercle = $(".portail-cercle", transition);
-      transition.style.placeItems = "start";
-      cercle.style.marginLeft = e.clientX - 20 + "px";
-      cercle.style.marginTop = e.clientY - 20 + "px";
-      transition.classList.add("actif");
-      if (window.Magie) window.Magie.explosion(e.clientX, e.clientY, 40, ["cyan", "violet", "blanc"], 9);
-      memoire.ecrire("portail", "1");
-      setTimeout(() => { window.location.href = lien.href; }, 650);
+      const carte = lien.closest(".portail");
+      if (carte) {
+        carte.classList.add("choisi");
+        carte.parentElement.classList.add("selection");
+      }
+      preparerTuiles(e.clientX, e.clientY);
+      // laisse le temps à la carte de s'avancer avant de recouvrir l'écran
+      setTimeout(() => transition.classList.add("fermeture"), carte ? 180 : 0);
+      memoire.ecrire("transition", "1");
+      setTimeout(() => { window.location.href = lien.href; }, (carte ? 180 : 0) + ETALEMENT + DUREE_TUILE);
     });
   });
-  // retour arrière du navigateur : on enlève l'écran de transition resté affiché
-  window.addEventListener("pageshow", (e) => { if (e.persisted && transition) transition.classList.remove("actif"); });
+
+  // retour arrière du navigateur : on remet la page dans son état normal
+  window.addEventListener("pageshow", (e) => {
+    if (!e.persisted || !transition) return;
+    transition.className = "page-transition";
+    transition.textContent = "";
+    document.documentElement.classList.remove("arrivee");
+    $$(".selection").forEach((el) => el.classList.remove("selection"));
+    $$(".choisi").forEach((el) => el.classList.remove("choisi"));
+  });
 
   // ------------------------------------------------------------------ visionneuse d'images
   const visionneuse = $(".visionneuse");

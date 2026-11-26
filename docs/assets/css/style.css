@@ -460,15 +460,26 @@ textarea { resize: vertical; }
 .notif.ombre { border-color: var(--violet-clair); box-shadow: 0 0 24px rgba(139, 92, 246, 0.5); }
 .notif.ombre .notif-icone, .notif.ombre small { color: var(--violet-clair); border-color: var(--violet-clair); }
 
-/* ---------------------------------------------------------------- transition de portail */
-.portail-transition { position: fixed; inset: 0; z-index: 3000; pointer-events: none; display: grid; place-items: center; }
-.portail-cercle {
-  width: 40px; height: 40px; border-radius: 50%; transform: scale(0); opacity: 0;
-  background: radial-gradient(circle, #fff 0%, var(--cyan) 12%, var(--bleu) 30%, var(--violet) 50%, #04050d 72%);
-  box-shadow: 0 0 80px 30px rgba(79, 216, 255, 0.6);
+/* ---------------------------------------------------------------- transition entre les pages (mosaïque) */
+.page-transition {
+  position: fixed; inset: 0; z-index: 3000; pointer-events: none;
+  display: grid; grid-template-columns: repeat(var(--colonnes, 16), 1fr); grid-auto-rows: 1fr;
 }
-.portail-transition.actif .portail-cercle { animation: portail 0.75s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
-.portail-transition.arrivee { background: #04050d; animation: arrivee 0.7s ease-out forwards; }
+.arrivee .page-transition { background: var(--fond); }
+.page-transition.prete { background: none; }
+.tuile {
+  background: #070b1c;
+  box-shadow: inset 0 0 0 1px rgba(79, 216, 255, 0.06);
+  opacity: 0;
+}
+.fermeture .tuile { animation: tuile-entree 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delai) both; }
+.ouverture .tuile { opacity: 1; animation: tuile-sortie 0.45s cubic-bezier(0.6, 0, 0.8, 0.4) var(--delai) both; }
+.fermeture, .ouverture { pointer-events: all; }
+
+/* la carte choisie s'avance, les autres s'effacent */
+.js .portails .portail { transition: opacity 0.45s ease, scale 0.45s ease, transform 0.8s, filter 0.8s; }
+.portails.selection .portail:not(.choisi) { opacity: 0.2; scale: 0.96; }
+.portails.selection .portail.choisi { scale: 1.03; }
 
 /* ---------------------------------------------------------------- visionneuse d'images */
 [data-agrandir] { cursor: zoom-in; }
@@ -585,8 +596,15 @@ textarea { resize: vertical; }
 @keyframes glitch-b { 0% { transform: translate(3px, -1px); clip-path: inset(55% 0 20% 0); } 50% { transform: translate(-3px, 1px); clip-path: inset(15% 0 55% 0); } 100% { transform: none; clip-path: inset(30% 0 50% 0); } }
 @keyframes notif-entree { from { opacity: 0; transform: translateX(60px) scaleY(0.4); } }
 @keyframes notif-sortie { to { opacity: 0; transform: translateX(60px); } }
-@keyframes portail { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(70); opacity: 1; } }
-@keyframes arrivee { to { opacity: 0; visibility: hidden; } }
+@keyframes tuile-entree {
+  0% { opacity: 0; transform: scale(0.3) rotate(45deg); box-shadow: inset 0 0 0 1px rgba(79, 216, 255, 0.45); }
+  100% { opacity: 1; transform: none; box-shadow: inset 0 0 0 1px rgba(79, 216, 255, 0.06); }
+}
+@keyframes tuile-sortie {
+  0% { opacity: 1; transform: none; box-shadow: inset 0 0 0 1px rgba(79, 216, 255, 0.06); }
+  40% { box-shadow: inset 0 0 0 1px rgba(79, 216, 255, 0.35); }
+  100% { opacity: 0; transform: scale(0.3) rotate(-45deg); }
+}
 @keyframes invocation { 0% { opacity: 1; filter: drop-shadow(0 0 30px var(--cyan)) brightness(2); } 100% { opacity: 0.22; } }
 
 /* ---------------------------------------------------------------- responsive */

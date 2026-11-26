@@ -6,7 +6,7 @@
   <title>Mini-Jeux — Application Python en terminal — Arranga Evan</title>
   <meta name="description" content="Trois mini-jeux jouables en terminal, avec comptes joueurs, scores sauvegardés et bots.">
   <meta name="theme-color" content="#05060f">
-  <script>document.documentElement.classList.add("js");</script>
+  <script>document.documentElement.classList.add("js");try{if(sessionStorage.getItem("transition"))document.documentElement.classList.add("arrivee");}catch(e){}</script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -242,7 +242,7 @@
 <div class="notifications" aria-live="polite"></div>
 
 <!-- Transition animée vers une page projet -->
-<div class="portail-transition" aria-hidden="true"><div class="portail-cercle"></div></div>
+<div class="page-transition" aria-hidden="true"></div>
 
 <!-- Agrandissement des images -->
 <div class="visionneuse" hidden>

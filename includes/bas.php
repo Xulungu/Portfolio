@@ -9,7 +9,7 @@
 <div class="notifications" aria-live="polite"></div>
 
 <!-- Transition animée vers une page projet -->
-<div class="portail-transition" aria-hidden="true"><div class="portail-cercle"></div></div>
+<div class="page-transition" aria-hidden="true"></div>
 
 <!-- Agrandissement des images -->
 <div class="visionneuse" hidden>
