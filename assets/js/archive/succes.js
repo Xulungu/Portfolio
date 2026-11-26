@@ -22,6 +22,7 @@
     { id: "danmaku", titre: "Survivant du danmaku", description: "Survivre jusqu'au bout du Danmaku Mode.", indice: "Une porte scellée mène à une arène.", secret: true },
     { id: "monarque", titre: "Domaine du Monarque", description: "Taper « arise ».", indice: "Les ombres répondent à un seul mot.", secret: true },
     { id: "monika", titre: "Just Monika", description: "Taper « monika ».", indice: "Un nom, et tout devient vert.", secret: true },
+    { id: "pyromancien", titre: "Pyromancien", description: "Taper « ignis ».", indice: "Un mot ancien qui veut dire « feu ».", secret: true },
     { id: "surcharge", titre: "Mana infini", description: "Entrer le code Konami.", indice: "↑ ↑ …", secret: true },
     { id: "sudo", titre: "Permission refusée", description: "Essayer « sudo » dans le terminal.", indice: "Tu n'es pas root ici.", secret: true },
     { id: "archiviste", titre: "L'Archive complète", description: "Débloquer tous les autres succès.", indice: "Tout découvrir.", secret: false },

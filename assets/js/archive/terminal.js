@@ -165,6 +165,7 @@
     arise() { ecrire("Les ombres t'ont entendu.", "violet"); if (window.EasterEggs) window.EasterEggs.domaine(); },
     danmaku() { ecrire("L'arène se trouve derrière une porte scellée, dans les abysses.", "doux"); },
     hello() { ecrire("* Bonjour. Tu es rempli de DÉTERMINATION."); },
+    ignis() { ecrire("Le mana s'embrase.", "indice"); if (window.EasterEggs) window.EasterEggs.ignis(); },
   };
 
   function executer(brut) {

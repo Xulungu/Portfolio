@@ -32,6 +32,9 @@
     emeraude: [52, 211, 153],
     emeraudeFonce: [5, 150, 105],
     menthe: [190, 255, 225],
+    flamme: [255, 150, 40],
+    braise: [255, 70, 20],
+    etincelle: [255, 225, 120],
   };
   // Thèmes des easter eggs : les lueurs bleues changent de couleur
   const TEINTES = {
