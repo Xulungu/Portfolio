@@ -643,3 +643,17 @@ textarea { resize: vertical; }
   html { scroll-behavior: auto; }
   .js .apparition { opacity: 1; transform: none; filter: none; }
 }
+
+/* ---------------------------------------------------------------- sprites du jeu */
+.sprite-anime {
+  margin: 0 auto 10px; max-width: 100%;
+  background-repeat: no-repeat; background-position: 0 0;
+  image-rendering: pixelated;
+  animation-name: sprite; animation-iteration-count: infinite;
+}
+@keyframes sprite { to { background-position: 100% 0; } }
+.boss .sprite-anime { filter: drop-shadow(0 0 20px rgba(120, 255, 90, 0.35)); }
+.sous-titre-section { margin: 28px 0 6px !important; }
+.planche-skins { display: block; width: min(100%, 560px); margin: 10px 0 6px; padding: 14px; border: 1px solid rgba(90, 180, 255, 0.2); background: rgba(2, 6, 18, 0.55); border-radius: 6px; }
+.duo-sprites { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; color: var(--cyan); }
+.duo-sprites img { margin: 0 !important; }

@@ -96,31 +96,33 @@
 </section>
 
 <section class="fenetre apparition">
-  <h2>Ennemis et boss</h2>
+  <h2>Personnages et ennemis en jeu</h2>
+  <p>Les sprites tels qu'ils apparaissent dans la démo, avec leurs animations.</p>
   <div class="cartes">
     <div class="carte">
-      <img src="<?= e(image('motrilem', 'MC.png')) ?>" alt="Le protagoniste" class="pixel" width="70">
-      <h3>Le protagoniste</h3>
-      <p>Revenu d'entre les morts, il ne garde qu'un souvenir : sa magie.</p>
+      <?= sprite_anime(image('motrilem', 'heros_marche.png'), 12, 47, 86, 1.6, 0.96, 'Le héros en train de marcher') ?>
+      <h3>Le héros</h3>
+      <p>Revenu d'entre les morts, il ne garde qu'un souvenir : sa magie. Animations de repos, de marche, de course et de saut.</p>
     </div>
     <div class="carte">
-      <img src="<?= e(image('motrilem', 'ennemy.png')) ?>" alt="Moustique piqueur" width="80">
+      <?= sprite_anime(image('motrilem', 'moustique.png'), 7, 67, 70, 1.6, 0.63, 'Moustique piqueur en vol') ?>
       <h3>Moustique piqueur</h3>
       <p>Il s'arrête, tremble en rougissant, puis lance une copie fantôme de sa trompe sur le joueur.</p>
     </div>
     <div class="carte">
-      <img src="<?= e(image('motrilem', 'slime.png')) ?>" alt="Slime" class="pixel" width="64">
+      <img src="<?= e(image('motrilem', 'slime_jeu.png')) ?>" alt="Slime" class="pixel" width="99">
       <h3>Slimes</h3>
       <p>Ennemis de base du marécage, qu'on peut aussi vaincre en les écrasant.</p>
     </div>
     <div class="carte">
+      <img src="<?= e(image('motrilem', 'slime_jeu.png')) ?>" alt="Le Gros Gluant" class="pixel" width="150">
       <h3>Le Gros Gluant</h3>
-      <p>Mini-boss en arène fermée : bonds, ondes de choc au sol, crachats de glu et appels de petits slimes. Il garde un éclat de vie.</p>
+      <p>Mini-boss : un slime 2,3 fois plus grand, en arène fermée. Bonds, ondes de choc au sol, crachats de glu et appels de petits slimes. Il garde un éclat de vie.</p>
     </div>
   </div>
 
   <div class="boss">
-    <img src="<?= e(image('motrilem', 'Boss1.png')) ?>" alt="Séraphel, le premier boss" width="220" class="flotte" data-agrandir>
+    <div class="flotte"><?= sprite_anime(image('motrilem', 'seraphel.png'), 4, 226, 229, 1.2, 0.28, 'Séraphel, le premier boss, ailes en mouvement') ?></div>
     <div>
       <p class="boss-alerte">⚠ BOSS</p>
       <h3>Séraphel — « Ce qui bourdonne dans la lumière »</h3>
@@ -131,6 +133,60 @@
         <li>L'arène se dégrade : le sol s'effondre dans l'acide au fil du combat.</li>
         <li>Réaction à chaque magie : le feu le brûle, la glace le ralentit, la foudre l'étourdit.</li>
       </ul>
+    </div>
+  </div>
+
+  <h3 class="sous-titre-section">Le héros et ses 7 skins</h3>
+  <p>Le joueur choisit l'apparence de sa cape : rouge (par défaut), gris, rose, vert, bleu, blanc ou noir.</p>
+  <img src="<?= e(image('motrilem', 'heros_skins.png')) ?>" alt="Les 7 skins du héros : rouge, gris, rose, vert, bleu, blanc et noir" class="pixel planche-skins" data-agrandir>
+
+  <h3 class="sous-titre-section">Objets du monde</h3>
+  <div class="cartes">
+    <div class="carte">
+      <div class="duo-sprites">
+        <img src="<?= e(image('motrilem', 'statue_0.png')) ?>" alt="Statue d'ange non activée" class="pixel" width="96">
+        <span aria-hidden="true">→</span>
+        <img src="<?= e(image('motrilem', 'statue_3.png')) ?>" alt="Statue d'ange activée, ailes déployées" class="pixel" width="96">
+      </div>
+      <h3>Statue d'ange</h3>
+      <p>Point de sauvegarde. Elle déploie ses ailes la première fois qu'on l'utilise et les garde ensuite.</p>
+    </div>
+    <div class="carte">
+      <img src="<?= e(image('motrilem', 'eclat_vie.png')) ?>" alt="Éclat de vie" class="pixel" width="52">
+      <h3>Éclat de vie</h3>
+      <p>Caché dans le monde : chaque éclat augmente la vie maximale de 20.</p>
+    </div>
+    <div class="carte">
+      <img src="<?= e(image('motrilem', 'urne.png')) ?>" alt="Urne" class="pixel" width="40">
+      <h3>Urne</h3>
+      <p>Objet cassable du décor ; elle ne réapparaît qu'après une sauvegarde.</p>
+    </div>
+  </div>
+</section>
+
+<section class="fenetre apparition">
+  <h2>Sketch design : premières versions</h2>
+  <p>Les premiers croquis des personnages, avant les sprites définitifs du jeu.</p>
+  <div class="cartes">
+    <div class="carte">
+      <img src="<?= e(image('motrilem', 'MC.png')) ?>" alt="Premier croquis du protagoniste" class="pixel" width="70">
+      <h3>Le protagoniste</h3>
+      <p>Première version du héros.</p>
+    </div>
+    <div class="carte">
+      <img src="<?= e(image('motrilem', 'ennemy.png')) ?>" alt="Premier croquis du moustique piqueur" width="80">
+      <h3>Moustique piqueur</h3>
+      <p>Premier design du moustique.</p>
+    </div>
+    <div class="carte">
+      <img src="<?= e(image('motrilem', 'slime.png')) ?>" alt="Premier croquis du slime" class="pixel" width="64">
+      <h3>Slime</h3>
+      <p>Première version du slime.</p>
+    </div>
+    <div class="carte">
+      <img src="<?= e(image('motrilem', 'Boss1.png')) ?>" alt="Premier croquis de Séraphel" width="150" data-agrandir>
+      <h3>Séraphel</h3>
+      <p>Premier design du boss, avant le découpage du corps et des ailes pour l'animation.</p>
     </div>
   </div>
 </section>

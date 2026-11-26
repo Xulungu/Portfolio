@@ -67,6 +67,19 @@ function carte_projet(string $id, array $p): string
 </article>';
 }
 
+/**
+ * Sprite animé à partir d'une planche horizontale (toutes les images côte à côte).
+ * $l et $h : taille d'une image en pixels ; $echelle : agrandissement (pixel art net).
+ */
+function sprite_anime(string $src, int $images, int $l, int $h, float $echelle, float $duree, string $alt): string
+{
+    $style = sprintf(
+        'background-image:url(%s);width:%dpx;height:%dpx;background-size:%d%% 100%%;animation-duration:%.2fs;animation-timing-function:steps(%d,jump-none)',
+        e($src), (int) round($l * $echelle), (int) round($h * $echelle), $images * 100, $duree, $images
+    );
+    return '<div class="sprite-anime" role="img" aria-label="' . e($alt) . '" style="' . $style . '"></div>';
+}
+
 /** Titre de section. */
 function titre_section(string $etiquette, string $titre, string $id = ''): string
 {
