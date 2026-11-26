@@ -446,64 +446,10 @@
       setTimeout(fermer, 8000);
     }
 
-    // Ignis : un cercle de feu naît au centre et se propage, puis une deuxième vague plus rapide
-    let ignisEnCours = false;
+    // Ignis : explosions de flammes en chaîne (moteur dans assets/js/archive/ignis.js)
     function ignis() {
-      if (ignisEnCours) return;
-      ignisEnCours = true;
       if (window.Archive) window.Archive.debloquer("pyromancien");
-
-      const scene = document.createElement("div");
-      scene.className = "ignis";
-      scene.setAttribute("aria-hidden", "true");
-      scene.innerHTML = '<div class="ignis-chaleur"></div>';
-      document.body.append(scene);
-      const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-      const rayonMax = Math.hypot(cx, cy) + 60; // jusqu'aux coins de l'écran
-
-      function vague(duree, epaisseur, ensuite) {
-        const anneau = document.createElement("div");
-        anneau.className = "ignis-anneau";
-        anneau.style.setProperty("--epaisseur", epaisseur + "px");
-        scene.append(anneau);
-        const debut = performance.now();
-        let derniereEtincelle = 0;
-        (function image(t) {
-          const p = Math.min((t - debut) / duree, 1);
-          const r = 20 + (rayonMax - 20) * (1 - Math.pow(1 - p, 1.35)); // se propage régulièrement jusqu'aux coins
-          anneau.style.width = anneau.style.height = r * 2 + "px";
-          anneau.style.opacity = p < 0.85 ? 1 : (1 - p) / 0.15;
-          // braises projetées depuis le bord du cercle
-          if (window.Magie && !reduit && t - derniereEtincelle > 45 && p < 0.9) {
-            derniereEtincelle = t;
-            for (let k = 0; k < 9; k++) {
-              const a = Math.random() * Math.PI * 2;
-              window.Magie.explosion(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 3, ["flamme", "braise", "etincelle"], 3);
-            }
-          }
-          if (p < 1) requestAnimationFrame(image);
-          else { anneau.remove(); if (ensuite) ensuite(); }
-        })(debut);
-      }
-
-      if (reduit) {
-        scene.classList.add("ignis-sobre");
-        setTimeout(() => { scene.remove(); ignisEnCours = false; }, 1500);
-        notifier("Ignis.");
-        return;
-      }
-      // étincelle d'allumage au centre
-      if (window.Magie) window.Magie.explosion(cx, cy, 30, ["flamme", "etincelle", "braise"], 5);
-      setTimeout(() => vague(2200, 46, () => {
-        // deuxième vague, deux fois plus rapide, avec un tremblement
-        if (window.Magie) window.Magie.explosion(cx, cy, 45, ["flamme", "etincelle", "braise"], 8);
-        racine.classList.add("tremblement");
-        setTimeout(() => racine.classList.remove("tremblement"), 500);
-        vague(1000, 64, () => {
-          scene.classList.add("fin");
-          setTimeout(() => { scene.remove(); ignisEnCours = false; }, 700);
-        });
-      }), 250);
+      if (window.Ignis) window.Ignis.lancer();
     }
 
     // Surcharge de mana (code Konami) -------------------------------------

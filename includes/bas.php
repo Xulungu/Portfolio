@@ -24,5 +24,6 @@
 <script src="<?= e(ressource('assets/js/contact.js')) ?>" defer></script>
 <script src="<?= e(ressource('assets/js/archive/terminal.js')) ?>" defer></script>
 <script src="<?= e(ressource('assets/js/archive/secrets.js')) ?>" defer></script>
+<script src="<?= e(ressource('assets/js/archive/ignis.js')) ?>" defer></script>
 </body>
 </html>
