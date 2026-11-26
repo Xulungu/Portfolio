@@ -176,7 +176,11 @@
   function finir(victoire) {
     etat = victoire ? "victoire" : "defaite";
     const t = Math.min(temps, DUREE);
-    if (t > record && !entrainement) { record = t; try { localStorage.setItem("danmaku-record", String(record)); } catch (e) { /* rien */ } }
+    if (t > record && !entrainement) {
+      record = t;
+      // meilleur temps gardé seulement si le visiteur a accepté la sauvegarde
+      if (!window.Consentement || window.Consentement.accepte()) { try { localStorage.setItem("danmaku-record", String(record)); } catch (e) { /* rien */ } }
+    }
     const txt = (victoire ? "60 secondes survécues" : "Survécu " + t.toFixed(1) + " s") + " · " + frolements + " frôlements";
     document.querySelector(`.dm-ecran[data-ecran="${etat}"] .dm-resultat`).textContent = txt;
     ecran(etat);

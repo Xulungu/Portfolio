@@ -21,6 +21,8 @@ $description = $description ?? 'Portfolio d\'' . SITE['nom'] . ', étudiant en '
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= e(ressource('assets/css/style.css')) ?>">
   <link rel="stylesheet" href="<?= e(ressource('assets/css/archive.css')) ?>">
+  <link rel="stylesheet" href="<?= e(ressource('assets/css/consentement.css')) ?>">
+  <script src="<?= e(ressource('assets/js/consentement.js')) ?>"></script>
 </head>
 <body>
 

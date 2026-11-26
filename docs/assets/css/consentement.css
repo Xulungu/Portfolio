@@ -1,0 +1,63 @@
+/* ==========================================================================
+   consentement.css — bandeau et panneau « Données et cookies ».
+   Couleurs écrites en dur : ce fichier est aussi chargé par les pages
+   qui n'utilisent pas style.css (salle secrète, Danmaku).
+   ========================================================================== */
+.consentement-bandeau {
+  position: fixed; left: 50%; bottom: 18px; z-index: 3600; translate: -50% 0;
+  width: min(720px, calc(100vw - 24px)); padding: 18px 22px;
+  font-family: "Rajdhani", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.5; color: #d9e7ff;
+  background: rgba(8, 16, 40, 0.97); border: 1px solid rgba(90, 180, 255, 0.45); border-radius: 8px;
+  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.9), 0 0 30px -10px rgba(79, 216, 255, 0.4);
+  animation: consentement-entree 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.consentement-bandeau.sortie { animation: consentement-sortie 0.35s ease-in forwards; }
+.consentement-bandeau p { margin: 0 0 12px; }
+.consentement-titre { margin-bottom: 4px !important; font-weight: 700; font-size: 18px; color: #fff; }
+.consentement-boutons { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.consentement-boutons button {
+  padding: 8px 18px; cursor: pointer; border-radius: 4px;
+  font: 700 15px "Rajdhani", "Segoe UI", system-ui, sans-serif; letter-spacing: 1px;
+  color: #fff; background: rgba(79, 216, 255, 0.08); border: 1px solid #4fd8ff;
+}
+.consentement-boutons button:first-child { background: linear-gradient(90deg, #2f7bff, #8b5cf6); border-color: transparent; }
+.consentement-boutons button:hover, .consentement-boutons button:focus-visible { filter: brightness(1.2); outline: 2px solid #4fd8ff; outline-offset: 2px; }
+.consentement-boutons .consentement-lien { background: none; border: 0; text-decoration: underline; color: #8fd8ff; padding: 8px 6px; }
+@keyframes consentement-entree { from { opacity: 0; transform: translateY(20px); } }
+@keyframes consentement-sortie { to { opacity: 0; transform: translateY(20px); } }
+
+.consentement-fond { position: fixed; inset: 0; z-index: 3650; background: rgba(2, 4, 12, 0.8); backdrop-filter: blur(4px); }
+.consentement-panneau {
+  position: fixed; left: 50%; top: 50%; z-index: 3660; translate: -50% -50%;
+  width: min(820px, calc(100vw - 24px)); max-height: calc(100vh - 30px); overflow: auto; padding: 28px 30px;
+  font-family: "Rajdhani", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.55; color: #d9e7ff;
+  background: #0a1430; border: 1px solid rgba(90, 180, 255, 0.45); border-radius: 8px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.9);
+}
+.consentement-panneau h2 { margin: 0 0 8px; font-family: "Cinzel", Georgia, serif; color: #fff; }
+.consentement-panneau h3 { margin: 22px 0 8px; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: #4fd8ff; }
+.consentement-panneau p { margin: 0 0 10px; }
+.consentement-panneau ul { margin: 0; padding-left: 20px; }
+.consentement-panneau li { margin-bottom: 4px; }
+.consentement-etat strong { color: #ffcc4d; }
+.consentement-panneau table { width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 10px; }
+.consentement-panneau th, .consentement-panneau td { padding: 8px 10px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(90, 180, 255, 0.15); }
+.consentement-panneau th { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #8fa4cc; }
+.consentement-panneau td:first-child { color: #fff; font-weight: 700; }
+.consentement-panneau .consentement-boutons { margin-top: 20px; }
+.consentement-fermer {
+  position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; cursor: pointer;
+  color: #4fd8ff; background: none; border: 1px solid #4fd8ff; font-size: 16px;
+}
+@media (max-width: 640px) {
+  .consentement-panneau table, .consentement-panneau thead, .consentement-panneau tbody, .consentement-panneau tr, .consentement-panneau td { display: block; }
+  .consentement-panneau thead { display: none; }
+  .consentement-panneau tr { padding: 8px 0; border-bottom: 1px solid rgba(90, 180, 255, 0.15); }
+  .consentement-panneau td { border: 0; padding: 2px 0; }
+}
+
+/* lien dans le pied de page */
+.lien-donnees { margin-top: 6px; padding: 0; background: none; border: 0; cursor: pointer; font: inherit; font-size: 14px; color: #8fa4cc; text-decoration: underline; }
+.lien-donnees:hover { color: #4fd8ff; }
+.succes-note-sauvegarde { margin: 12px 0 0; padding: 10px 12px; font-size: 14px; color: #ffcc4d; border: 1px dashed rgba(255, 204, 77, 0.5); }
+.succes-note-sauvegarde button { margin-left: 6px; padding: 0; background: none; border: 0; cursor: pointer; font: inherit; color: #4fd8ff; text-decoration: underline; }

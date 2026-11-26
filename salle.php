@@ -20,6 +20,8 @@ $titre = 'Les Abysses';
   <link rel="stylesheet" href="<?= e(ressource('assets/css/style.css')) ?>">
   <link rel="stylesheet" href="<?= e(ressource('assets/css/archive.css')) ?>">
   <link rel="stylesheet" href="<?= e(ressource('assets/css/salle.css')) ?>">
+  <link rel="stylesheet" href="<?= e(ressource('assets/css/consentement.css')) ?>">
+  <script src="<?= e(ressource('assets/js/consentement.js')) ?>"></script>
 </head>
 <body class="page-salle">
 

@@ -38,9 +38,14 @@
     }
   }
   let etat = charger();
+  // On n'écrit dans le navigateur que si le visiteur a accepté (sinon la partie reste en mémoire)
+  const sauvegardeAutorisee = () => !window.Consentement || window.Consentement.accepte();
   function sauver() {
+    if (!sauvegardeAutorisee()) return;
     try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) { /* stockage indisponible : la partie reste en mémoire */ }
   }
+  // Le visiteur accepte en cours de visite : on enregistre ce qu'il a déjà découvert
+  document.addEventListener("consentement", (e) => { if (e.detail === "oui") sauver(); });
 
   // ------------------------------------------------------------------ chemins (version PHP ou statique)
   const statique = document.documentElement.dataset.statique === "1";
@@ -138,7 +143,8 @@
       '<h2>Succès</h2>' +
       '<div class="succes-progression"><div><i style="width:' + Math.round((obtenus / total) * 100) + '%"></i></div><span>' + obtenus + " / " + total + "</span></div>" +
       '<ul class="succes-liste"></ul>' +
-      '<p class="succes-note">Fragments du dossier : ' + etat.fragments.length + ' / 3</p>';
+      '<p class="succes-note">Fragments du dossier : ' + etat.fragments.length + ' / 3</p>' +
+      (sauvegardeAutorisee() ? "" : '<p class="succes-note-sauvegarde">Sauvegarde désactivée : ta progression sera perdue en quittant le site.<button type="button" class="activer-sauvegarde">Activer la sauvegarde</button></p>');
     const liste = fen.querySelector(".succes-liste");
     SUCCES.forEach((s) => {
       const li = document.createElement("li");
@@ -157,6 +163,8 @@
     const echap = (e) => { if (e.key === "Escape") fermer(); };
     fond.addEventListener("click", fermer);
     fen.querySelector(".succes-fermer").addEventListener("click", fermer);
+    const activer = fen.querySelector(".activer-sauvegarde");
+    if (activer) activer.addEventListener("click", () => { fermer(); if (window.Consentement) window.Consentement.ouvrirPanneau(); });
     document.addEventListener("keydown", echap);
     fen.querySelector(".succes-fermer").focus({ preventScroll: true });
   }

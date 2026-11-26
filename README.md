@@ -60,3 +60,10 @@ Le site cache un petit univers secret. Pour le tester ou le modifier :
 - `assets/js/archive/secrets.js` : fragments cachés, Absolute Cinema, âme rouge.
 - `danmaku.php?entrainement` : Danmaku avec vies infinies (sans succès).
 - Dans la console du navigateur, `Archive.reinitialiser()` remet la progression à zéro.
+
+## Données et cookies
+
+Le site ne dépose aucun cookie. `assets/js/consentement.js` affiche un bandeau à la première visite :
+la progression des secrets et le meilleur score du Danmaku ne sont enregistrés (localStorage)
+que si le visiteur accepte. Le lien « Données et cookies » du pied de page permet de changer d'avis
+et d'effacer ses données.
