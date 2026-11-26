@@ -36,7 +36,7 @@
         par la mort des deux.
       </p>
       <p>
-        En lisant ce livre, le héros retrouve brièvement la mémoire, avant que celle-ci ne soit absorbée par
+        En lisant ce livre, le protagoniste retrouve brièvement la mémoire, avant que celle-ci ne soit absorbée par
         l'ouvrage. Il ne lui reste qu'un souvenir : la maîtrise d'un type de magie. Pour retrouver son identité,
         il doit récupérer les pages du livre dispersées dans le monde, chacune gardée par un boss.
       </p>
@@ -100,8 +100,8 @@
   <p>Les sprites tels qu'ils apparaissent dans la démo, avec leurs animations.</p>
   <div class="cartes">
     <div class="carte">
-      <?= sprite_anime(image('motrilem', 'heros_marche.png'), 12, 47, 86, 1.6, 0.96, 'Le héros en train de marcher') ?>
-      <h3>Le héros</h3>
+      <?= sprite_anime(image('motrilem', 'heros_marche.png'), 12, 47, 86, 1.6, 0.96, 'Le protagoniste en train de marcher') ?>
+      <h3>Le protagoniste</h3>
       <p>Revenu d'entre les morts, il ne garde qu'un souvenir : sa magie. Animations de repos, de marche, de course et de saut.</p>
     </div>
     <div class="carte">
@@ -122,7 +122,7 @@
   </div>
 
   <div class="boss">
-    <div class="flotte"><?= sprite_anime(image('motrilem', 'seraphel.png'), 4, 226, 229, 1.2, 0.28, 'Séraphel, le premier boss, ailes en mouvement') ?></div>
+    <div class="flotte"><?= sprite_anime(image('motrilem', 'seraphel.png'), 12, 226, 234, 1.2, 0.24, 'Séraphel, le premier boss, ailes en mouvement') ?></div>
     <div>
       <p class="boss-alerte">⚠ BOSS</p>
       <h3>Séraphel — « Ce qui bourdonne dans la lumière »</h3>
@@ -136,9 +136,9 @@
     </div>
   </div>
 
-  <h3 class="sous-titre-section">Le héros et ses 7 skins</h3>
+  <h3 class="sous-titre-section">Le protagoniste et ses 7 skins</h3>
   <p>Le joueur choisit l'apparence de sa cape : rouge (par défaut), gris, rose, vert, bleu, blanc ou noir.</p>
-  <img src="<?= e(image('motrilem', 'heros_skins.png')) ?>" alt="Les 7 skins du héros : rouge, gris, rose, vert, bleu, blanc et noir" class="pixel planche-skins" data-agrandir>
+  <img src="<?= e(image('motrilem', 'heros_skins.png')) ?>" alt="Les 7 skins du protagoniste : rouge, gris, rose, vert, bleu, blanc et noir" class="pixel planche-skins" data-agrandir>
 
   <h3 class="sous-titre-section">Objets du monde</h3>
   <div class="cartes">
@@ -171,7 +171,7 @@
     <div class="carte">
       <img src="<?= e(image('motrilem', 'MC.png')) ?>" alt="Premier croquis du protagoniste" class="pixel" width="70">
       <h3>Le protagoniste</h3>
-      <p>Première version du héros.</p>
+      <p>Première version du protagoniste.</p>
     </div>
     <div class="carte">
       <img src="<?= e(image('motrilem', 'ennemy.png')) ?>" alt="Premier croquis du moustique piqueur" width="80">
