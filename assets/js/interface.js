@@ -352,6 +352,117 @@
     });
   }
 
+  // ------------------------------------------------------------------ easter eggs
+  // Taper au clavier (en dehors des champs du formulaire) :
+  //   « arise »  -> Domaine du Monarque (tout le site passe au violet ; retaper pour en sortir)
+  //   « monika » -> Just Monika.
+  //   Code Konami (↑ ↑ ↓ ↓ ← → ← → B A) -> surcharge de mana
+  (function () {
+    const racine = document.documentElement;
+    let saisie = "";
+    let konami = [];
+    const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+
+    // Domaine du Monarque -------------------------------------------------
+    const voile = document.createElement("div");
+    voile.className = "voile-monarque";
+    voile.setAttribute("aria-hidden", "true");
+    document.body.append(voile);
+    if (racine.classList.contains("monarque") && window.Magie) window.Magie.monarque(true);
+
+    function domaine() {
+      const actif = !racine.classList.contains("monarque");
+      if (actif) {
+        const ecran = document.createElement("div");
+        ecran.className = "arise";
+        ecran.innerHTML = "<span>ARISE</span>";
+        document.body.append(ecran);
+        setTimeout(() => ecran.remove(), 2600);
+        if (window.Magie && !reduit) window.Magie.ombres();
+        memoire.ecrire("monarque", "1");
+        notifier("Domaine du Monarque déployé.", "ombre");
+      } else {
+        memoire.effacer("monarque");
+        notifier("Le domaine se dissipe.");
+      }
+      racine.classList.add("monarque-transition");
+      racine.classList.toggle("monarque", actif);
+      if (window.Magie) window.Magie.monarque(actif);
+      setTimeout(() => racine.classList.remove("monarque-transition"), 1400);
+    }
+
+    // Just Monika ---------------------------------------------------------
+    let monikaOuverte = false;
+    function monika() {
+      if (monikaOuverte) return;
+      monikaOuverte = true;
+      const logo = $(".logo-texte strong");
+      const nomOriginal = logo ? logo.textContent : "";
+
+      racine.classList.add("glitch-monika");
+      setTimeout(() => racine.classList.remove("glitch-monika"), 900);
+      if (logo) setTimeout(() => { logo.textContent = "Just Monika"; }, 450);
+
+      const boite = document.createElement("div");
+      boite.className = "monika";
+      boite.setAttribute("role", "dialog");
+      boite.innerHTML = '<span class="monika-nom">Monika</span><p class="monika-texte"></p><span class="monika-suite" aria-hidden="true">▼</span>';
+      setTimeout(() => {
+        document.body.append(boite);
+        if (window.Magie && !reduit) window.Magie.explosion(window.innerWidth / 2, window.innerHeight - 120, 40, ["rose", "blanc"], 7);
+        const texte = $(".monika-texte", boite);
+        const phrase = "Just Monika. ♥";
+        let i = 0;
+        const id = setInterval(() => {
+          texte.textContent = phrase.slice(0, ++i);
+          if (i >= phrase.length) clearInterval(id);
+        }, reduit ? 1 : 90);
+      }, 900);
+
+      function fermer() {
+        if (!boite.isConnected) return;
+        boite.classList.add("sortie");
+        setTimeout(() => boite.remove(), 400);
+        if (logo) logo.textContent = nomOriginal;
+        monikaOuverte = false;
+        document.removeEventListener("keydown", surEchap);
+      }
+      function surEchap(e) { if (e.key === "Escape") fermer(); }
+      boite.addEventListener("click", fermer);
+      document.addEventListener("keydown", surEchap);
+      setTimeout(fermer, 8000);
+    }
+
+    // Surcharge de mana (code Konami) -------------------------------------
+    function surcharge() {
+      notifier("Surcharge de mana !");
+      if (!window.Magie || reduit) return;
+      for (let k = 0; k < 7; k++) {
+        setTimeout(() => {
+          const x = window.innerWidth * (0.15 + Math.random() * 0.7);
+          const y = window.innerHeight * (0.2 + Math.random() * 0.6);
+          window.Magie.explosion(x, y, 36, ["cyan", "bleu", "blanc"], 8);
+          window.Magie.onde(x, y, "cyan");
+        }, k * 160);
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.target instanceof Element && e.target.closest("input, textarea")) return;
+
+      konami = konami.concat(e.key.length === 1 ? e.key.toLowerCase() : e.key).slice(-KONAMI.length);
+      if (konami.join() === KONAMI.join()) { konami = []; surcharge(); return; }
+
+      if (e.key.length !== 1) return;
+      saisie = (saisie + e.key.toLowerCase()).slice(-6);
+      if (saisie.endsWith("arise")) { saisie = ""; domaine(); }
+      else if (saisie.endsWith("monika")) { saisie = ""; monika(); }
+    });
+
+    // Un indice pour les curieux qui ouvrent la console
+    console.log("%c✦ Ce site cache quelques secrets… essaie de taper certains mots au clavier.", "color:#4fd8ff;font-size:14px;font-weight:bold");
+  })();
+
   // ------------------------------------------------------------------ au chargement
   const lignes = $$("[data-ecrire]");
   (async () => {

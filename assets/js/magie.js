@@ -25,7 +25,14 @@
     bleu: [60, 130, 255],
     violet: [150, 100, 255],
     blanc: [220, 240, 255],
+    // couleurs des easter eggs
+    violetFonce: [110, 50, 220],
+    lavande: [205, 180, 255],
+    rose: [255, 120, 185],
   };
+  // Domaine du Monarque : toutes les lueurs passent au violet
+  const TEINTE_MONARQUE = { cyan: "violet", bleu: "violetFonce", blanc: "lavande" };
+  let teinte = null;
 
   // Sprites lumineux pré-dessinés (beaucoup plus rapide que shadowBlur à chaque image)
   const sprites = {};
@@ -112,6 +119,7 @@
 
   function dessinerLumiere(nom, x, y, taille, alpha, cible = ctx) {
     cible.globalAlpha = alpha;
+    if (teinte && teinte[nom]) nom = teinte[nom];
     cible.drawImage(sprites[nom], x - taille / 2, y - taille / 2, taille, taille);
   }
 
@@ -137,7 +145,25 @@
   }
 
 
-  window.Magie = { explosion, onde };
+  // Des ombres s'élèvent du bas de l'écran (easter egg « arise »)
+  function ombres() {
+    let vagues = 0;
+    const id = setInterval(() => {
+      for (let i = 0; i < 26; i++) {
+        etincelles.push({
+          x: Math.random() * largeur, y: hauteur + 10,
+          vx: aleatoire(-0.4, 0.4), vy: aleatoire(-3, -7),
+          vie: 1, usure: aleatoire(0.006, 0.012),
+          taille: aleatoire(14, 40), couleur: choisir(["violet", "violetFonce", "lavande"]), gravite: 0,
+        });
+      }
+      if (++vagues > 22) clearInterval(id);
+    }, 90);
+  }
+
+  function monarque(actif) { teinte = actif ? TEINTE_MONARQUE : null; }
+
+  window.Magie = { explosion, onde, ombres, monarque };
 
   // ------------------------------------------------------------------ entrées
   if (pointeurFin && !reduit) {
