@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-statique="1">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/archive.css">
 </head>
 <body>
 
@@ -186,7 +187,7 @@
     Ce projet m'a permis de comprendre la structure d'une application JavaFX et l'importance
     de séparer la logique et l'affichage. La synchronisation entre les actions, les règles et l'interface a été
     la principale difficulté. J'ai aussi appris à intégrer des sons et des vidéos de manière performante
-    et à garder un code propre en équipe.
+    et à garder un code propre en équipe.<button class="fragment-cache" data-fragment="2" aria-label="Étoile">✦</button>
   </p>
 </section>
 </div>
@@ -309,7 +310,8 @@
 
 <footer class="pied">
   <div class="pied-cercle" aria-hidden="true"></div>
-  <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin</p>
+  <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin<button class="curseur-secret" aria-label="Terminal">▮</button></p>
+  <button class="archive-compteur" hidden aria-label="Voir les succès">✦ <span>0</span></button>
 </footer>
 
 <!-- Notifications (formulaire de contact) -->
@@ -324,8 +326,11 @@
   <img src="" alt="">
 </div>
 
+<script src="assets/js/archive/succes.js" defer></script>
 <script src="assets/js/magie.js" defer></script>
 <script src="assets/js/interface.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
+<script src="assets/js/archive/terminal.js" defer></script>
+<script src="assets/js/archive/secrets.js" defer></script>
 </body>
 </html>

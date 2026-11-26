@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-statique="1">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/archive.css">
 </head>
 <body>
 
@@ -296,7 +297,8 @@
 
 <footer class="pied">
   <div class="pied-cercle" aria-hidden="true"></div>
-  <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin</p>
+  <p>© 2026 Arranga Evan — BUT Informatique, IUT du Limousin<button class="curseur-secret" aria-label="Terminal">▮</button></p>
+  <button class="archive-compteur" hidden aria-label="Voir les succès">✦ <span>0</span></button>
 </footer>
 
 <!-- Notifications (formulaire de contact) -->
@@ -311,8 +313,11 @@
   <img src="" alt="">
 </div>
 
+<script src="assets/js/archive/succes.js" defer></script>
 <script src="assets/js/magie.js" defer></script>
 <script src="assets/js/interface.js" defer></script>
 <script src="assets/js/contact.js" defer></script>
+<script src="assets/js/archive/terminal.js" defer></script>
+<script src="assets/js/archive/secrets.js" defer></script>
 </body>
 </html>

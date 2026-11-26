@@ -84,6 +84,6 @@
     Ce projet m'a permis de comprendre la structure d'une application JavaFX et l'importance
     de séparer la logique et l'affichage. La synchronisation entre les actions, les règles et l'interface a été
     la principale difficulté. J'ai aussi appris à intégrer des sons et des vidéos de manière performante
-    et à garder un code propre en équipe.
+    et à garder un code propre en équipe.<button class="fragment-cache" data-fragment="2" aria-label="Étoile">✦</button>
   </p>
 </section>

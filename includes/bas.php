@@ -2,7 +2,8 @@
 
 <footer class="pied">
   <div class="pied-cercle" aria-hidden="true"></div>
-  <p>© <?= date('Y') ?> <?= e(SITE['nom']) ?> — <?= e(SITE['formation']) ?>, <?= e(SITE['ecole']) ?></p>
+  <p>© <?= date('Y') ?> <?= e(SITE['nom']) ?> — <?= e(SITE['formation']) ?>, <?= e(SITE['ecole']) ?><button class="curseur-secret" aria-label="Terminal">▮</button></p>
+  <button class="archive-compteur" hidden aria-label="Voir les succès">✦ <span>0</span></button>
 </footer>
 
 <!-- Notifications (formulaire de contact) -->
@@ -17,8 +18,11 @@
   <img src="" alt="">
 </div>
 
+<script src="<?= e(ressource('assets/js/archive/succes.js')) ?>" defer></script>
 <script src="<?= e(ressource('assets/js/magie.js')) ?>" defer></script>
 <script src="<?= e(ressource('assets/js/interface.js')) ?>" defer></script>
 <script src="<?= e(ressource('assets/js/contact.js')) ?>" defer></script>
+<script src="<?= e(ressource('assets/js/archive/terminal.js')) ?>" defer></script>
+<script src="<?= e(ressource('assets/js/archive/secrets.js')) ?>" defer></script>
 </body>
 </html>

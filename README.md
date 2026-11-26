@@ -21,6 +21,9 @@ assets/
   js/interface.js      Apparitions, notifications, compteurs, menu, transitions, visionneuse
   js/contact.js        Envoi du formulaire (Formspree)
   img/<projet>/        Images de chaque projet
+salle.php              Salle secrète (accessible depuis le terminal)
+danmaku.php            Mini-jeu Danmaku Mode (indépendant)
+assets/js/archive/     L'Archive : succès, terminal secret, secrets cachés dans les pages
 outils/build.php       Génère la version statique dans docs/
 docs/                  Version statique (HTML) pour GitHub Pages
 ```
@@ -47,3 +50,13 @@ puis ouvrir http://localhost:8000.
 - **GitHub Pages** (pas de PHP) : lancer `php outils/build.php`, committer le dossier `docs/`,
   puis dans *Settings → Pages* choisir la branche `main` et le dossier `/docs`.
 
+
+## L'Archive (easter eggs)
+
+Le site cache un petit univers secret. Pour le tester ou le modifier :
+
+- `assets/js/archive/succes.js` : liste des succès et sauvegarde (localStorage).
+- `assets/js/archive/terminal.js` : commandes du terminal (touche `²`), textes de `whoami` et `games`, dossier CLASSIFIED.
+- `assets/js/archive/secrets.js` : fragments cachés, Absolute Cinema, âme rouge.
+- `danmaku.php?entrainement` : Danmaku avec vies infinies (sans succès).
+- Dans la console du navigateur, `Archive.reinitialiser()` remet la progression à zéro.

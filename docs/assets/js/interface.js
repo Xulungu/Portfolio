@@ -386,6 +386,7 @@
 
     // Domaine du Monarque -------------------------------------------------
     function domaine() {
+      if (window.Archive) window.Archive.debloquer("monarque");
       if (basculerTheme("monarque")) {
         const ecran = document.createElement("div");
         ecran.className = "arise";
@@ -404,6 +405,7 @@
     function monika() {
       if (monikaOuverte) return;
       monikaOuverte = true;
+      if (window.Archive) window.Archive.debloquer("monika");
       const logo = $(".logo-texte strong");
       const nomOriginal = logo ? logo.textContent : "";
 
@@ -450,6 +452,7 @@
     let surchargeEnCours = false;
     function surcharge() {
       if (surchargeEnCours) return;
+      if (window.Archive) window.Archive.debloquer("surcharge");
       if (reduit || !window.Magie) { notifier("Surcharge de mana !"); return; }
       surchargeEnCours = true;
       const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
@@ -505,8 +508,10 @@
       else if (saisie.endsWith("monika")) { saisie = ""; monika(); }
     });
 
+    window.EasterEggs = { domaine, monika, surcharge };
+
     // Un indice pour les curieux qui ouvrent la console
-    console.log("%c✦ Ce site cache quelques secrets… essaie de taper certains mots au clavier.", "color:#4fd8ff;font-size:14px;font-weight:bold");
+    console.log("%c✦ Ce site cache une Archive. La touche ² ouvre une porte.", "color:#4fd8ff;font-size:14px;font-weight:bold");
   })();
 
   // ------------------------------------------------------------------ au chargement

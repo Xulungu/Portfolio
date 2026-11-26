@@ -13,8 +13,8 @@ $racine = dirname(__DIR__);
 if (($argv[1] ?? '') === '--rendu') {
     define('VERSION_STATIQUE', true);
     chdir($racine);
-    if ($argv[2] === 'index') {
-        require $racine . '/index.php';
+    if (in_array($argv[2], ['index', 'salle', 'danmaku'], true)) {
+        require $racine . '/' . $argv[2] . '.php';
     } else {
         $id = $argv[2];
         require $racine . '/projet.php';
@@ -45,7 +45,7 @@ function rendre(string $page): string
 @mkdir($sortie, 0777, true);
 copier($racine . '/assets', $sortie . '/assets');
 
-$pages = ['index' => 'index.html'];
+$pages = ['index' => 'index.html', 'salle' => 'salle.html', 'danmaku' => 'danmaku.html'];
 foreach (array_keys(PROJETS) as $id) {
     $pages[$id] = 'projet-' . $id . '.html';
 }

@@ -1,0 +1,60 @@
+/* ==========================================================================
+   danmaku.css — Danmaku Mode (mini-jeu indépendant)
+   ========================================================================== */
+:root { --dm-cyan: #6fe3ff; --dm-rose: #ff6fb5; --dm-or: #ffd45e; --dm-texte: #e3ecff; --dm-doux: #8c9bbd; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body.page-danmaku {
+  display: flex; flex-direction: column; min-height: 100vh;
+  font-family: "Rajdhani", "Segoe UI", system-ui, sans-serif; color: var(--dm-texte);
+  background: radial-gradient(ellipse at 50% 20%, #1a1240 0%, #07061a 55%, #020208 100%);
+}
+.dm-haut { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 14px; }
+.dm-haut a { color: var(--dm-doux); text-decoration: none; }
+.dm-haut a:hover { color: #fff; }
+.dm-haut span { font-family: "Cinzel", serif; color: var(--dm-rose); letter-spacing: 4px; }
+
+.dm-zone { flex: 1; display: flex; gap: 24px; justify-content: center; align-items: center; padding: 10px 16px 24px; flex-wrap: wrap; }
+.dm-cadre { position: relative; height: min(calc(100vh - 110px), 760px); aspect-ratio: 3 / 4; max-width: 100%; }
+#danmaku {
+  display: block; width: 100%; height: 100%; touch-action: none;
+  background: #05040f; border: 2px solid #3b2f6e; border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(255, 111, 181, 0.15), 0 0 60px -10px rgba(120, 80, 255, 0.5);
+}
+.dm-ecran {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  padding: 24px; text-align: center; background: rgba(5, 4, 15, 0.82); backdrop-filter: blur(2px);
+}
+.dm-ecran[hidden] { display: none; }
+.dm-ecran h1, .dm-ecran h2 { margin: 0 0 6px; font-family: "Cinzel", serif; font-weight: 800; font-size: clamp(2rem, 6vw, 3rem); letter-spacing: 4px; color: #fff; text-shadow: 0 0 24px rgba(255, 111, 181, 0.6); }
+.dm-ecran p { margin: 4px 0; max-width: 340px; color: var(--dm-texte); }
+.dm-sur { color: var(--dm-rose) !important; letter-spacing: 4px; text-transform: uppercase; font-size: 13px; font-weight: 700; }
+.dm-astuce { font-size: 14px; color: var(--dm-doux) !important; }
+.dm-resultat { font-size: 20px; font-weight: 700; color: var(--dm-or) !important; }
+.dm-victoire h2 { text-shadow: 0 0 24px rgba(255, 212, 94, 0.8); }
+.dm-touches { list-style: none; padding: 0; margin: 10px 0; font-size: 15px; color: var(--dm-doux); }
+.dm-touches li { margin: 4px 0; }
+kbd { display: inline-block; min-width: 22px; padding: 0 5px; margin: 0 1px; font: 600 13px "Rajdhani", sans-serif; color: #fff; border: 1px solid #5a4b9c; border-radius: 3px; background: #1b1440; }
+.dm-bouton {
+  margin-top: 14px; padding: 10px 26px; cursor: pointer;
+  font: 700 17px "Rajdhani", sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #fff;
+  background: linear-gradient(90deg, #6b3df0, #d0409a); border: 0;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+.dm-bouton:hover, .dm-bouton:focus-visible { filter: brightness(1.2); outline: none; }
+.dm-bouton small { opacity: 0.7; font-weight: 500; letter-spacing: 0; }
+
+.dm-hud { display: grid; gap: 10px; min-width: 190px; }
+.dm-hud div { padding: 10px 14px; background: rgba(20, 14, 50, 0.7); border-left: 3px solid var(--dm-cyan); }
+.dm-hud span { display: block; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--dm-doux); }
+.dm-hud strong { font-size: 22px; }
+.hud-vies { color: var(--dm-rose); letter-spacing: 3px; }
+.hud-carte { border-left-color: var(--dm-rose) !important; max-width: 240px; }
+.hud-sort { font-size: 16px !important; color: var(--dm-or); }
+
+@media (max-width: 760px) {
+  .dm-hud { grid-template-columns: repeat(2, 1fr); width: 100%; min-width: 0; }
+  .dm-cadre { height: auto; width: 100%; }
+}
+#danmaku.touche { animation: dm-touche 0.3s ease; }
+@keyframes dm-touche { 25% { transform: translate(-5px, 3px); } 50% { transform: translate(4px, -3px); } 75% { transform: translate(-2px, 1px); } }

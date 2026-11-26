@@ -7,7 +7,7 @@ $titrePage   = $titrePage ?? 'Portfolio';
 $description = $description ?? 'Portfolio d\'' . SITE['nom'] . ', étudiant en ' . SITE['annee'] . 'ᵉ année de ' . SITE['formation'] . '.';
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr"<?= est_statique() ? ' data-statique="1"' : '' ?>>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@ $description = $description ?? 'Portfolio d\'' . SITE['nom'] . ', étudiant en '
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= e(ressource('assets/css/style.css')) ?>">
+  <link rel="stylesheet" href="<?= e(ressource('assets/css/archive.css')) ?>">
 </head>
 <body>
 

@@ -1,0 +1,136 @@
+/* ==========================================================================
+   salle.css — Les Abysses : la salle secrète sous le portfolio.
+   Ambiance sombre et silencieuse, lumière froide, poussière qui tombe.
+   ========================================================================== */
+.page-salle {
+  --pale: #d6e4ea;
+  --pale-doux: #8aa1ad;
+  --froid: #7fc8d8;
+  --pierre: #14202b;
+  --pierre-clair: #253645;
+  margin: 0; min-height: 100vh; overflow-x: hidden;
+  color: var(--pale);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 110%, rgba(60, 110, 130, 0.25), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(30, 50, 70, 0.35), transparent 70%),
+    linear-gradient(180deg, #03060a 0%, #07101a 55%, #0a1520 100%);
+}
+html:has(.page-salle) { background: #03060a; }
+#poussiere { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+
+.salle-retour {
+  position: fixed; top: 18px; left: 20px; z-index: 20;
+  font: 600 14px var(--ui); letter-spacing: 2px; text-transform: uppercase; color: var(--pale-doux);
+}
+.salle-retour:hover { color: var(--pale); }
+
+.salle-ornement { margin: 0; color: var(--pale-doux); letter-spacing: 8px; }
+.salle-titre { position: relative; z-index: 6; text-align: center; padding-top: 4vh; pointer-events: none; animation: titre-salle 3s ease; }
+.salle-titre h1 { margin: 6px 0 2px; font-family: var(--titre); font-weight: 600; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: 0.25em; color: var(--pale); text-shadow: 0 0 30px rgba(127, 200, 216, 0.25); }
+.salle-titre p:last-child { margin: 0; font-family: var(--titre); font-size: 15px; color: var(--pale-doux); letter-spacing: 3px; }
+@keyframes titre-salle { from { opacity: 0; filter: blur(8px); } }
+
+.salle-scellee[hidden], .salle[hidden], .salle-dialogue[hidden] { display: none !important; }
+.salle-scellee { min-height: 100vh; display: grid; place-content: center; text-align: center; gap: 10px; padding: 20px; }
+.salle-scellee h1 { margin: 0; font-family: var(--titre); font-weight: 600; letter-spacing: 0.15em; }
+.salle-scellee p { margin: 0; color: var(--pale-doux); }
+.salle-scellee a { margin-top: 18px; color: var(--froid); }
+
+/* ---------------------------------------------------------------- scène */
+.page-salle main.salle { position: relative; max-width: none; margin: 0; padding: 0; min-height: max(100vh, 640px); }
+.salle-scene { position: absolute; inset: 0; min-height: 640px; overflow: hidden; }
+.decor { position: absolute; inset: -3%; width: 106%; height: 106%; transition: transform 0.6s ease-out; }
+.decor-loin path { fill: #0c1620; }
+.decor-proche path { fill: #04080d; }
+
+.objet, .lanterne {
+  position: absolute; z-index: 6; padding: 0; background: none; border: 0; cursor: pointer;
+  transition: filter 0.4s, transform 0.4s;
+}
+.objet:hover, .objet:focus-visible, .lanterne:hover, .lanterne:focus-visible { filter: drop-shadow(0 0 12px rgba(214, 228, 234, 0.55)); outline: none; }
+.objet svg, .lanterne svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.pierre { fill: var(--pierre); stroke: var(--pierre-clair); stroke-width: 2; }
+.pierre-bord { fill: #0f1922; stroke: var(--pierre-clair); stroke-width: 2; }
+.runes path { fill: none; stroke: var(--froid); stroke-width: 2.5; stroke-linecap: round; opacity: 0.55; animation: runes 4s ease-in-out infinite; }
+@keyframes runes { 50% { opacity: 0.95; filter: drop-shadow(0 0 6px var(--froid)); } }
+.metal { fill: none; stroke: #6f8794; stroke-width: 5; stroke-linecap: round; }
+.metal.fin { stroke-width: 3; opacity: 0.7; }
+.bois { stroke: #b08655; stroke-width: 4; stroke-linecap: round; }
+.papier { fill: #c9c1a8; stroke: #8f866b; stroke-width: 1.5; }
+.eclat { fill: #f2d27a; filter: drop-shadow(0 0 4px #f2d27a); }
+.eclat-trait { fill: none; stroke: #b89f56; stroke-width: 1.8; stroke-linecap: round; }
+
+.objet-stele { left: 9%; bottom: 11%; width: clamp(80px, 9vw, 130px); }
+.objet-banc { left: 42%; bottom: 10.5%; width: clamp(140px, 15vw, 220px); }
+.objet-porte { right: 8%; bottom: 10.5%; width: clamp(110px, 12vw, 170px); }
+.vestiges { position: absolute; z-index: 6; left: 24%; bottom: 13%; display: flex; gap: 18px; padding: 8px 14px 6px; border-bottom: 3px solid #1d2b37; }
+.objet-vestige { position: static; width: 40px; animation: vestige 5s ease-in-out infinite; }
+.objet-vestige:nth-child(2) { animation-delay: -1.6s; }
+.objet-vestige:nth-child(3) { animation-delay: -3.2s; }
+@keyframes vestige { 50% { transform: translateY(-5px); } }
+
+/* porte et sceau */
+.porte-noir { fill: #010204; }
+.sceau circle, .sceau path { fill: none; stroke: #e9d8a6; stroke-width: 3; opacity: 0.75; transition: opacity 1s, stroke 1s; }
+.sceau { transform-origin: 80px 130px; animation: sceau 12s linear infinite; }
+@keyframes sceau { to { transform: rotate(360deg); } }
+.objet-porte.ouverte .sceau { opacity: 0; transition: opacity 1.6s; }
+.objet-porte.ouverte .porte-noir { fill: #0e2a33; animation: porte-lueur 3s ease-in-out infinite; }
+@keyframes porte-lueur { 50% { fill: #17414d; } }
+
+/* lanternes */
+.lanterne { width: 36px; transform-origin: 50% calc(-1 * var(--fil)); animation: balance 6s ease-in-out infinite; }
+.lanterne:nth-of-type(2) { animation-delay: -2s; }
+.lanterne:nth-of-type(3) { animation-delay: -4s; }
+@keyframes balance { 50% { rotate: 3deg; } }
+.lanterne-fil { position: absolute; left: 50%; bottom: 100%; width: 1px; height: var(--fil); background: linear-gradient(transparent, #3a4b57); }
+.lanterne-cage { fill: none; stroke: #4c5f6b; stroke-width: 2; }
+.lanterne-coeur { fill: #1a2630; transition: fill 0.8s, filter 0.8s; }
+.lanterne.allumee .lanterne-coeur { fill: #d8f3ff; filter: drop-shadow(0 0 10px #9be5ff) drop-shadow(0 0 26px #5fc4e0); animation: flamme 2.5s ease-in-out infinite; }
+.lanterne.allumee::after {
+  content: ""; position: absolute; left: 50%; top: 55%; width: 260px; height: 260px; translate: -50% -50%; z-index: -1; pointer-events: none;
+  background: radial-gradient(circle, rgba(150, 220, 240, 0.18), transparent 65%);
+}
+@keyframes flamme { 50% { filter: drop-shadow(0 0 6px #9be5ff) drop-shadow(0 0 18px #5fc4e0); } }
+
+/* esprit errant */
+.esprit {
+  position: absolute; z-index: 6; left: 60%; top: 45%; width: 14px; height: 14px; border-radius: 50%;
+  background: radial-gradient(circle, #fff, #bfefff 40%, transparent 70%);
+  box-shadow: 0 0 20px 6px rgba(160, 230, 255, 0.35);
+  animation: esprit 22s ease-in-out infinite;
+}
+@keyframes esprit {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-18vw, -8vh); } 40% { transform: translate(-30vw, 6vh); }
+  60% { transform: translate(-8vw, 12vh); } 80% { transform: translate(14vw, -4vh); } 100% { transform: translate(0, 0); }
+}
+
+/* ---------------------------------------------------------------- boîte de texte (sobre, ornée) */
+.salle-dialogue {
+  position: fixed; left: 50%; bottom: 6vh; z-index: 30; translate: -50% 0;
+  width: min(720px, calc(100vw - 30px)); padding: 26px 34px 18px; text-align: center; cursor: pointer;
+  background: radial-gradient(ellipse at center, rgba(4, 8, 12, 0.94), rgba(4, 8, 12, 0.82));
+  animation: dialogue-salle 0.5s ease;
+}
+.salle-dialogue::before, .salle-dialogue::after {
+  content: ""; position: absolute; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pale), transparent);
+}
+.salle-dialogue::before { top: 8px; }
+.salle-dialogue::after { bottom: 8px; }
+.salle-dialogue-titre { margin: 0 0 10px; font-family: var(--titre); font-size: 20px; letter-spacing: 0.2em; color: var(--pale); }
+.salle-dialogue-texte p { margin: 0 0 10px; font-size: 18px; line-height: 1.6; color: #c3d3da; }
+.salle-dialogue-texte a { color: var(--froid); }
+.salle-dialogue-suite { margin: 8px 0 0; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--pale-doux); opacity: 0.7; }
+@keyframes dialogue-salle { from { opacity: 0; transform: translateY(12px); } }
+
+@media (max-width: 700px) {
+  .objet-stele { left: 4%; }
+  .vestiges { left: 30%; bottom: 30%; }
+  .objet-banc { left: 30%; }
+  .objet-porte { right: 3%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lanterne, .esprit, .objet-vestige, .sceau, .runes path { animation: none; }
+}
