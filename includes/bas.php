@@ -3,7 +3,7 @@
 <footer class="pied">
   <div class="pied-cercle" aria-hidden="true"></div>
   <p>© <?= date('Y') ?> <?= e(SITE['nom']) ?> — <?= e(SITE['formation']) ?>, <?= e(SITE['ecole']) ?><button class="curseur-secret" aria-label="Terminal">▮</button></p>
-  <p><button type="button" class="lien-donnees">Données et cookies</button></p>
+  <p><button type="button" class="lien-donnees">Données et cookies</button> · <button type="button" class="bouton-animations" aria-pressed="false">Animations : complètes</button></p>
   <button class="archive-compteur" hidden aria-label="Voir les succès">✦ <span>0</span></button>
 </footer>
 
@@ -16,7 +16,7 @@
 <!-- Agrandissement des images -->
 <div class="visionneuse" hidden>
   <button class="visionneuse-fermer" aria-label="Fermer">✕</button>
-  <img src="" alt="">
+  <img alt="">
 </div>
 
 <script src="<?= e(ressource('assets/js/archive/succes.js')) ?>" defer></script>

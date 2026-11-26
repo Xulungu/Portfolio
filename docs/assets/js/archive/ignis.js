@@ -39,7 +39,7 @@
     cv.setAttribute("aria-hidden", "true");
     document.body.append(cv);
     ctx = cv.getContext("2d");
-    const r = Math.min(window.devicePixelRatio || 1, 1.5); // plafonné : beaucoup de particules
+    const r = 1; // résolution normale : des flammes floues n'ont pas besoin de plus
     L = window.innerWidth; H = window.innerHeight;
     cv.width = L * r; cv.height = H * r;
     ctx.setTransform(r, 0, 0, r, 0, 0);
@@ -51,7 +51,8 @@
   // force : 0.4 (petite) à 1.3 (énorme) ; vitesse : multiplicateur de durée
   function explosion(force, vitesse) {
     const portee = Math.hypot(L, H) * 0.55 * force;     // jusqu'où montent les flammes
-    const n = Math.round(300 * force);                   // nombre de langues de feu
+    const allege = window.Perf && window.Perf.legere() ? 0.45 : 1; // mode animations légères
+    const n = Math.round(300 * force * allege);          // nombre de langues de feu
     const rotation = (Math.random() < 0.5 ? -1 : 1) * (0.6 + Math.random() * 0.8); // tourbillon
     for (let i = 0; i < n; i++) {
       const a = Math.random() * Math.PI * 2;
@@ -67,7 +68,7 @@
       });
     }
     // couronne de fumée qui reste après le passage des flammes
-    for (let i = 0; i < 45 * force; i++) {
+    for (let i = 0; i < 45 * force * allege; i++) {
       const a = Math.random() * Math.PI * 2;
       const r = portee * (0.55 + Math.random() * 0.5);
       particules.push({

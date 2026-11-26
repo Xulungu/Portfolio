@@ -62,6 +62,8 @@
   }
 
   let largeur = 0, hauteur = 0, ratio = 1;
+  // Mode « animations léger » (assets/js/performance.js) : moins de particules, 30 images/s, pas de calque avant
+  let leger = Boolean(window.Perf && window.Perf.legere());
   const souris = { x: -9999, y: -9999, active: false };
   let motes = [];      // particules de mana du fond
   let etincelles = []; // traînée du curseur, explosions, courants
@@ -110,7 +112,9 @@
   }
 
   function redimensionner() {
-    ratio = Math.min(window.devicePixelRatio || 1, 2);
+    // Des lueurs floues n'ont pas besoin de la haute résolution : 1 pixel de canvas = 1 pixel CSS
+    // (sur un écran « retina », c'est 4 fois moins de pixels à dessiner)
+    ratio = 1;
     largeur = window.innerWidth;
     hauteur = window.innerHeight;
     for (const [c, x] of [[canvas, ctx], [avant, ctxAvant]]) {
@@ -118,8 +122,9 @@
       c.height = hauteur * ratio;
       x.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
-    const nombre = Math.min(190, Math.round((largeur * hauteur) / 8500));
-    const nombreNappes = largeur < 700 ? 5 : 9;
+    const nombre = leger ? Math.min(60, Math.round((largeur * hauteur) / 22000)) : Math.min(150, Math.round((largeur * hauteur) / 11000));
+    const nombreNappes = leger ? 0 : largeur < 700 ? 4 : 6;
+    avant.style.display = leger ? "none" : "";
     while (nappes.length < nombreNappes) nappes.push(creerNappe());
     nappes.length = nombreNappes;
     while (motes.length < nombre) motes.push(creerMote(true));
@@ -200,9 +205,9 @@
     window.addEventListener("pointermove", (e) => {
       souris.x = e.clientX; souris.y = e.clientY; souris.active = true;
       const maintenant = performance.now();
-      if (maintenant - dernier < 16) return;
+      if (maintenant - dernier < (leger ? 50 : 20)) return;
       dernier = maintenant;
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < (leger ? 1 : 2); i++) {
         etincelles.push({
           x: e.clientX + aleatoire(-3, 3), y: e.clientY + aleatoire(-3, 3),
           vx: aleatoire(-0.4, 0.4), vy: aleatoire(-0.8, 0.1),
@@ -223,18 +228,43 @@
 
   // ------------------------------------------------------------------ boucle
   let tempsPrecedent = performance.now();
+  let boucleActive = false;
+
+  // Mesure de fluidité : si le site rame vraiment (moins de ~35 images/s pendant 2 mesures),
+  // on passe tout seul en animations légères (sauf si le visiteur a choisi lui-même).
+  const mesure = { debut: performance.now() + 1500, images: 0, lentes: 0 };
+  function surveiller(t) {
+    if (leger || t < mesure.debut || !window.Perf || window.Perf.choixManuel()) return;
+    mesure.images++;
+    const duree = t - mesure.debut;
+    if (duree < 2500) return;
+    const ips = (mesure.images / duree) * 1000;
+    mesure.debut = t; mesure.images = 0;
+    if (ips < 35) mesure.lentes++; else mesure.lentes = 0;
+    if (mesure.lentes >= 2 && window.Perf.basculerAuto() && window.notifier) {
+      window.notifier("Animations allégées pour fluidifier le site (réglable en bas de page).");
+    }
+  }
+
   function image(t) {
+    if (document.hidden) { boucleActive = false; return; }
+    requestAnimationFrame(image);
+    // mode léger : 30 images par seconde suffisent pour des particules qui flottent
+    if (leger && t - tempsPrecedent < 30) return;
     const dt = Math.min((t - tempsPrecedent) / 16.67, 3);
     tempsPrecedent = t;
+    surveiller(t);
 
     ctx.globalCompositeOperation = "source-over";
     ctx.globalAlpha = 1;
     ctx.clearRect(0, 0, largeur, hauteur);
     ctx.globalCompositeOperation = "lighter";
-    ctxAvant.globalCompositeOperation = "source-over";
-    ctxAvant.globalAlpha = 1;
-    ctxAvant.clearRect(0, 0, largeur, hauteur);
-    ctxAvant.globalCompositeOperation = "lighter";
+    if (!leger) {
+      ctxAvant.globalCompositeOperation = "source-over";
+      ctxAvant.globalAlpha = 1;
+      ctxAvant.clearRect(0, 0, largeur, hauteur);
+      ctxAvant.globalCompositeOperation = "lighter";
+    }
 
     // nappes de mana (lueurs diffuses)
     for (const n of nappes) {
@@ -246,7 +276,7 @@
     }
 
     // un courant de mana de temps en temps
-    if (Math.random() < 0.012 * dt) courant();
+    if (!leger && Math.random() < 0.012 * dt) courant();
 
     // particules de mana : montent doucement, ondulent, fuient un peu le curseur
     for (const m of motes) {
@@ -266,10 +296,10 @@
       if (m.x < -30) m.x = largeur + 20; else if (m.x > largeur + 30) m.x = -20;
       const alpha = 0.35 + 0.35 * Math.sin(t * m.scintille + m.phase);
       const a = Math.max(0.15, alpha + 0.15) * (m.devant ? 0.75 : 1);
-      const cible = m.devant ? ctxAvant : ctx;
+      const cible = m.devant && !leger ? ctxAvant : ctx;
       dessinerLumiere(m.couleur, m.x, m.y, m.taille, a, cible);
-      // petite traînée sous la particule : elle a l'air de s'élever
-      dessinerLumiere(m.couleur, m.x - Math.sin(m.phase) * 2, m.y + m.taille * 0.45, m.taille * 0.6, a * 0.45, cible);
+      // petite traînée sous la particule : elle a l'air de s'élever (pas en mode léger)
+      if (!leger) dessinerLumiere(m.couleur, m.x - Math.sin(m.phase) * 2, m.y + m.taille * 0.45, m.taille * 0.6, a * 0.45, cible);
     }
 
     // étincelles
@@ -281,7 +311,8 @@
       if (s.vie <= 0) { etincelles.splice(i, 1); continue; }
       dessinerLumiere(s.couleur, s.x, s.y, s.taille * (0.4 + s.vie * 0.6), s.vie);
     }
-    if (etincelles.length > 900) etincelles.splice(0, etincelles.length - 900);
+    const maxEtincelles = leger ? 300 : 900;
+    if (etincelles.length > maxEtincelles) etincelles.splice(0, etincelles.length - maxEtincelles);
 
     // ondes de choc
     for (let i = anneaux.length - 1; i >= 0; i--) {
@@ -295,8 +326,12 @@
       ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
       ctx.stroke();
     }
-
-    if (!document.hidden) requestAnimationFrame(image);
+  }
+  function demarrer() {
+    if (boucleActive) return;
+    boucleActive = true;
+    tempsPrecedent = performance.now();
+    requestAnimationFrame(image);
   }
 
   redimensionner();
@@ -307,9 +342,14 @@
     ctx.globalCompositeOperation = "lighter";
     for (const m of motes) dessinerLumiere(m.couleur, m.x, m.y, m.taille, 0.4);
   } else {
-    requestAnimationFrame(image);
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) { tempsPrecedent = performance.now(); requestAnimationFrame(image); }
+    demarrer();
+    // la boucle s'arrête quand l'onglet est caché, et reprend à son retour
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) demarrer(); });
+    // changement de mode (bouton du pied de page ou bascule automatique)
+    document.addEventListener("mode-animations", (e) => {
+      leger = e.detail === "legeres";
+      ctxAvant.clearRect(0, 0, largeur, hauteur);
+      redimensionner();
     });
   }
 })();

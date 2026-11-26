@@ -127,11 +127,11 @@
   const cv = $("#poussiere"), ctx = cv.getContext("2d");
   let L, H, grains = [], etincelles = [];
   function taille() {
-    const r = Math.min(devicePixelRatio || 1, 2);
+    const r = 1; // des grains de poussière n'ont pas besoin de la haute résolution
     L = innerWidth; H = innerHeight;
     cv.width = L * r; cv.height = H * r;
     ctx.setTransform(r, 0, 0, r, 0, 0);
-    const n = Math.round((L * H) / 9000);
+    const n = Math.round((L * H) / (window.Perf && window.Perf.legere() ? 20000 : 9000));
     grains = Array.from({ length: n }, () => grain(true));
   }
   function grain(partout) {

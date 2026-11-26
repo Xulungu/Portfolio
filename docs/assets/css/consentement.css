@@ -26,7 +26,7 @@
 @keyframes consentement-entree { from { opacity: 0; transform: translateY(20px); } }
 @keyframes consentement-sortie { to { opacity: 0; transform: translateY(20px); } }
 
-.consentement-fond { position: fixed; inset: 0; z-index: 3650; background: rgba(2, 4, 12, 0.8); backdrop-filter: blur(4px); }
+.consentement-fond { position: fixed; inset: 0; z-index: 3650; background: rgba(2, 4, 12, 0.88); }
 .consentement-panneau {
   position: fixed; left: 50%; top: 50%; z-index: 3660; translate: -50% -50%;
   width: min(820px, calc(100vw - 24px)); max-height: calc(100vh - 30px); overflow: auto; padding: 28px 30px;

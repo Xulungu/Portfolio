@@ -82,9 +82,7 @@ kbd { font-family: Consolas, monospace; padding: 1px 6px; border: 1px solid var(
   height: var(--haut-entete);
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding: 0 clamp(16px, 4vw, 48px);
-  background: rgba(4, 6, 16, 0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(4, 6, 16, 0.92);
 }
 
 .logo { display: flex; align-items: center; gap: 12px; color: var(--texte); }
@@ -151,13 +149,11 @@ main { max-width: var(--largeur); margin: 0 auto; padding: calc(var(--haut-entet
 /* ---------------------------------------------------------------- panneaux */
 .fenetre {
   position: relative;
-  background: linear-gradient(180deg, rgba(14, 28, 64, 0.78), rgba(6, 12, 30, 0.82));
+  background: linear-gradient(180deg, rgba(14, 28, 64, 0.88), rgba(6, 12, 30, 0.92));
   border: 1px solid var(--bord);
   border-radius: 6px;
   padding: 26px 28px;
   box-shadow: 0 0 0 1px rgba(79, 216, 255, 0.05), 0 0 30px rgba(47, 123, 255, 0.15), inset 0 0 40px rgba(79, 216, 255, 0.06);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
 }
 .fenetre::before, .fenetre::after {
   content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid var(--cyan);
@@ -218,7 +214,7 @@ main { max-width: var(--largeur); margin: 0 auto; padding: calc(var(--haut-entet
 .cercle-magique .anneau-1 { animation: tourne 60s linear infinite; }
 .cercle-magique .anneau-2 { animation: tourne 40s linear infinite reverse; }
 .cercle-magique .anneau-3 { animation: tourne 25s linear infinite; }
-.cercle-magique { filter: drop-shadow(0 0 6px rgba(79, 216, 255, 0.7)); }
+.cercle-magique .anneau { will-change: transform; }
 
 /* ---------------------------------------------------------------- accueil */
 .eveil {
@@ -483,7 +479,7 @@ textarea { resize: vertical; }
 
 /* ---------------------------------------------------------------- visionneuse d'images */
 [data-agrandir] { cursor: zoom-in; }
-.visionneuse { position: fixed; inset: 0; z-index: 2800; display: grid; place-items: center; padding: 30px; background: rgba(2, 4, 12, 0.92); backdrop-filter: blur(6px); animation: apparait 0.3s ease; }
+.visionneuse { position: fixed; inset: 0; z-index: 2800; display: grid; place-items: center; padding: 30px; background: rgba(2, 4, 12, 0.95); animation: apparait 0.3s ease; }
 .visionneuse[hidden] { display: none; }
 .visionneuse img { max-height: 88vh; border: 1px solid var(--cyan); box-shadow: 0 0 40px rgba(79, 216, 255, 0.4); }
 .visionneuse-fermer { position: absolute; top: 20px; right: 24px; background: none; border: 1px solid var(--cyan); color: var(--cyan); width: 42px; height: 42px; font-size: 20px; cursor: pointer; }
@@ -578,8 +574,8 @@ textarea { resize: vertical; }
 .introuvable { text-align: center; min-height: 60vh; display: grid; place-items: center; align-content: center; gap: 20px; }
 
 /* ---------------------------------------------------------------- apparition au défilement */
-.js .apparition { opacity: 0; transform: translateY(34px); filter: blur(6px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.8s ease; }
-.js .apparition.visible { opacity: 1; transform: none; filter: none; }
+.js .apparition { opacity: 0; transform: translateY(34px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.js .apparition.visible { opacity: 1; transform: none; }
 .flotte { animation: flotte 4s ease-in-out infinite; }
 .flotte.lent { animation-duration: 6s; animation-delay: -1s; }
 
@@ -670,7 +666,7 @@ textarea { resize: vertical; }
 .carte-fiche.carte-source { visibility: hidden; }
 
 html.fiche-active { overflow: hidden; }
-.fiche-fond { position: fixed; inset: 0; z-index: 2700; background: rgba(2, 4, 12, 0.78); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.35s ease; }
+.fiche-fond { position: fixed; inset: 0; z-index: 2700; background: rgba(2, 4, 12, 0.86); opacity: 0; transition: opacity 0.35s ease; }
 .fiche-fond.visible { opacity: 1; }
 .fiche {
   position: fixed; z-index: 2750; left: 50%; top: 50%; margin: 0;
@@ -879,3 +875,22 @@ html.tremblement main, html.tremblement .entete { animation: tremblement 0.5s li
   50% { transform: translate(-4px, 2px); } 60% { transform: translate(3px, -3px); }
   70% { transform: translate(-2px, 2px); } 80% { transform: translate(1px, -1px); }
 }
+
+/* ---------------------------------------------------------------- mode « animations légères » (PC modestes) */
+/* Activé automatiquement si l'appareil est peu puissant ou si le site rame, ou via le bouton du pied de page. */
+.anim-legeres .cercle-magique .anneau,
+.anim-legeres .lueur,
+.anim-legeres .jauge-mp i,
+.anim-legeres .flotte,
+.anim-legeres .rarete-legendaire::after,
+.anim-legeres .competence:hover .competence-rune,
+.anim-legeres .logo-rune::before { animation: none !important; }
+.anim-legeres .lueur { filter: none; }
+.anim-legeres .glitch::before, .anim-legeres .glitch::after { animation: none; opacity: 0; }
+.anim-legeres .portail-vortex { display: none; }
+.anim-legeres .fenetre { box-shadow: 0 0 0 1px rgba(79, 216, 255, 0.05); }
+.anim-legeres .js .apparition, .anim-legeres.js .apparition { transition-duration: 0.4s; }
+.anim-legeres .voile { background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.6) 100%); }
+
+.bouton-animations { margin-top: 4px; padding: 0; background: none; border: 0; cursor: pointer; font: inherit; font-size: 14px; color: #8fa4cc; text-decoration: underline; }
+.bouton-animations:hover { color: var(--cyan); }

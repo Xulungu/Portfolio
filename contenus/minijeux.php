@@ -62,9 +62,9 @@
     <figure><img src="<?= e(image('minijeux', 'menuJeu.png')) ?>" alt="Menu principal" data-agrandir loading="lazy"><figcaption>Menu principal</figcaption></figure>
     <figure><img src="<?= e(image('minijeux', 'menudujeu.png')) ?>" alt="Menu d'un jeu" data-agrandir loading="lazy"><figcaption>Menu d'un jeu</figcaption></figure>
     <figure><img src="<?= e(image('minijeux', 'menuVS.png')) ?>" alt="Choix du mode joueur contre bot" data-agrandir loading="lazy"><figcaption>Mode joueur contre bot</figcaption></figure>
-    <figure><img src="<?= e(image('minijeux', 'pointtotaux.png')) ?>" alt="Scores totaux" data-agrandir loading="lazy"><figcaption>Scores totaux</figcaption></figure>
-    <figure><img src="<?= e(image('minijeux', 'pointdujeu.png')) ?>" alt="Scores par jeu" data-agrandir loading="lazy"><figcaption>Scores par jeu</figcaption></figure>
-    <figure><img src="<?= e(image('minijeux', 'aide.png')) ?>" alt="Fichier d'aide d'un jeu" data-agrandir loading="lazy"><figcaption>Aide intégrée à chaque jeu</figcaption></figure>
+    <figure><img src="<?= e(image('minijeux', 'pointtotaux.webp')) ?>" alt="Scores totaux" data-agrandir loading="lazy"><figcaption>Scores totaux</figcaption></figure>
+    <figure><img src="<?= e(image('minijeux', 'pointdujeu.webp')) ?>" alt="Scores par jeu" data-agrandir loading="lazy"><figcaption>Scores par jeu</figcaption></figure>
+    <figure><img src="<?= e(image('minijeux', 'aide.webp')) ?>" alt="Fichier d'aide d'un jeu" data-agrandir loading="lazy"><figcaption>Aide intégrée à chaque jeu</figcaption></figure>
   </div>
 </section>
 

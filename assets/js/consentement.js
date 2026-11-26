@@ -84,6 +84,7 @@
         <tbody>
           <tr><td>Progression des secrets</td><td>Succès débloqués, fragments trouvés, salle secrète</td><td>Jusqu'à ce que vous l'effaciez</td><td>Si vous acceptez</td></tr>
           <tr><td>Meilleur score</td><td>Meilleur temps au Danmaku Mode</td><td>Jusqu'à ce que vous l'effaciez</td><td>Si vous acceptez</td></tr>
+          <tr><td>Réglage des animations</td><td>« complètes » ou « légères »</td><td>Jusqu'à ce que vous l'effaciez</td><td>Si vous changez le réglage en bas de page</td></tr>
           <tr><td>Votre choix</td><td>« Accepter » ou « Refuser »</td><td>Jusqu'à ce que vous l'effaciez</td><td>Toujours (pour ne pas vous redemander)</td></tr>
           <tr><td>Préférences de navigation</td><td>Thème de couleur, transition entre les pages</td><td>Fermeture de l'onglet</td><td>Toujours (nécessaire au fonctionnement)</td></tr>
         </tbody>

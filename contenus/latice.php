@@ -62,9 +62,9 @@
   </div>
 
   <div class="galerie">
-    <figure><img src="<?= e(image('latice', 'finPartie.png')) ?>" alt="Plateau en fin de partie" data-agrandir loading="lazy"><figcaption>Plateau en fin de partie</figcaption></figure>
-    <figure><img src="<?= e(image('latice', 'ecranActions.png')) ?>" alt="Menu des actions" data-agrandir loading="lazy"><figcaption>Menu des actions</figcaption></figure>
-    <figure><img src="<?= e(image('latice', 'ecranWin.png')) ?>" alt="Fenêtre de victoire" data-agrandir loading="lazy"><figcaption>Fenêtre de victoire</figcaption></figure>
+    <figure><img src="<?= e(image('latice', 'finPartie.webp')) ?>" alt="Plateau en fin de partie" data-agrandir loading="lazy"><figcaption>Plateau en fin de partie</figcaption></figure>
+    <figure><img src="<?= e(image('latice', 'ecranActions.webp')) ?>" alt="Menu des actions" data-agrandir loading="lazy"><figcaption>Menu des actions</figcaption></figure>
+    <figure><img src="<?= e(image('latice', 'ecranWin.webp')) ?>" alt="Fenêtre de victoire" data-agrandir loading="lazy"><figcaption>Fenêtre de victoire</figcaption></figure>
   </div>
 </section>
 

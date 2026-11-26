@@ -35,7 +35,7 @@
 @keyframes succes-entree { from { opacity: 0; transform: translateY(30px) scale(0.95); } }
 @keyframes succes-sortie { to { opacity: 0; transform: translateY(20px); } }
 
-.succes-fond, .dossier-fond { position: fixed; inset: 0; z-index: 3300; background: rgba(2, 4, 12, 0.8); backdrop-filter: blur(5px); animation: apparait 0.3s ease; }
+.succes-fond, .dossier-fond { position: fixed; inset: 0; z-index: 3300; background: rgba(2, 4, 12, 0.88); animation: apparait 0.3s ease; }
 .succes-fenetre {
   position: fixed; left: 50%; top: 50%; translate: -50% -50%; z-index: 3310;
   width: min(760px, calc(100vw - 28px)); max-height: calc(100vh - 40px); overflow: auto; padding: 28px 30px;

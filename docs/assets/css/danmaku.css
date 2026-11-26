@@ -23,7 +23,7 @@ body.page-danmaku {
 }
 .dm-ecran {
   position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-  padding: 24px; text-align: center; background: rgba(5, 4, 15, 0.82); backdrop-filter: blur(2px);
+  padding: 24px; text-align: center; background: rgba(5, 4, 15, 0.88);
 }
 .dm-ecran[hidden] { display: none; }
 .dm-ecran h1, .dm-ecran h2 { margin: 0 0 6px; font-family: "Cinzel", serif; font-weight: 800; font-size: clamp(2rem, 6vw, 3rem); letter-spacing: 4px; color: #fff; text-shadow: 0 0 24px rgba(255, 111, 181, 0.6); }
