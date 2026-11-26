@@ -354,41 +354,49 @@
 
   // ------------------------------------------------------------------ easter eggs
   // Taper au clavier (en dehors des champs du formulaire) :
-  //   « arise »  -> Domaine du Monarque (tout le site passe au violet ; retaper pour en sortir)
-  //   « monika » -> Just Monika.
+  //   « arise »  -> Domaine du Monarque : tout le site passe au violet (retaper pour en sortir)
+  //   « monika » -> Just Monika : boîte de dialogue, et le site passe au vert émeraude (retaper pour en sortir)
   //   Code Konami (↑ ↑ ↓ ↓ ← → ← → B A) -> surcharge de mana
   (function () {
     const racine = document.documentElement;
+    const THEMES = ["monarque", "monika"];
     let saisie = "";
     let konami = [];
     const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
 
-    // Domaine du Monarque -------------------------------------------------
+    // Thèmes de couleur ----------------------------------------------------
     const voile = document.createElement("div");
-    voile.className = "voile-monarque";
+    voile.className = "voile-theme";
     voile.setAttribute("aria-hidden", "true");
     document.body.append(voile);
-    if (racine.classList.contains("monarque") && window.Magie) window.Magie.monarque(true);
+    const themeActuel = () => THEMES.find((t) => racine.classList.contains(t)) || null;
+    if (window.Magie) window.Magie.theme(themeActuel());
 
+    /** Active un thème (ou l'enlève s'il est déjà actif). Renvoie true s'il vient d'être activé. */
+    function basculerTheme(nom) {
+      const actif = themeActuel() !== nom;
+      racine.classList.add("theme-transition");
+      THEMES.forEach((t) => racine.classList.remove(t));
+      if (actif) racine.classList.add(nom);
+      if (actif) memoire.ecrire("theme", nom); else memoire.effacer("theme");
+      if (window.Magie) window.Magie.theme(actif ? nom : null);
+      setTimeout(() => racine.classList.remove("theme-transition"), 1400);
+      return actif;
+    }
+
+    // Domaine du Monarque -------------------------------------------------
     function domaine() {
-      const actif = !racine.classList.contains("monarque");
-      if (actif) {
+      if (basculerTheme("monarque")) {
         const ecran = document.createElement("div");
         ecran.className = "arise";
         ecran.innerHTML = "<span>ARISE</span>";
         document.body.append(ecran);
         setTimeout(() => ecran.remove(), 2600);
         if (window.Magie && !reduit) window.Magie.ombres();
-        memoire.ecrire("monarque", "1");
         notifier("Domaine du Monarque déployé.", "ombre");
       } else {
-        memoire.effacer("monarque");
         notifier("Le domaine se dissipe.");
       }
-      racine.classList.add("monarque-transition");
-      racine.classList.toggle("monarque", actif);
-      if (window.Magie) window.Magie.monarque(actif);
-      setTimeout(() => racine.classList.remove("monarque-transition"), 1400);
     }
 
     // Just Monika ---------------------------------------------------------
@@ -401,22 +409,25 @@
 
       racine.classList.add("glitch-monika");
       setTimeout(() => racine.classList.remove("glitch-monika"), 900);
-      if (logo) setTimeout(() => { logo.textContent = "Just Monika"; }, 450);
+      // le site passe au vert émeraude pendant le glitch
+      let vert = false;
+      setTimeout(() => { vert = basculerTheme("monika"); }, 450);
+      if (logo) setTimeout(() => { if (vert) logo.textContent = "Just Monika"; }, 460);
 
       const boite = document.createElement("div");
-      boite.className = "monika";
+      boite.className = "monika-boite";
       boite.setAttribute("role", "dialog");
       boite.innerHTML = '<span class="monika-nom">Monika</span><p class="monika-texte"></p><span class="monika-suite" aria-hidden="true">▼</span>';
       setTimeout(() => {
+        const phrase = vert ? "Just Monika. ♥" : "Tu me quittes déjà ? ♥";
         document.body.append(boite);
         if (window.Magie && !reduit) window.Magie.explosion(window.innerWidth / 2, window.innerHeight - 120, 40, ["rose", "blanc"], 7);
         const texte = $(".monika-texte", boite);
-        const phrase = "Just Monika. ♥";
         let i = 0;
         const id = setInterval(() => {
           texte.textContent = phrase.slice(0, ++i);
           if (i >= phrase.length) clearInterval(id);
-        }, reduit ? 1 : 90);
+        }, reduit ? 1 : 80);
       }, 900);
 
       function fermer() {
@@ -434,17 +445,52 @@
     }
 
     // Surcharge de mana (code Konami) -------------------------------------
+    // Un cercle magique apparaît, tourne de plus en plus vite pendant que le mana converge vers lui,
+    // puis il explose : onde de choc, tremblement de l'écran et pluie d'étincelles.
+    let surchargeEnCours = false;
     function surcharge() {
-      notifier("Surcharge de mana !");
-      if (!window.Magie || reduit) return;
-      for (let k = 0; k < 7; k++) {
-        setTimeout(() => {
-          const x = window.innerWidth * (0.15 + Math.random() * 0.7);
-          const y = window.innerHeight * (0.2 + Math.random() * 0.6);
-          window.Magie.explosion(x, y, 36, ["cyan", "bleu", "blanc"], 8);
-          window.Magie.onde(x, y, "cyan");
-        }, k * 160);
+      if (surchargeEnCours) return;
+      if (reduit || !window.Magie) { notifier("Surcharge de mana !"); return; }
+      surchargeEnCours = true;
+      const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+
+      const scene = document.createElement("div");
+      scene.className = "surcharge";
+      scene.setAttribute("aria-hidden", "true");
+      const modele = $(".cercle-magique");
+      if (modele) {
+        const cercle = modele.cloneNode(true);
+        cercle.setAttribute("class", "cercle-magique surcharge-cercle");
+        scene.append(cercle);
       }
+      const texte = document.createElement("p");
+      texte.className = "surcharge-texte";
+      texte.innerHTML = "SURCHARGE<br>DE MANA";
+      scene.append(texte);
+      document.body.append(scene);
+
+      window.Magie.charge(cx, cy, 1300);                       // 0 → 1,3 s : le mana converge
+      setTimeout(() => {                                        // 1,4 s : explosion
+        scene.classList.add("explosion");
+        racine.classList.add("tremblement");
+        window.Magie.explosion(cx, cy, 90, ["cyan", "bleu", "blanc"], 16);
+        window.Magie.onde(cx, cy, "cyan");
+        setTimeout(() => window.Magie.onde(cx, cy, "bleu"), 120);
+        setTimeout(() => window.Magie.onde(cx, cy, "blanc"), 240);
+        for (let k = 0; k < 6; k++) {
+          setTimeout(() => {
+            const x = window.innerWidth * (0.1 + Math.random() * 0.8);
+            const y = window.innerHeight * (0.15 + Math.random() * 0.7);
+            window.Magie.explosion(x, y, 28, ["cyan", "bleu", "blanc"], 7);
+          }, 250 + k * 140);
+        }
+      }, 1400);
+      setTimeout(() => racine.classList.remove("tremblement"), 2000);
+      setTimeout(() => {
+        scene.classList.add("sortie");
+        setTimeout(() => { scene.remove(); surchargeEnCours = false; }, 600);
+        notifier("Mana infini débloqué.");
+      }, 2900);
     }
 
     document.addEventListener("keydown", (e) => {

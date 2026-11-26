@@ -29,9 +29,15 @@
     violetFonce: [110, 50, 220],
     lavande: [205, 180, 255],
     rose: [255, 120, 185],
+    emeraude: [52, 211, 153],
+    emeraudeFonce: [5, 150, 105],
+    menthe: [190, 255, 225],
   };
-  // Domaine du Monarque : toutes les lueurs passent au violet
-  const TEINTE_MONARQUE = { cyan: "violet", bleu: "violetFonce", blanc: "lavande" };
+  // Thèmes des easter eggs : les lueurs bleues changent de couleur
+  const TEINTES = {
+    monarque: { cyan: "violet", bleu: "violetFonce", blanc: "lavande" },
+    monika: { cyan: "emeraude", bleu: "emeraudeFonce", blanc: "menthe", violet: "emeraude" },
+  };
   let teinte = null;
 
   // Sprites lumineux pré-dessinés (beaucoup plus rapide que shadowBlur à chaque image)
@@ -161,9 +167,29 @@
     }, 90);
   }
 
-  function monarque(actif) { teinte = actif ? TEINTE_MONARQUE : null; }
+  function theme(nom) { teinte = TEINTES[nom] || null; }
 
-  window.Magie = { explosion, onde, ombres, monarque };
+  // Charge de mana : des particules convergent depuis les bords vers un point (code Konami)
+  function charge(x, y, duree) {
+    const fin = performance.now() + duree;
+    const id = setInterval(() => {
+      if (performance.now() > fin) { clearInterval(id); return; }
+      for (let i = 0; i < 10; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.max(largeur, hauteur) * aleatoire(0.45, 0.7);
+        const sx = x + Math.cos(angle) * dist, sy = y + Math.sin(angle) * dist;
+        const v = aleatoire(9, 15);
+        etincelles.push({
+          x: sx, y: sy,
+          vx: ((x - sx) / dist) * v, vy: ((y - sy) / dist) * v,
+          vie: 1, usure: v / dist * 0.95, // disparaît en arrivant au centre
+          taille: aleatoire(10, 24), couleur: choisir(["cyan", "bleu", "blanc"]), gravite: 0, sansFrein: true,
+        });
+      }
+    }, 40);
+  }
+
+  window.Magie = { explosion, onde, ombres, theme, charge };
 
   // ------------------------------------------------------------------ entrées
   if (pointeurFin && !reduit) {
@@ -247,7 +273,7 @@
     for (let i = etincelles.length - 1; i >= 0; i--) {
       const s = etincelles[i];
       s.x += s.vx * dt; s.y += s.vy * dt;
-      s.vx *= 0.97; s.vy = s.vy * 0.97 + s.gravite * dt;
+      if (!s.sansFrein) { s.vx *= 0.97; s.vy = s.vy * 0.97 + s.gravite * dt; }
       s.vie -= s.usure * dt;
       if (s.vie <= 0) { etincelles.splice(i, 1); continue; }
       dessinerLumiere(s.couleur, s.x, s.y, s.taille * (0.4 + s.vie * 0.6), s.vie);
