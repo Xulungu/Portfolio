@@ -40,6 +40,7 @@
     <a href="index.html#competences">Compétences</a>
     <a href="index.html#technologies">Technologies</a>
     <a href="index.html#a-propos">À propos</a>
+    <a href="index.html#enseignants">Enseignants</a>
     <a href="index.html#contact" class="menu-cta">Contact</a>
   </nav>
 
@@ -49,7 +50,10 @@
 
 <main id="contenu">
 
-<a class="retour apparition" href="index.html#projets">← Retour aux projets</a>
+<div class="liens-haut apparition">
+  <a class="retour" href="index.html#projets">← Retour aux projets</a>
+  <a class="lien-prof" href="#enseignants">Partie enseignants ↓</a>
+</div>
 
 <section class="donjon-entree rang-c">
   <svg class="cercle-magique donjon-cercle" viewBox="0 0 400 400" aria-hidden="true">
@@ -176,7 +180,7 @@
   </ul>
 </section>
 
-<section class="fenetre apparition">
+<section class="fenetre apparition" id="analyse">
   <h2>Analyse réflexive</h2>
   <p>
     Ce projet m'a permis de comprendre la structure d'une application JavaFX et l'importance
@@ -185,9 +189,17 @@
     et à garder un code propre en équipe.
   </p>
 </section>
+</div>
 
-  <section class="fenetre apparition">
-    <h2>Compétences du BUT démontrées</h2>
+<section class="espace-prof apparition" id="enseignants" aria-labelledby="titre-enseignants">
+  <header class="espace-prof-entete">
+    <span class="espace-prof-badge">Espace enseignants</span>
+    <h2 id="titre-enseignants">Pour les enseignants</h2>
+    <p>Synthèse des compétences du BUT Informatique et des apprentissages critiques (AC) mobilisés dans ce projet.</p>
+  </header>
+
+  <div class="espace-prof-corps">
+    <h3>Compétences mobilisées</h3>
     <ul class="liste-competences">
               <li class="element-feu">
           <span class="competence-rune" aria-hidden="true">✦</span>
@@ -206,22 +218,83 @@
           <div><strong>C6 — Collaborer au sein d&#039;une équipe</strong><p>Travail en équipe, Git.</p></div>
         </li>
           </ul>
-  </section>
 
-  <section class="fenetre apparition">
-    <h2>Apprentissages Critiques (AC) démontrés</h2>
-    <ul class="liste-ac ouverte">
-              <li class="ac-valide"><strong>AC11.01</strong> Implémenter des conceptions simples <span class="ac-preuve">— Logique du jeu.</span></li>
-              <li class="ac-valide"><strong>AC11.02</strong> Élaborer des conceptions simples <span class="ac-preuve">— Organisation du projet.</span></li>
-              <li class="ac-valide"><strong>AC11.03</strong> Tester et évaluer les résultats <span class="ac-preuve">— Tests des règles et des interactions.</span></li>
-              <li class="ac-valide"><strong>AC11.04</strong> Développer des interfaces utilisateurs <span class="ac-preuve">— Interface JavaFX.</span></li>
-              <li class="ac-valide"><strong>AC21.03</strong> Adopter de bonnes pratiques <span class="ac-preuve">— Structure du code, gestion des événements.</span></li>
-              <li class="ac-valide"><strong>AC15.02</strong> Utiliser des outils de gestion <span class="ac-preuve">— Répartition des tâches et suivi des délais.</span></li>
-              <li class="ac-valide"><strong>AC16.04</strong> Travailler en équipe <span class="ac-preuve">— Travail à trois sur le même projet.</span></li>
-              <li class="ac-valide"><strong>AC26.03</strong> Collaborer efficacement <span class="ac-preuve">— Coordination avec Git.</span></li>
-          </ul>
-  </section>
-</div>
+    <h3>Apprentissages critiques démontrés</h3>
+    <div class="tableau-defile">
+      <table class="tableau-ac">
+        <thead>
+          <tr><th scope="col">AC</th><th scope="col">Apprentissage critique</th><th scope="col">Compétence</th><th scope="col">Niveau</th><th scope="col">Ce que le projet démontre</th></tr>
+        </thead>
+        <tbody>
+                      <tr class="element-feu">
+              <th scope="row">AC11.01</th>
+              <td>Implémenter des conceptions simples</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 1</td>
+              <td>Logique du jeu.</td>
+            </tr>
+                      <tr class="element-feu">
+              <th scope="row">AC11.02</th>
+              <td>Élaborer des conceptions simples</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 1</td>
+              <td>Organisation du projet.</td>
+            </tr>
+                      <tr class="element-feu">
+              <th scope="row">AC11.03</th>
+              <td>Tester et évaluer les résultats</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 1</td>
+              <td>Tests des règles et des interactions.</td>
+            </tr>
+                      <tr class="element-feu">
+              <th scope="row">AC11.04</th>
+              <td>Développer des interfaces utilisateurs</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 1</td>
+              <td>Interface JavaFX.</td>
+            </tr>
+                      <tr class="element-feu">
+              <th scope="row">AC21.03</th>
+              <td>Adopter de bonnes pratiques</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 2</td>
+              <td>Structure du code, gestion des événements.</td>
+            </tr>
+                      <tr class="element-ombre">
+              <th scope="row">AC15.02</th>
+              <td>Utiliser des outils de gestion</td>
+              <td><span class="puce-competence">C5</span></td>
+              <td>BUT 1</td>
+              <td>Répartition des tâches et suivi des délais.</td>
+            </tr>
+                      <tr class="element-ombre">
+              <th scope="row">AC16.04</th>
+              <td>Travailler en équipe</td>
+              <td><span class="puce-competence">C6</span></td>
+              <td>BUT 1</td>
+              <td>Travail à trois sur le même projet.</td>
+            </tr>
+                      <tr class="element-ombre">
+              <th scope="row">AC26.03</th>
+              <td>Collaborer efficacement</td>
+              <td><span class="puce-competence">C6</span></td>
+              <td>BUT 2</td>
+              <td>Coordination avec Git.</td>
+            </tr>
+                  </tbody>
+      </table>
+    </div>
+
+    <h3>Traces disponibles</h3>
+    <ul class="traces">
+      <li><a href="#analyse">Analyse réflexive</a> — retour sur les difficultés et les apprentissages du projet.</li>
+              <li><a href="https://github.com/ProgrameurGentil/latice" target="_blank" rel="noopener">Code source sur GitHub ↗</a></li>
+            <li>Captures d'écran et description des fonctionnalités dans les sections ci-dessus.</li>
+      <li><a href="index.html#enseignants">Tableau récapitulatif de tous les AC du portfolio</a></li>
+    </ul>
+  </div>
+</section>
 
 <nav class="donjons-voisins apparition" aria-label="Autres projets">
   <a href="projet-motrilem.html" data-portail>

@@ -48,6 +48,7 @@ $description = $description ?? 'Portfolio d\'' . SITE['nom'] . ', étudiant en '
     <a href="<?= e(lien_accueil('competences')) ?>">Compétences</a>
     <a href="<?= e(lien_accueil('technologies')) ?>">Technologies</a>
     <a href="<?= e(lien_accueil('a-propos')) ?>">À propos</a>
+    <a href="<?= e(lien_accueil('enseignants')) ?>">Enseignants</a>
     <a href="<?= e(lien_accueil('contact')) ?>" class="menu-cta">Contact</a>
   </nav>
 

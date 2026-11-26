@@ -103,18 +103,18 @@ kbd { font-family: Consolas, monospace; padding: 1px 6px; border: 1px solid var(
 }
 .logo-rune span { position: relative; text-shadow: 0 0 12px var(--cyan); }
 .logo:hover .logo-rune::before { animation-duration: 1.2s; }
-.logo-texte { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-texte { display: flex; flex-direction: column; line-height: 1.15; white-space: nowrap; }
 .logo-texte strong { font-family: var(--titre); letter-spacing: 1px; font-size: 17px; }
 .logo-texte small { color: var(--texte-doux); font-size: 14px; letter-spacing: 1px; }
 
-.menu { display: flex; gap: 4px; align-items: center; }
+.menu { display: flex; gap: 4px; align-items: center; white-space: nowrap; }
 .menu a {
-  position: relative; padding: 8px 14px;
-  font-weight: 600; font-size: 15px; letter-spacing: 2px; text-transform: uppercase;
+  position: relative; padding: 8px 12px;
+  font-weight: 600; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--texte-doux);
 }
 .menu a::after {
-  content: ""; position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px;
+  content: ""; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px;
   background: linear-gradient(90deg, var(--cyan), var(--violet));
   box-shadow: 0 0 10px var(--cyan);
   transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
@@ -613,7 +613,7 @@ textarea { resize: vertical; }
   .statut { justify-self: stretch; max-width: none; }
   .eveil { min-height: auto; padding-top: 20px; }
 }
-@media (max-width: 860px) {
+@media (max-width: 1340px) {
   .burger { display: block; }
   .menu {
     position: fixed; top: var(--haut-entete); left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0;
@@ -775,3 +775,44 @@ html.glitch-monika main, html.glitch-monika .entete { animation: monika-glitch 0
 @keyframes monika-entree { from { opacity: 0; transform: translateY(30px); } }
 @keyframes monika-sortie { to { opacity: 0; transform: translateY(30px); } }
 @keyframes monika-suite { 50% { transform: translateY(4px); } }
+
+/* ---------------------------------------------------------------- espace enseignants */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.liens-haut { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 10px 0; }
+.liens-haut .retour { margin: 0; }
+.lien-prof { padding: 6px 14px; font-weight: 700; font-size: 14px; letter-spacing: 1px; color: var(--or); border: 1px solid rgba(255, 204, 77, 0.5); background: rgba(255, 204, 77, 0.06); }
+.lien-prof:hover { color: #fff; background: rgba(255, 204, 77, 0.15); }
+
+.espace-prof {
+  position: relative; margin-top: 40px;
+  border: 1px solid rgba(255, 204, 77, 0.45); border-radius: 8px; overflow: hidden;
+  background: linear-gradient(180deg, rgba(30, 26, 14, 0.55), rgba(6, 12, 30, 0.9) 160px);
+  box-shadow: 0 0 40px -14px rgba(255, 204, 77, 0.35);
+}
+.bloc .espace-prof { margin-top: 0; }
+.espace-prof-entete { padding: 24px 28px 18px; border-bottom: 1px solid rgba(255, 204, 77, 0.25); }
+.espace-prof-badge { display: inline-block; padding: 3px 12px; font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #1a1406; background: var(--or); }
+.espace-prof-entete h2 { margin: 10px 0 4px; font-family: var(--titre); color: #fff; font-size: 1.7rem; }
+.espace-prof-entete p { margin: 8px 0 0; color: var(--texte-doux); }
+.espace-prof-corps { padding: 22px 28px 28px; }
+.espace-prof-corps > h3 { margin: 26px 0 12px; color: var(--or); font-size: 1.15rem; letter-spacing: 1px; text-transform: uppercase; }
+.espace-prof-corps > h3:first-child { margin-top: 0; }
+
+.tableau-defile { overflow-x: auto; border: 1px solid rgba(90, 180, 255, 0.18); border-radius: 6px; }
+.tableau-ac { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 640px; }
+.tableau-ac th, .tableau-ac td { padding: 10px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(90, 180, 255, 0.1); }
+.tableau-ac thead th { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--texte-doux); background: rgba(79, 216, 255, 0.05); }
+.tableau-ac tbody th { color: #fff; white-space: nowrap; border-left: 3px solid var(--el, var(--cyan)); }
+.tableau-ac tbody tr:hover { background: rgba(79, 216, 255, 0.05); }
+.tableau-ac td:nth-child(4), .tableau-ac td:nth-child(3) { white-space: nowrap; }
+.puce-competence { display: inline-block; padding: 1px 8px; font-weight: 700; font-size: 13px; color: var(--el); border: 1px solid var(--el); }
+.tableau-recap .col-projet { text-align: center; }
+.tableau-recap thead .col-projet a { color: var(--texte); text-transform: none; letter-spacing: 0; font-size: 14px; font-weight: 700; }
+.tableau-recap thead .col-projet a:hover { color: var(--cyan); }
+.tableau-recap td:nth-child(3) { white-space: nowrap; }
+.ligne-competence th { padding-top: 16px !important; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: var(--el) !important; background: rgba(255, 255, 255, 0.02); border-left: 0 !important; }
+.coche { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; color: #04050d; font-weight: 800; background: var(--el, var(--cyan)); box-shadow: 0 0 10px -2px var(--el, var(--cyan)); cursor: help; }
+.note-prof { margin: 14px 0 0; font-size: 14px; color: var(--texte-doux); }
+.traces { padding-left: 22px; margin: 0; }
+.traces li { margin-bottom: 6px; }
+.traces li::marker { color: var(--or); }

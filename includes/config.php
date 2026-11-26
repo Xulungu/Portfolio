@@ -80,6 +80,26 @@ function projets_pour_competence(string $code): array
     return $liste;
 }
 
+/** Année du BUT à laquelle se rattache un AC : ACnc.xx -> n. */
+function niveau_ac(string $ac): int
+{
+    return (int) substr($ac, 2, 1);
+}
+
+/** Tous les AC démontrés dans le portfolio, triés par compétence puis par code. */
+function ac_demontres(): array
+{
+    $liste = [];
+    foreach (PROJETS as $p) {
+        foreach (array_keys($p['ac']) as $ac) {
+            $liste[$ac] = true;
+        }
+    }
+    $liste = array_keys($liste);
+    usort($liste, fn($a, $b) => [competence_de_ac($a), $a] <=> [competence_de_ac($b), $b]);
+    return $liste;
+}
+
 /** Projets qui démontrent un AC précis. */
 function projets_pour_ac(string $ac): array
 {

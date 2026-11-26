@@ -40,6 +40,7 @@
     <a href="index.html#competences">Compétences</a>
     <a href="index.html#technologies">Technologies</a>
     <a href="index.html#a-propos">À propos</a>
+    <a href="index.html#enseignants">Enseignants</a>
     <a href="index.html#contact" class="menu-cta">Contact</a>
   </nav>
 
@@ -49,7 +50,10 @@
 
 <main id="contenu">
 
-<a class="retour apparition" href="index.html#projets">← Retour aux projets</a>
+<div class="liens-haut apparition">
+  <a class="retour" href="index.html#projets">← Retour aux projets</a>
+  <a class="lien-prof" href="#enseignants">Partie enseignants ↓</a>
+</div>
 
 <section class="donjon-entree rang-a">
   <svg class="cercle-magique donjon-cercle" viewBox="0 0 400 400" aria-hidden="true">
@@ -358,7 +362,7 @@
   </ul>
 </section>
 
-<section class="fenetre apparition">
+<section class="fenetre apparition" id="analyse">
   <h2>Analyse réflexive</h2>
   <p>
     Au début, Motrilem se limitait à un personnage qui se déplace. Le faire grandir jusqu'à une vraie démo m'a appris
@@ -381,9 +385,17 @@
     <li>Le boss final avec une IA adaptée au profil du joueur.</li>
   </ul>
 </section>
+</div>
 
-  <section class="fenetre apparition">
-    <h2>Compétences du BUT démontrées</h2>
+<section class="espace-prof apparition" id="enseignants" aria-labelledby="titre-enseignants">
+  <header class="espace-prof-entete">
+    <span class="espace-prof-badge">Espace enseignants</span>
+    <h2 id="titre-enseignants">Pour les enseignants</h2>
+    <p>Synthèse des compétences du BUT Informatique et des apprentissages critiques (AC) mobilisés dans ce projet.</p>
+  </header>
+
+  <div class="espace-prof-corps">
+    <h3>Compétences mobilisées</h3>
     <ul class="liste-competences">
               <li class="element-feu">
           <span class="competence-rune" aria-hidden="true">✦</span>
@@ -402,22 +414,83 @@
           <div><strong>C5 — Conduire un projet</strong><p>Découpage en étapes, outils de production, gestion d&#039;un projet sur la durée.</p></div>
         </li>
           </ul>
-  </section>
 
-  <section class="fenetre apparition">
-    <h2>Apprentissages Critiques (AC) démontrés</h2>
-    <ul class="liste-ac ouverte">
-              <li class="ac-valide"><strong>AC11.01</strong> Implémenter des conceptions simples <span class="ac-preuve">— Déplacements, ennemis, magies.</span></li>
-              <li class="ac-valide"><strong>AC11.02</strong> Élaborer des conceptions simples <span class="ac-preuve">— Architecture par systèmes : magie, sauvegarde, audio.</span></li>
-              <li class="ac-valide"><strong>AC11.03</strong> Tester et évaluer les résultats <span class="ac-preuve">— Réglage du ressenti, équilibrage des combats.</span></li>
-              <li class="ac-valide"><strong>AC11.04</strong> Développer des interfaces utilisateurs <span class="ac-preuve">— HUD, menus, écran de choix de la magie.</span></li>
-              <li class="ac-valide"><strong>AC12.01</strong> Analyser un problème <span class="ac-preuve">— Comportements du boss, transitions entre cartes.</span></li>
-              <li class="ac-valide"><strong>AC22.01</strong> Choisir des structures de données <span class="ac-preuve">— Données de sauvegarde, profil du joueur.</span></li>
-              <li class="ac-valide"><strong>AC31.02</strong> Faire évoluer une application <span class="ac-preuve">— Projet développé et enrichi sur plusieurs mois.</span></li>
-              <li class="ac-valide"><strong>AC15.02</strong> Utiliser des outils de gestion <span class="ac-preuve">— 13 étapes de développement sauvegardées et suivies.</span></li>
-          </ul>
-  </section>
-</div>
+    <h3>Apprentissages critiques démontrés</h3>
+    <div class="tableau-defile">
+      <table class="tableau-ac">
+        <thead>
+          <tr><th scope="col">AC</th><th scope="col">Apprentissage critique</th><th scope="col">Compétence</th><th scope="col">Niveau</th><th scope="col">Ce que le projet démontre</th></tr>
+        </thead>
+        <tbody>
+                      <tr class="element-feu">
+              <th scope="row">AC11.01</th>
+              <td>Implémenter des conceptions simples</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 1</td>
+              <td>Déplacements, ennemis, magies.</td>
+            </tr>
+                      <tr class="element-feu">
+              <th scope="row">AC11.02</th>
+              <td>Élaborer des conceptions simples</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 1</td>
+              <td>Architecture par systèmes : magie, sauvegarde, audio.</td>
+            </tr>
+                      <tr class="element-feu">
+              <th scope="row">AC11.03</th>
+              <td>Tester et évaluer les résultats</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 1</td>
+              <td>Réglage du ressenti, équilibrage des combats.</td>
+            </tr>
+                      <tr class="element-feu">
+              <th scope="row">AC11.04</th>
+              <td>Développer des interfaces utilisateurs</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 1</td>
+              <td>HUD, menus, écran de choix de la magie.</td>
+            </tr>
+                      <tr class="element-feu">
+              <th scope="row">AC31.02</th>
+              <td>Faire évoluer une application</td>
+              <td><span class="puce-competence">C1</span></td>
+              <td>BUT 3</td>
+              <td>Projet développé et enrichi sur plusieurs mois.</td>
+            </tr>
+                      <tr class="element-foudre">
+              <th scope="row">AC12.01</th>
+              <td>Analyser un problème</td>
+              <td><span class="puce-competence">C2</span></td>
+              <td>BUT 1</td>
+              <td>Comportements du boss, transitions entre cartes.</td>
+            </tr>
+                      <tr class="element-foudre">
+              <th scope="row">AC22.01</th>
+              <td>Choisir des structures de données</td>
+              <td><span class="puce-competence">C2</span></td>
+              <td>BUT 2</td>
+              <td>Données de sauvegarde, profil du joueur.</td>
+            </tr>
+                      <tr class="element-ombre">
+              <th scope="row">AC15.02</th>
+              <td>Utiliser des outils de gestion</td>
+              <td><span class="puce-competence">C5</span></td>
+              <td>BUT 1</td>
+              <td>13 étapes de développement sauvegardées et suivies.</td>
+            </tr>
+                  </tbody>
+      </table>
+    </div>
+
+    <h3>Traces disponibles</h3>
+    <ul class="traces">
+      <li><a href="#analyse">Analyse réflexive</a> — retour sur les difficultés et les apprentissages du projet.</li>
+              <li><a href="https://github.com/Xulungu/Motrilem" target="_blank" rel="noopener">Code source sur GitHub ↗</a></li>
+            <li>Captures d'écran et description des fonctionnalités dans les sections ci-dessus.</li>
+      <li><a href="index.html#enseignants">Tableau récapitulatif de tous les AC du portfolio</a></li>
+    </ul>
+  </div>
+</section>
 
 <nav class="donjons-voisins apparition" aria-label="Autres projets">
   <a href="projet-minijeux.html" data-portail>

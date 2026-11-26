@@ -262,7 +262,7 @@
   </ul>
 </section>
 
-<section class="fenetre apparition">
+<section class="fenetre apparition" id="analyse">
   <h2>Analyse réflexive</h2>
   <p>
     Au début, Motrilem se limitait à un personnage qui se déplace. Le faire grandir jusqu'à une vraie démo m'a appris

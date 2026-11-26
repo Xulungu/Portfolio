@@ -112,6 +112,60 @@ require __DIR__ . '/includes/haut.php';
   </div>
 </section>
 
+<!-- ============================================================ ENSEIGNANTS -->
+<section class="bloc" id="enseignants">
+  <?= titre_section('Évaluation', 'Pour les enseignants') ?>
+  <div class="espace-prof apparition">
+    <header class="espace-prof-entete">
+      <span class="espace-prof-badge">Espace enseignants</span>
+      <p>
+        Récapitulatif des apprentissages critiques (AC) démontrés dans le portfolio, projet par projet.
+        Chaque page projet contient aussi une partie « Pour les enseignants » avec le détail des preuves.
+      </p>
+    </header>
+    <div class="espace-prof-corps">
+      <div class="tableau-defile">
+        <table class="tableau-ac tableau-recap">
+          <thead>
+            <tr>
+              <th scope="col">AC</th>
+              <th scope="col">Apprentissage critique</th>
+              <th scope="col">Niveau</th>
+              <?php foreach (PROJETS as $id => $p): ?>
+                <th scope="col" class="col-projet"><a href="<?= e(lien_projet($id)) ?>#enseignants"><?= e($p['titre']) ?></a></th>
+              <?php endforeach; ?>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $courante = '';
+            foreach (ac_demontres() as $ac):
+                $comp = competence_de_ac($ac);
+                if ($comp !== $courante): $courante = $comp; ?>
+                  <tr class="ligne-competence element-<?= e(COMPETENCES[$comp]['element']) ?>">
+                    <th colspan="<?= 3 + count(PROJETS) ?>" scope="rowgroup"><?= e($comp) ?> — <?= e(COMPETENCES[$comp]['nom']) ?></th>
+                  </tr>
+                <?php endif; ?>
+              <tr class="element-<?= e(COMPETENCES[$comp]['element']) ?>">
+                <th scope="row"><?= e($ac) ?></th>
+                <td><?= e(AC_LIBELLES[$ac] ?? '') ?></td>
+                <td>BUT <?= niveau_ac($ac) ?></td>
+                <?php foreach (PROJETS as $id => $p): ?>
+                  <td class="col-projet">
+                    <?php if (isset($p['ac'][$ac])): ?>
+                      <span class="coche" title="<?= e($p['ac'][$ac]) ?>">✓<span class="sr-only"> <?= e($p['ac'][$ac]) ?></span></span>
+                    <?php endif; ?>
+                  </td>
+                <?php endforeach; ?>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+      <p class="note-prof">Survolez une coche pour voir ce que le projet démontre. Les compétences C3 (TP Linux) et C4 (SAE SQL) sont aussi travaillées hors de ces projets.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================ TECHNOLOGIES -->
 <section class="bloc" id="technologies">
   <?= titre_section('Outils', 'Technologies') ?>

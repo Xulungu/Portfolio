@@ -78,7 +78,7 @@
   </ul>
 </section>
 
-<section class="fenetre apparition">
+<section class="fenetre apparition" id="analyse">
   <h2>Analyse réflexive</h2>
   <p>
     Ce projet m'a permis de comprendre la structure d'une application JavaFX et l'importance

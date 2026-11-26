@@ -30,7 +30,10 @@ $suivant = $ids[($pos + 1) % count($ids)];
 require __DIR__ . '/includes/haut.php';
 ?>
 
-<a class="retour apparition" href="<?= e(lien_accueil('projets')) ?>">← Retour aux projets</a>
+<div class="liens-haut apparition">
+  <a class="retour" href="<?= e(lien_accueil('projets')) ?>">← Retour aux projets</a>
+  <a class="lien-prof" href="#enseignants">Partie enseignants ↓</a>
+</div>
 
 <section class="donjon-entree <?= classe_rang($p['rang']) ?>">
   <?= cercle_magique('donjon-cercle') ?>
@@ -61,9 +64,17 @@ require __DIR__ . '/includes/haut.php';
 
 <div class="donjon-contenu">
   <?php require __DIR__ . '/contenus/' . $id . '.php'; ?>
+</div>
 
-  <section class="fenetre apparition">
-    <h2>Compétences du BUT démontrées</h2>
+<section class="espace-prof apparition" id="enseignants" aria-labelledby="titre-enseignants">
+  <header class="espace-prof-entete">
+    <span class="espace-prof-badge">Espace enseignants</span>
+    <h2 id="titre-enseignants">Pour les enseignants</h2>
+    <p>Synthèse des compétences du BUT Informatique et des apprentissages critiques (AC) mobilisés dans ce projet.</p>
+  </header>
+
+  <div class="espace-prof-corps">
+    <h3>Compétences mobilisées</h3>
     <ul class="liste-competences">
       <?php foreach ($p['competences'] as $code => $texte): $c = COMPETENCES[$code]; ?>
         <li class="element-<?= e($c['element']) ?>">
@@ -72,17 +83,41 @@ require __DIR__ . '/includes/haut.php';
         </li>
       <?php endforeach; ?>
     </ul>
-  </section>
 
-  <section class="fenetre apparition">
-    <h2>Apprentissages Critiques (AC) démontrés</h2>
-    <ul class="liste-ac ouverte">
-      <?php foreach ($p['ac'] as $ac => $preuve): ?>
-        <li class="ac-valide"><strong><?= e($ac) ?></strong> <?= e(AC_LIBELLES[$ac] ?? '') ?> <span class="ac-preuve">— <?= e($preuve) ?></span></li>
-      <?php endforeach; ?>
+    <h3>Apprentissages critiques démontrés</h3>
+    <div class="tableau-defile">
+      <table class="tableau-ac">
+        <thead>
+          <tr><th scope="col">AC</th><th scope="col">Apprentissage critique</th><th scope="col">Compétence</th><th scope="col">Niveau</th><th scope="col">Ce que le projet démontre</th></tr>
+        </thead>
+        <tbody>
+          <?php
+          $acs = array_keys($p['ac']);
+          usort($acs, fn($a, $b) => [competence_de_ac($a), $a] <=> [competence_de_ac($b), $b]);
+          foreach ($acs as $ac): $comp = competence_de_ac($ac); ?>
+            <tr class="element-<?= e(COMPETENCES[$comp]['element']) ?>">
+              <th scope="row"><?= e($ac) ?></th>
+              <td><?= e(AC_LIBELLES[$ac] ?? '') ?></td>
+              <td><span class="puce-competence"><?= e($comp) ?></span></td>
+              <td>BUT <?= niveau_ac($ac) ?></td>
+              <td><?= e($p['ac'][$ac]) ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Traces disponibles</h3>
+    <ul class="traces">
+      <li><a href="#analyse">Analyse réflexive</a> — retour sur les difficultés et les apprentissages du projet.</li>
+      <?php if ($p['github']): ?>
+        <li><a href="<?= e($p['github']) ?>" target="_blank" rel="noopener">Code source sur GitHub ↗</a></li>
+      <?php endif; ?>
+      <li>Captures d'écran et description des fonctionnalités dans les sections ci-dessus.</li>
+      <li><a href="<?= e(lien_accueil('enseignants')) ?>">Tableau récapitulatif de tous les AC du portfolio</a></li>
     </ul>
-  </section>
-</div>
+  </div>
+</section>
 
 <nav class="donjons-voisins apparition" aria-label="Autres projets">
   <a href="<?= e(lien_projet($precedent)) ?>" data-portail>
